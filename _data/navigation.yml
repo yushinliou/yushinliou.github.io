@@ -1,0 +1,25 @@
+# main links links
+main:
+  # - title: "Projects"
+  #   url: /publications/
+
+  # - title: "Talks"
+  #   url: /talks/    
+
+  # - title: "Teaching"
+  #   url: /teaching/    
+
+  # - title: "Portfolio"
+  #   url: /portfolio/
+        
+  # - title: "Blog Posts"
+  #   url: /year-archive/
+
+  # - title: "Personal"
+  #   url: /personal/
+
+  - title: "CV"
+    url: /files/Berkeley_sp24.pdf
+    
+  # - title: "Guide"
+  #   url: /markdown/
