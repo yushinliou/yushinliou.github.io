@@ -82,6 +82,6 @@ Originally from Taiwan, I cherish the island's natural beauty and am convinced t
 I am left-handed but play badminton🏸 with my right hand.
 
 **A question I thinking recently:**
-If machines lack of conscious, how can we argue that humans possess it?
+If machines lack consciousness, how can we argue that humans possess it?
 
 
