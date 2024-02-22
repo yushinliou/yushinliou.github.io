@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-> "I am actively seeking a Research Assistant position and am available to start work full-time after May. Feel free to contact me if you believe my experience aligns well with your requirements.
+> "I am actively seeking a Research Assistant position and am available to start work full-time after May. Feel free to contact me if you condsider my experience aligns well with your requirements.
 
 I am an undergraduate researcher currently studying at UC Berkeley through the [Berkeley International Study Program](https://bisp.berkeley.edu/). My research interests are twofold: 1) Utilizing computational methods to expand the frontier of social science research, and 2) Exploring the interaction between technology and society, including how they mutually construct each other. Presently, my focus is whether Large Language Models (LLMs) adhere to their own social principles and understanding the relationship between human and machine social principles.
 
@@ -58,6 +58,7 @@ I received a scholarship from the [Y.L. Taiwan Education Foundation](https://yll
 
 - **The Influence of Support Networks Inside and Outside College on Life Satisfaction:** 
     - In 2020, [three consecutive student suicide](https://news.pts.org.tw/article/500144) incidents at NTU ignited widespread discussion and sorrow. My sociology peers and I conducted the National Taiwan University Student Life Survey to explore how future tragedies might be prevented. We discovered that support networks were vital; however, their significant impact on life satisfaction was only felt when those capable of providing emotional support or academic assistance were present on campus.
+    - [Report link](/images/ntu-net-lifesat.jpg)
   - *Tags:* `Quantitative Research` `Social Network`
 
 
@@ -69,6 +70,11 @@ I received a scholarship from the [Y.L. Taiwan Education Foundation](https://yll
     - [Report link](/files/map_for_blindpdf.pdf)
   - *Tags:* `Quantitative`, `Qualitative`, `User Experience Research`
 
+- **Using a Multi-Level Model to Analyze the Effects of School-Level and Individual-Level Factors on Students' Academic Performance**
+    - In this work we analysis the Scottish School Leavers Survey (SSLS). SSLS is a representative survey conducted among young people.
+    - We using multi-level model to examine the school-level and individual level factors.
+    - [Report link](/files/multi-level-report.pdf)
+  - *Tags:* `Quantitative`, `education`, `multi-level model`
   
 ## Personal
 <!-- <div align="right">
