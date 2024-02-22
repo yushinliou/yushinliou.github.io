@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-> "I am actively seeking a Research Assistant position and am available to start work full-time after May. Feel free to contact me if you condsider my experience aligns well with your requirements.
+> I am actively seeking a Research Assistant position and am available to start work full-time after May. Feel free to contact me if you condsider my experience aligns well with your requirements.
 
 I am an undergraduate researcher currently studying at UC Berkeley through the [Berkeley International Study Program](https://bisp.berkeley.edu/). My research interests are twofold: 1) Utilizing computational methods to expand the frontier of social science research, and 2) Exploring the interaction between technology and society, including how they mutually construct each other. Presently, my focus is whether Large Language Models (LLMs) adhere to their own social principles and understanding the relationship between human and machine social principles.
 
@@ -75,6 +75,12 @@ I received a scholarship from the [Y.L. Taiwan Education Foundation](https://yll
     - We using multi-level model to examine the school-level and individual level factors.
     - [Report link](/files/multi-level-report.pdf)
   - *Tags:* `Quantitative`, `education`, `multi-level model`
+
+- **How Is Teaching Leadership Possible? A Case Study of National Taiwan University's Leadership Program**
+    - Utilizing participant observation and interviews within National Taiwan University's leadership program, this study examines the intricate aspects of leadership education, emphasizing soft skills and leadership's four dimensions. The findings highlight the pivotal role of the program's hidden curriculum—particularly through peer and teacher-student interactions—in significantly enhancing students' leadership capabilities, as evidenced by the adoption of cultural tools and three main teaching methods.
+  - [Report link (Mandarin)](/files/leadership.pdf)
+  - *Tags:* `qualitative`, `semi-structured interviews`, `participant observation`
+
   
 ## Personal
 <!-- <div align="right">
