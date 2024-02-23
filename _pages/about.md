@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-> I am actively seeking a Research Assistant position and am available to start work full-time after May. Feel free to contact me if you condsider my experience aligns well with your requirements.
+> I am actively exploring job opportunities this year. Please feel free to contact me with any relevant opportunities or to learn more about my skills and experience.
 
 I am an undergraduate researcher currently studying at UC Berkeley through the [Berkeley International Study Program](https://bisp.berkeley.edu/). My research interests are twofold: 1) Utilizing computational methods to expand the frontier of social science research, and 2) Exploring the interaction between technology and society, including how they mutually construct each other. Presently, my focus is whether Large Language Models (LLMs) adhere to their own social principles and understanding the relationship between human and machine social principles.
 
