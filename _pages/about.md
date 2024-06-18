@@ -67,7 +67,7 @@ I received a scholarship from the [Y.L. Taiwan Education Foundation](https://yll
     - We have created a universal map that is "readable" for both blind and sighted people.
     - By combining quantitative and qualitative methods, we aim to understand the problems of current tactile maps and determine which textures, icons, line formations, and arrows are most easily distinguishable by individuals with visual impairments.
     - The study results foster the promotion of the birth of Document No. 1120501764, which stipulates that public places must be equipped with universal fire escape evacuation maps.
-    - [Report link](/files/map_for_blindpdf.pdf)
+    <!-- - [Report link](/files/map_for_blindpdf.pdf) -->
   - *Tags:* `Quantitative`, `Qualitative`, `User Experience Research`
 
 - **Using a Multi-Level Model to Analyze the Effects of School-Level and Individual-Level Factors on Students' Academic Performance**
