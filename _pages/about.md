@@ -7,13 +7,14 @@ redirect_from:
   - /about.html
 ---
 
-> I am actively seeking a Research Assistant position and am available to start work full-time after May. Feel free to contact me if you condsider my experience aligns well with your requirements.
+> I am actively exploring job opportunities this year. Please feel free to contact me with any relevant opportunities or to learn more about my skills and experience.
 
-I am an undergraduate researcher currently studying at UC Berkeley through the [Berkeley International Study Program](https://bisp.berkeley.edu/). My research interests are twofold: 1) Utilizing computational methods to expand the frontier of social science research, and 2) Exploring the interaction between technology and society, including how they mutually construct each other. Presently, my focus is whether Large Language Models (LLMs) adhere to their own social principles and understanding the relationship between human and machine social principles.
+My research interests are twofold: 1) Utilizing computational methods to expand the frontier of social science research, and 2) Exploring the interaction between technology and society, including how they mutually construct each other. Presently, my focus is whether Large Language Models (LLMs) adhere to their own social principles and understanding the relationship between human and machine social principles.
 
-Prior to study in UC Berkeley, I majored in Sociology at National Taiwan University while served as a research assistant at [Academia Sinica, Taiwan](https://www.sinica.edu.tw/en/). There, I was part of a Big Data research group, working under the guidance of [Yang-Chih Fu](https://scholar.google.com.tw/citations?user=KZvMphwAAAAJ&hl=en) and [Hsuan-Wei Lee](https://sites.google.com/view/hsuanweilee/home).
 
-I received a scholarship from the [Y.L. Taiwan Education Foundation](https://yllproject.ntu.edu.tw/) and the [Study Abroad Programme for Future Scholars](https://www.youconf.cc/sites/90819711058413687015/seminar.html), hosted by the Taiwan Ministry of Education, for which I am grateful. Their support enabled me to study at UC Berkeley.
+I graduated from National Taiwan University with B.A. in Sociology. I also served as a research assistant at [Academia Sinica, Taiwan](https://www.sinica.edu.tw/en/). There, I was part of a Big Data research group, working under the guidance of [Yang-Chih Fu](https://scholar.google.com.tw/citations?user=KZvMphwAAAAJ&hl=en) and [Hsuan-Wei Lee](https://sites.google.com/view/hsuanweilee/home).
+
+I received a scholarship from the [Y.L. Taiwan Education Foundation](https://yllproject.ntu.edu.tw/) and the [Study Abroad Programme for Future Scholars](https://www.youconf.cc/sites/90819711058413687015/seminar.html), hosted by the Taiwan Ministry of Education, for which I am grateful. Their support enabled me to visiting UC Berkeley during my undergraduate studies.
 
 
 ## Interests
