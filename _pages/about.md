@@ -20,7 +20,8 @@ Hi, I am Yu Shin Liou from Taiwan. Currently, my work can be summarized by 2 que
 </div> -->
 <!-- width="指定寬度" height="指定高度" alt="圖片描述" -->
 ![Formosa rock-monkey](/images/monkey.png){: .align-right width="300px"}
-Originally from Taiwan, I cherish the island's natural beauty and am convinced that we offer the [🧋BEST BOBA TEA](https://hackmd.io/E8eGG5XWTm26j6_nmUjaKQ?view) in the world. I used to be a journalist, where I reported on wildlife public policy, specifically about the [Formosan rock-monkey](https://e-info.org.tw/search/google/%E5%8A%89%E7%BE%BD%E8%8A%AF#gsc.tab=0&gsc.q=%E5%8A%89%E7%BE%BD%E8%8A%AF).
+
+If you plan to visited Taiwn, make sure you check [🧋BEST BOBA TEA](https://hackmd.io/E8eGG5XWTm26j6_nmUjaKQ?view) in the world. I used to be a journalist, where I reported on wildlife public policy, specifically about the [Formosan rock-monkey](https://e-info.org.tw/search/google/%E5%8A%89%E7%BE%BD%E8%8A%AF#gsc.tab=0&gsc.q=%E5%8A%89%E7%BE%BD%E8%8A%AF).
 
 
 **Fun Fact:**
