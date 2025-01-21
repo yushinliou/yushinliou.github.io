@@ -23,12 +23,12 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Yu Shin Liou"
-  pronouns         : # example: "she/her"  
+  pronouns         : "she/her"  
   bio              : "🌱 Engineering for humanity"
-  location         : "UC Berkeley, CA"
+  location         : "Taiwan, Taichung"
   employer         : "National Taiwan University" #  National Taiwan University
   uri              : # URL
-  email            : "vxh440@gmail.com" 
+  email            : "yushin.forwork@gmail.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
@@ -56,7 +56,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : "yu-shin-liou" # Username
+  linkedin         : "yu-shin-liou-is-lexi" # Username
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
@@ -111,7 +111,7 @@ atom_feed:
 
 
 # SEO Related
-google_site_verification :
+google_site_verification : G-0NBWCF0ERP 
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
@@ -135,9 +135,9 @@ social:
 
 # Analytics
 analytics:
-  provider               :  "google-universal" # false (default), "google", "google-universal", "google-analytics-4", "custom"
+  provider               :  "google-analytics-4" # false (default), "google", "google-universal", "google-analytics-4", "custom"
   google:
-    tracking_id          :
+    tracking_id          : G-0NBWCF0ERP
 
 
 # Reading Files
