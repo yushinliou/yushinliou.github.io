@@ -9,6 +9,16 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NBWCF0ERP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0NBWCF0ERP'); // 用您的 Tracking ID 替換 G-XXXXXXX
+    </script>
+
   </head>
 
   <body>
