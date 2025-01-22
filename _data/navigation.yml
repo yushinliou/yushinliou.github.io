@@ -9,17 +9,17 @@ main:
   # - title: "Teaching"
   #   url: /teaching/    
 
-  # - title: "Portfolio"
-  #   url: /portfolio/
+  - title: "Portfolio"
+    url: /portfolio/
         
-  # - title: "Blog Posts"
-  #   url: /year-archive/
+  - title: "Blog Posts"
+    url: /year-archive/
 
   # - title: "Personal"
   #   url: /personal/
 
   - title: "CV"
-    url: /files/Berkeley_sp24.pdf
+    url: /files/CV.pdf
     
   # - title: "Guide"
   #   url: /markdown/

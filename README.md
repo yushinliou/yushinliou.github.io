@@ -1,5 +1,31 @@
+# Check your ruby version
+```
+which ruby
+ruby -v
+```
+# use the command in output to config shell
+```
+brew info ruby
+```
+it should included something like
+```
+echo 'export PATH="/opt/homebrew/opt/ruby/bin:$PATH"' >> /Users/liuyuxin/.zshrc
+source ~/.zshrc
+```
+# check if the ruby version successfully change to another dir
 
-# Academic Pages
+```
+brew uninstall ruby
+brew install ruby@3.0
+```
+
+start local host:
+
+
+
+___
+
+# Academic Pages (Original README)
 
 ![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
 

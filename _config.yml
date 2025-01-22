@@ -26,9 +26,9 @@ author:
   pronouns         : "she/her"  
   bio              : "🌱 Engineering for humanity"
   location         : "Taiwan, Taichung"
-  employer         : "National Taiwan University" #  National Taiwan University
+  employer         : "Natioanl Taiwan University"
   uri              : # URL
-  email            : "yushin.forwork@gmail.com" 
+  email            : "yushin.research@gmail.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
@@ -77,8 +77,8 @@ author:
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
-future                   : true
-read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
+future                   : false
+read_more                : "enable" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false #change to true to add link to talkmap on talks page
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"

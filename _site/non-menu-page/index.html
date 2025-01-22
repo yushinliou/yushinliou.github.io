@@ -68,6 +68,8 @@
 
 
 
+  <meta name="google-site-verification" content="G-0NBWCF0ERP" />
+
 
 
 
@@ -122,6 +124,16 @@
 
 <!-- end custom head snippets -->
 
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NBWCF0ERP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0NBWCF0ERP'); // 用您的 Tracking ID 替換 G-XXXXXXX
+    </script>
+
   </head>
 
   <body>
@@ -140,7 +152,13 @@
           <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">Yu Shin Liou</a></li>
           
             
-            <li class="masthead__menu-item"><a href="http://localhost:4000/files/Berkeley_sp24.pdf">CV</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/portfolio/">Portfolio</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">Blog Posts</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/files/CV.pdf">CV</a></li>
           
         </ul>
         <ul class="hidden-links hidden"></ul>
@@ -174,8 +192,8 @@
 
   <div class="author__content">
     <h3 class="author__name">Yu Shin Liou</h3>
-    
-    <p class="author__bio">Engineering for humanity</p>
+    <p class="author__pronouns">she/her</p>
+    <p class="author__bio">🌱 Engineering for humanity</p>
   </div>
 
   <div class="author__urls-wrapper">
@@ -183,14 +201,14 @@
     <ul class="author__urls social-icons">
       <!-- Font Awesome icons / Biographic information  -->
       
-        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> UC Berkeley, CA</li>
+        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Taiwan, Taichung</li>
       
       
-        <li><i class="fa fa-solid fa-building-columns" aria-hidden="true"></i> UC Berkeley</li>
+        <li><i class="fa fa-solid fa-building-columns" aria-hidden="true"></i> Natioanl Taiwan University</li>
       
       
       
-        <li><a href="mailto:vxh440@gmail.com"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Email</a></li>
+        <li><a href="mailto:yushin.research@gmail.com"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Email</a></li>
       
 
       <!-- Font Awesome and Academicons icons / Academic websites -->
@@ -206,7 +224,7 @@
             
             
       
-        <li><a href="https://github.com/https://github.com/yushinliou"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        <li><a href="https://github.com/yushinliou"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
       
             
             
@@ -222,7 +240,7 @@
             
             
       
-        <li><a href="https://www.linkedin.com/in/yu-shin-liou"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/yu-shin-liou-is-lexi"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
             
       
             
@@ -267,11 +285,193 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>This is a page not in the menu. You can use markdown in this page.</p>
+        <h1 id="using-a-multi-level-model-to-analyze-the-effects-of-school-level-and-individual-level-factors-on-students-academic-performance">Using a Multi-Level Model to Analyze the Effects of School-Level and Individual-Level Factors on Students’ Academic Performance</h1>
 
-<h1 id="heading-1">Heading 1</h1>
+<h5 id="yu-hsin-liu-national-taiwan-university">Yu-Hsin Liu, National Taiwan University</h5>
 
-<h1 id="heading-2">Heading 2</h1>
+<h2 id="introduction">Introduction</h2>
+
+<p>In this work we analysis the Scottish School Leavers Survey (SSLS). SSLS is a representative survey conducted among young people. This survey is carried out in Scotland for students in their final year of compulsory education (ages 16-17) and includes data from several generations of students, covering 508 schools and 33,988 students.</p>
+
+<ul>
+  <li>
+    <p>This analysis aims to answer:</p>
+  </li>
+  <li>
+    <p>Are there any differences in average scores (SCORE) across schools without considering factors that affect individual grades?</p>
+  </li>
+  <li>
+    <p>What is the proportion of variance in average school scores to the total variance in student scores? Does subsequent analysis need to consider the research level of the school (context)?</p>
+  </li>
+  <li>
+    <p>If there is a difference in average scores among schools as mentioned in question (2), which variables among school characteristics (school type, location, and denomination) have an impact? Which variable has the greatest impact?</p>
+  </li>
+  <li>
+    <p>After considering the impact of students’ personal and family characteristics on scores, is there a difference in the adjusted average scores among schools? (In this report I assume that the impact of personal and family characteristics on scores does not vary between schools.)</p>
+  </li>
+  <li>
+    <p>Among the impacts of students’ personal and family characteristics on scores, which variables’ effects will vary between school characteristics? For variables that vary, which school characteristic influences this difference?</p>
+  </li>
+</ul>
+
+<p>In the analysis below, we set the significance level at 0.05, meaning significance is indicated by a $p$-value &lt; 0.05.</p>
+
+<blockquote>
+  <p>Firstly, Without considering the factors affecting individual grades, is there a difference in average scores (SCORE) among schools?</p>
+</blockquote>
+
+<ol>
+  <li>Null multilevel model, $model1$</li>
+</ol>
+
+<p>$level1$</p>
+
+\[score_{ij} = \beta_0 + u_{0j} + e_{ij}\]
+
+<p>$level2$</p>
+
+\[\beta_{0j}=\gamma_{00}+u_{0j}\]
+
+<p>$combine$</p>
+
+\[score_{ij} = \gamma_{00}+u_{0j} + e_{ij}\]
+
+<ul>
+  <li>
+    <p>$score_{ij}$ = Score of student i in school j</p>
+  </li>
+  <li>
+    <p>$\beta_0$ = Overall average (across schools)</p>
+  </li>
+  <li>
+    <p>$u_{0j}$ = School’s influence (school residual)</p>
+  </li>
+  <li>
+    <p>$e_{ij}$ = Student residual</p>
+    <ol>
+      <li>Null single model (remove random school effect)</li>
+    </ol>
+  </li>
+</ul>
+
+\[score_{ij} = \beta_0+e_{ij}\]
+
+<blockquote>
+  <p>Next we conduct Likelihood ratio test, compare Null single model and Null multilevel model</p>
+</blockquote>
+
+<p>Testing if $Var(u_{0j})$ is significantly non-zero</p>
+
+\[LR = 2(143269.53 - -145144.42) = 3750, \space 1 \space d.f.\\ 3750 &gt; 3.84\\ 3.84 = 5\% \space point \space of \space chi-square \space on \space 1 d.f\]
+
+<ul>
+  <li>Result: The difference between schools is significant.</li>
+</ul>
+
+<blockquote>
+  <p>Based on the previous model, what percentage of the total variance in student scores is accounted for by between-school variance? Do subsequent analyses need to consider the school (contextual) level?</p>
+</blockquote>
+
+<p>Between-school variance proportion:</p>
+
+\[VAC=\frac{\sigma^2_{u0}}{\hat{\sigma^2_e}+\sigma^2_{u0}} = \frac{61.02457}{61.02457+258.3572} = 19.1\%\]
+
+<ul>
+  <li>
+    <p>$\sigma^2_{u0}$ = Between school variance</p>
+  </li>
+  <li>$\hat{\sigma^2_e}$ = Within school between student variance</li>
+  <li>Result: 19.1% of the variance in student scores comes from between-school variance.</li>
+</ul>
+
+<blockquote>
+  <p>If there is a difference in average scores among schools as mentioned in question (2), then among school characteristics (type of school, location of school, and school denomination), which variables have an impact? Which variable has the largest impact?</p>
+</blockquote>
+
+<ul>
+  <li>Added school level variables</li>
+</ul>
+
+<p>$level1$</p>
+
+\[score_{ij}=\beta_{0j} + e_{ij}\]
+
+<p>$level2$</p>
+
+\[\beta_{0j} = \gamma_{00} + \gamma_{01} schoolType_{j} + \gamma_{02} schoolUrban_{j} + \gamma_{03} schoolDenom_{j} + u_{0j}\]
+
+\[score_{ij}=\gamma_{00} + \gamma_{01} schoolType_{j} + \gamma_{02} schoolUrban_{j} + \gamma_{03} schoolDenom_{j} + u_{0j} + e_{ij}\]
+
+<ul>
+  <li>$model 2$</li>
+  <li>
+    <p>School type and location significantly affect student scores.</p>
+  </li>
+  <li>
+    <p>Independent schools have better student scores compared to state-funded schools.</p>
+  </li>
+  <li>
+    <p>Urban students perform worse than those in towns or rural areas.</p>
+  </li>
+  <li>Comparing the absolute values of coefficients shows that school category has the largest impact.</li>
+</ul>
+
+<blockquote>
+  <p>After considering the impact of individual and family characteristics on grades, is there a difference in the adjusted average scores of schools?</p>
+</blockquote>
+
+<p>$Individual \space level$</p>
+
+\[score_{ij} = \beta_{0j} + \beta_{1j} cohort90_{ij} + \beta_{2j} female_{ij} + \beta_{3j} sclass_{ij} + e_{ij}\]
+
+<p>$School \space level$</p>
+
+\[\beta_{0j} = \gamma_{00} + \gamma_{01} schoolType_{j} + schoolDemon_{j}+ schoolUrban_{j} + u_{0j} \\ \beta_{1j}=\gamma_{10} \\ \beta_{2j}=\gamma_{20} \\ \beta_{3j}=\gamma_{30}\]
+
+\[score_{ij} = \gamma_{00} + \gamma_{01} schoolType_{j} + \gamma_{02} schoolDemon_{j}+ \gamma_{03} schoolUrban_{j} + u_{0j} + \gamma_{10} cohort90_{ij} + \gamma_{20} female_{ij} + \gamma_{30} sclass_{ij} + e_{ij}\]
+
+<ul>
+  <li>$model3$</li>
+  <li>
+    <p>According to the likelihood ratio test, the school level’s influence remains significant after considering individual-level impacts.</p>
+  </li>
+  <li>School category (schtype) and school location (schurban) significantly influence.</li>
+</ul>
+
+<blockquote>
+  <p>Among the effects of individual and family characteristics on grades, which variables’ effects vary between school characteristics? For the variables that vary, which school characteristic influences this difference?</p>
+</blockquote>
+
+<p>$Individual \space level$</p>
+
+\[score_{ij} = \beta_{0j} + \beta_{1j} cohort90_{ij} + \beta_{2j} female_{ij} + \beta_{3j} sclass_{ij} + e_{ij}\]
+
+<p>$School \space level$</p>
+
+\[\beta_{0j}=\gamma_{00} + \gamma_{01}schoolType_{j} + \gamma_{02}schoolDemon_{j} + \gamma_{03}schoolurban_{j} + u_{0j} \\ \beta_{1j}=\gamma_{10} + \gamma_{11}schoolType_{j} + \gamma_{12}schoolDemon_{j} + \gamma_{13}schoolurban_{j} + u_{1j} \\ \beta_{2j}=\gamma_{20} + \gamma_{21}schoolType_{j} + \gamma_{22}schoolDemon_{j} + \gamma_{23}schoolurban_{j} + u_{2j} \\ \beta_{3j}=\gamma_{30} + \gamma_{31}schoolType_{j} + \gamma_{32}schoolDemon_{j} + \gamma_{33}schoolurban_{j} + u_{3j}\]
+
+\[score_{ij} =\gamma_{00} + \gamma_{01}schoolType_{j} + \gamma_{02}schoolDemon_{j} + \gamma_{03}schoolurban_{j} + u_{0j} + (\gamma_{10} + \gamma_{11}schoolType_{j} + \gamma_{12}schoolDemon_{j} + \gamma_{13}schoolurban_{j} + u_{1j}) cohort90_{ij} + (\gamma_{20} + \gamma_{21}schoolType_{j} + \gamma_{22}schoolDemon_{j} + \gamma_{23}schoolurban_{j} + u_{2j}) female_{ij} + (\gamma_{30} + \gamma_{31}schoolType_{j} + \gamma_{32}schoolDemon_{j} + \gamma_{33}schoolurban_{j} + u_{3j}) sclass_{ij} + e_{ij}\]
+
+<p>Family background (whether a student comes from a managerial or professional class family, and whether a student belongs to an unclassified class), generation, and school type have significant interactions.</p>
+
+<ul>
+  <li>$model4$</li>
+  <li>
+    <p>Interaction between <code class="language-plaintext highlighter-rouge">sclass</code> and <code class="language-plaintext highlighter-rouge">schType</code> shows that overall, students from managerial and professional class backgrounds perform better than those from middle classes, who in turn perform better than unclassified students. However, the benefit of being in a private school over a state-funded school is greatest for unclassified students, less so for middle-class students, and least for managerial and professional class students.</p>
+  </li>
+  <li>Interaction between <code class="language-plaintext highlighter-rouge">cohort90</code> and <code class="language-plaintext highlighter-rouge">schType</code> shows that overall, private schools perform better than state-funded schools across all generations, but the advantage of private schools diminishes with newer generations.</li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p>See table 1 for a comprehensive model summary.</p>
+
+<p>Among school-level factors, school type, particularly private schools, have a significant positive impact on student scores, while urban locations have a significant negative impact compared to rural or town settings.</p>
+
+<p>On an individual level, females and newer generations perform better. Moreover, the advantage of private schools over state-funded schools diminishes with each new generation.</p>
+
+<p>Furthermore, students from managerial and professional class families perform better than those from middle classes. Students from labor class and unclassified backgrounds perform worse than those from middle classes, especially those from unclassified backgrounds, for whom the negative impact of socio-economic background is greater. However, it is these unclassified students who benefit the most from school type, followed by middle-class students, with managerial and professional class students benefiting the least.</p>
+
 
 
         
@@ -319,14 +519,14 @@
     
     
     
-      <li><a href="http://github.com/https://github.com/yushinliou"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="http://github.com/yushinliou"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 Yu Shin Liou. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 Yu Shin Liou. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
@@ -336,15 +536,15 @@
 
 
 
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NBWCF0ERP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', '', 'auto');
-  ga('send', 'pageview');
+  gtag('config', 'G-0NBWCF0ERP');
 </script>
+
 
 
 

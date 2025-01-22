@@ -1,25 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-19T23:18:35-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yu Shin Liou</title><subtitle>personal description</subtitle><author><name>Yu Shin Liou</name><email>vxh440@gmail.com</email></author><entry><title type="html">Future Blog Post</title><link href="http://localhost:4000/posts/2012/08/blog-post-4/" rel="alternate" type="text/html" title="Future Blog Post" /><published>2019-01-01T00:00:00-08:00</published><updated>2019-01-01T00:00:00-08:00</updated><id>http://localhost:4000/posts/2012/08/future-post</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-4/"><![CDATA[<p>This post will show up by default. To disable scheduling of future posts, edit <code class="language-plaintext highlighter-rouge">config.yml</code> and set <code class="language-plaintext highlighter-rouge">future: false</code>.</p>]]></content><author><name>Yu Shin Liou</name><email>vxh440@gmail.com</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This post will show up by default. To disable scheduling of future posts, edit config.yml and set future: false.]]></summary></entry><entry><title type="html">Blog Post number 4</title><link href="http://localhost:4000/posts/2012/08/blog-post-4/" rel="alternate" type="text/html" title="Blog Post number 4" /><published>2015-08-14T00:00:00-07:00</published><updated>2015-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2012/08/blog-post-4</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-4/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-22T02:02:36-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yu Shin Liou</title><subtitle>personal description</subtitle><author><name>Yu Shin Liou</name><email>yushin.research@gmail.com</email></author><entry><title type="html">Best Taiwan Boba Tea Shops</title><link href="http://localhost:4000/posts/2024/01/Best_BOBA_TEA_in_Taiwan/" rel="alternate" type="text/html" title="Best Taiwan Boba Tea Shops" /><published>2024-01-08T00:00:00-08:00</published><updated>2024-01-08T00:00:00-08:00</updated><id>http://localhost:4000/posts/2024/01/Best_Taiwan_Boba</id><content type="html" xml:base="http://localhost:4000/posts/2024/01/Best_BOBA_TEA_in_Taiwan/"><![CDATA[<h1 id="yu-dian-tea-御典茶">Yu Dian Tea (御典茶)</h1>
+<ul>
+  <li>Tags: <code class="language-plaintext highlighter-rouge">Kaohsiung limited</code> <code class="language-plaintext highlighter-rouge">not chain store</code></li>
+  <li>🚩 <a href="https://maps.app.goo.gl/Hpo9ySXCJvo6mqrZ7">No. 38, Guyuan St, Gushan District, Kaohsiung City, Taiwan 804</a></li>
+  <li>⭐️ Monglia Milk Tea add TAPIOCA CUBE</li>
+</ul>
+
+<p>The below img is TAPIOCA CUBE (粉角), which is their special. Super popular and had better go earlier to prevent sold out</p>
+<ul>
+  <li><img src="../images/2024-01-08-Best_Taiwan_Boba/fen-jiao.jpg" alt="image" /></li>
+  <li>It is in Kaohsiung, nearby Sun Yat-sen University. When I study in there it is the Top option for the student in our school.  Even after I move to Taipei and there are literally thunsands of Tea shop , Yu Dian Tea it still unreplacable.</li>
+  <li>It is nearby MRT station and Sizihwan Bay. It is a good visited spot, you can go for a walk on the beach or hiking in Shoushan National Natural Park.</li>
+</ul>
+
+<h1 id="fang-zui-artisan-tea-方最茗品">Fang Zui Artisan Tea (方最茗品)</h1>
+<ul>
+  <li>Tags: <code class="language-plaintext highlighter-rouge">Taipei</code></li>
+  <li>🚩 <a href="https://maps.app.goo.gl/BV4nZ1RwWkuKpHE66">No. 60-6號, Section 2, Jinan Rd, Zhongzheng District, Taipei City, Taiwan 100</a></li>
+  <li>⭐️ Honeycomb Toffee milk tea</li>
+  <li>The topping, Honeycomb toffee, is sweet but also a little bitter and add special scent to the milk tea. My personal favorite after I move to Taipei.</li>
+  <li><img src="../images/2024-01-08-Best_Taiwan_Boba/black_sugar.png" alt="image" />
+    <h3 id="oolong-tea-project得正">OOlong Tea project(得正)</h3>
+  </li>
+  <li>Tags: <code class="language-plaintext highlighter-rouge">Chain store</code>, <code class="language-plaintext highlighter-rouge">Taichung</code>, <code class="language-plaintext highlighter-rouge">Taipei</code></li>
+  <li>⭐️ light Roasted Oolong Tea Latte add Oolong tea jelly（輕烏龍鮮奶茶加烏龍茶凍）</li>
+  <li>Oolong Tea project is relatively new brand. Their menu is not special at all, but their tea quality is really good. They go viral in 2023.
+    <h1 id="spade-tea十杯">Spade Tea（十杯）</h1>
+  </li>
+  <li>Tags: <code class="language-plaintext highlighter-rouge">not Chain store</code> <code class="language-plaintext highlighter-rouge">Taipei</code> <code class="language-plaintext highlighter-rouge">Taichung</code> <code class="language-plaintext highlighter-rouge">Kaohsiung</code></li>
+  <li>⭐️ Osmanthus fragrans milk tea （桂花清牧奶茶）</li>
+  <li>Good tea and milk quality. My comfort food in Taipei
+    <h1 id="milksha迷客夏">Milksha（迷客夏）</h1>
+  </li>
+  <li>Tags: <code class="language-plaintext highlighter-rouge">Chain store</code></li>
+  <li>⭐️ Barley Water add Bubble(決明大麥加珍珠)</li>
+  <li>⭐️ Ice shavings of lemon Green Tea
+    <h1 id="ｍacu麻古茶坊">Ｍacu（麻古茶坊）</h1>
+  </li>
+  <li>Tags: <code class="language-plaintext highlighter-rouge">Chain store</code></li>
+  <li>⭐️ King of mango smoothie (楊枝甘露)</li>
+  <li>⭐️ Chi Chi mango smoothie（芝芝芒果果粒）</li>
+  <li>⭐️ Bo-Bo mango smoothie (波波芒果果粒)
+<a href="../images/2024-01-08-Best_Taiwan_Boba/mango_sip.jpg">image</a></li>
+</ul>
+
+<h1 id="chain-store-taiwanese-rank-in-2023">Chain Store Taiwanese rank in 2023</h1>
+<ol>
+  <li>KEBUKE Tea Co. 可不可熟成紅茶</li>
+  <li>WUSHILAND BOBA 五十嵐</li>
+  <li>chingshin 清心福全</li>
+  <li>Milksha 迷客夏</li>
+  <li>Taro Yuan 清原芋圓</li>
+  <li>DaYungs 大苑子</li>
+  <li>Tp Tea 茶湯會</li>
+  <li>Chun Shui Tang 春水堂</li>
+  <li>Presotea 鮮茶道</li>
+  <li>UNOCHA 烏弄</li>
+  <li>TRUEDAN 珍煮丹</li>
+  <li>COMEBUY</li>
+  <li>Like Tea Shop 老賴茶棧</li>
+  <li>Tea &amp; Magic Han 茶之魔手</li>
+  <li>Hanlin Internatioal Enterprise 翰林茶館</li>
+  <li>Tea Shop 喫茶小舖</li>
+  <li>dont.yell.at.me 不要對我尖叫</li>
+</ol>]]></content><author><name>Yu Shin Liou</name><email>yushin.research@gmail.com</email></author><category term="personal" /><category term="boba tea" /><summary type="html"><![CDATA[Yu Dian Tea (御典茶) Tags: Kaohsiung limited not chain store 🚩 No. 38, Guyuan St, Gushan District, Kaohsiung City, Taiwan 804 ⭐️ Monglia Milk Tea add TAPIOCA CUBE]]></summary></entry><entry><title type="html">Blog Post number 4</title><link href="http://localhost:4000/posts/2012/08/blog-post-4/" rel="alternate" type="text/html" title="Blog Post number 4" /><published>2015-08-14T00:00:00-07:00</published><updated>2015-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2012/08/blog-post-4</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-4/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
 
 <h1 id="headings-are-cool">Headings are cool</h1>
 
 <h1 id="you-can-have-many-headings">You can have many headings</h1>
 
-<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>vxh440@gmail.com</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry><entry><title type="html">Blog Post number 3</title><link href="http://localhost:4000/posts/2014/08/blog-post-3/" rel="alternate" type="text/html" title="Blog Post number 3" /><published>2014-08-14T00:00:00-07:00</published><updated>2014-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2014/08/blog-post-3</id><content type="html" xml:base="http://localhost:4000/posts/2014/08/blog-post-3/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
+<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>yushin.research@gmail.com</email></author><category term="archived" /><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry><entry><title type="html">Blog Post number 3</title><link href="http://localhost:4000/posts/2014/08/blog-post-3/" rel="alternate" type="text/html" title="Blog Post number 3" /><published>2014-08-14T00:00:00-07:00</published><updated>2014-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2014/08/blog-post-3</id><content type="html" xml:base="http://localhost:4000/posts/2014/08/blog-post-3/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
 
 <h1 id="headings-are-cool">Headings are cool</h1>
 
 <h1 id="you-can-have-many-headings">You can have many headings</h1>
 
-<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>vxh440@gmail.com</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry><entry><title type="html">Blog Post number 2</title><link href="http://localhost:4000/posts/2013/08/blog-post-2/" rel="alternate" type="text/html" title="Blog Post number 2" /><published>2013-08-14T00:00:00-07:00</published><updated>2013-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2013/08/blog-post-2</id><content type="html" xml:base="http://localhost:4000/posts/2013/08/blog-post-2/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
+<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>yushin.research@gmail.com</email></author><category term="archived" /><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry><entry><title type="html">Blog Post number 2</title><link href="http://localhost:4000/posts/2013/08/blog-post-2/" rel="alternate" type="text/html" title="Blog Post number 2" /><published>2013-08-14T00:00:00-07:00</published><updated>2013-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2013/08/blog-post-2</id><content type="html" xml:base="http://localhost:4000/posts/2013/08/blog-post-2/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
 
 <h1 id="headings-are-cool">Headings are cool</h1>
 
 <h1 id="you-can-have-many-headings">You can have many headings</h1>
 
-<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>vxh440@gmail.com</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry><entry><title type="html">Blog Post number 1</title><link href="http://localhost:4000/posts/2012/08/blog-post-1/" rel="alternate" type="text/html" title="Blog Post number 1" /><published>2012-08-14T00:00:00-07:00</published><updated>2012-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2012/08/blog-post-1</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-1/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
+<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>yushin.research@gmail.com</email></author><category term="archived" /><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry><entry><title type="html">Blog Post number 1</title><link href="http://localhost:4000/posts/2012/08/blog-post-1/" rel="alternate" type="text/html" title="Blog Post number 1" /><published>2012-08-14T00:00:00-07:00</published><updated>2012-08-14T00:00:00-07:00</updated><id>http://localhost:4000/posts/2012/08/blog-post-1</id><content type="html" xml:base="http://localhost:4000/posts/2012/08/blog-post-1/"><![CDATA[<p>This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.</p>
 
 <h1 id="headings-are-cool">Headings are cool</h1>
 
 <h1 id="you-can-have-many-headings">You can have many headings</h1>
 
-<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>vxh440@gmail.com</email></author><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry></feed>
+<h2 id="arent-headings-cool">Aren’t headings cool?</h2>]]></content><author><name>Yu Shin Liou</name><email>yushin.research@gmail.com</email></author><category term="archived" /><category term="cool posts" /><category term="category1" /><category term="category2" /><summary type="html"><![CDATA[This is a sample blog post. Lorem ipsum I can’t remember the rest of lorem ipsum and don’t have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.]]></summary></entry></feed>
