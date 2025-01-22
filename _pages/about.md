@@ -23,7 +23,7 @@ Hi, I am Yu Shin Liou from Taiwan. Currently, my work can be summarized by 2 que
 
 I used to be a journalist, where I reported on wildlife public policy, specifically about the [Formosan rock-monkey](https://e-info.org.tw/search/google/%E5%8A%89%E7%BE%BD%E8%8A%AF#gsc.tab=0&gsc.q=%E5%8A%89%E7%BE%BD%E8%8A%AF).
 
-If you plan to visited Taiwn, make sure you check [🧋BEST BOBA TEA](https://hackmd.io/E8eGG5XWTm26j6_nmUjaKQ?view) in the world. 
+If you plan to visited Taiwan, make sure you check [🧋BEST BOBA TEA](https://hackmd.io/E8eGG5XWTm26j6_nmUjaKQ?view) in the world. 
 
 
 **Fun Fact:**
