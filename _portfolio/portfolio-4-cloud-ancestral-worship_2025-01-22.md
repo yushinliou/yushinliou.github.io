@@ -79,10 +79,22 @@ To overcome those chalenges, we created a platform with 3 interactive features. 
 
 <br/><img src='/images/2025-01-22-Cloud_Ancestral_Worship/web-home.png' alt="Icon representing a visually impaired person"> 
 
-* Key Feature 1: Burning Joss Paper
-  * The fire would grow larger when user add joss paper. Fosters a sense of collaboration allows users to feel as though they are "building something together."
-
+- **Key Feature 1**: Burning Joss Paper
+  - The fire would grow larger when user add joss paper. Fosters a sense of collaboration allows users to feel as though they are "building something together."
 
 <br/><img src='/images/2025-01-22-Cloud_Ancestral_Worship/web-feature_3.png' alt="Icon representing a visually impaired person"> 
 
+- **Key Feature 2**: Pray Broad
+  - Leave messages to pray for their ancestors. They can also view others’ prayers, mirroring traditional temple practices in order to increase the engagement for user.
+  - Wish card for user to write down message
+  - Alows users to make wishes as they would in a temple while creating a timeless record in a virtual space.
 
+<br/><img src='/images/2025-01-22-Cloud_Ancestral_Worship/wish.png' alt="Icon representing a visually impaired person"> 
+
+- **Key Feature 3**: Read Mode
+<br/><img src='/images/2025-01-22-Cloud_Ancestral_Worship/sound-move.png' width=300 alt="Icon representing a visually impaired person"> 
+  - Scripture Reading with Interactive Sound Wave
+  - Users can read Buddhist scriptures simultaneously online, accompanied by a real-time sound wave animation. The animation changes shape based on the users’ voices
+  - Provide users with various types of scriptures to choose from.
+
+<br/><img src='/images/2025-01-22-Cloud_Ancestral_Worship/read.png' alt="Icon representing a visually impaired person"> 
