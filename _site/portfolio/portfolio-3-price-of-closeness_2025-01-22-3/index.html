@@ -19,7 +19,7 @@
 
 
 
-<title>The Price of Closeness - Investigating Social Media’s Influence on Meeting New People - Yu Shin Liou</title>
+<title>The Price of Closeness: Answering How Popularity and Close Social Circles Limit People Meet New People On Social Media - Yu Shin Liou</title>
 
 
 
@@ -29,7 +29,7 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Yu Shin Liou">
-<meta property="og:title" content="The Price of Closeness - Investigating Social Media’s Influence on Meeting New People">
+<meta property="og:title" content="The Price of Closeness: Answering How Popularity and Close Social Circles Limit People Meet New People On Social Media">
 
 
   <link rel="canonical" href="http://localhost:4000/portfolio/portfolio-3-price-of-closeness_2025-01-22-3/">
@@ -52,7 +52,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2025-01-22T02:02:36-08:00">
+  <meta property="article:published_time" content="2025-01-23T06:09:39-08:00">
 
 
 
@@ -272,67 +272,125 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="The Price of Closeness - Investigating Social Media’s Influence on Meeting New People">
+    <meta itemprop="headline" content="The Price of Closeness: Answering How Popularity and Close Social Circles Limit People Meet New People On Social Media">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="January 22, 2025">
+    <meta itemprop="datePublished" content="January 23, 2025">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">The Price of Closeness - Investigating Social Media’s Influence on Meeting New People
+          <h1 class="page__title" itemprop="headline">The Price of Closeness: Answering How Popularity and Close Social Circles Limit People Meet New People On Social Media
 </h1>
           
         
         
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2025-01-22T02:02:36-08:00">January 22, 2025</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2025-01-23T06:09:39-08:00">January 23, 2025</time></p>
             
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <h3 id="1-brief-summary">1. <strong>Brief Summary</strong></h3>
-<p>This project examines how social media dynamics, particularly popularity and tightly-knit social circles, influence opportunities for forming new connections. By analyzing triadic closure using survival analysis on Facebook interaction data, it challenges the traditional notion that popularity and close social circles are purely advantageous, revealing their constraining effects.</p>
+        <!-- 
+### 1. **Brief Summary**
+This project examines how social media dynamics, particularly popularity and tightly-knit social circles, influence opportunities for forming new connections. By analyzing triadic closure using survival analysis on Facebook interaction data, it challenges the traditional notion that popularity and close social circles are purely advantageous, revealing their constraining effects. -->
 
-<h3 id="2-context">2. <strong>Context</strong></h3>
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/networking.png" width="60" height="100" alt="Icon representing a visually impaired person" /></p>
+<blockquote>
+  <p>Is lack of a close social circle really a bad thing?</p>
+</blockquote>
+
+<h1 id="context">Context</h1>
+
+<p>Do you have a tight social circle on social media? Or do you consider yourself a popular person on it? Existed works often sees having a close social circle and being popular as an advantage, as they may indicate social support and power. In this work, I want to challenge this view by showing the potential benefit of lack of close social circles.</p>
+
 <ul>
   <li><strong>Conducted at</strong>: National Taiwan University</li>
   <li><strong>Supervisor</strong>: Prof. Hsuan-Wei Lee</li>
-  <li><strong>Project Type</strong>: B.S. thesis and research project</li>
-  <li><strong>Outcome</strong>: Paper under review at <em>Social Networks</em></li>
-  <li><strong>Motivation</strong>: To explore the potential drawbacks of popularity and close social circles on social media in limiting new connections.</li>
+  <li><strong>Project Type</strong>: B.A. thesis</li>
+  <li><strong>Outcome</strong>: Paper under review at <em>Sociological Science</em></li>
 </ul>
 
-<h3 id="3-target-problem">3. <strong>Target Problem</strong></h3>
-<p>Previous studies celebrate popularity and close social circles for providing social support and power. However, this project investigates:</p>
+<!-- ### M
+Previous studies celebrate popularity and close social circles for providing social support and power. However, this project investigates:
+- Whether these advantages limit users' ability to form new ties.
+- How factors like local clustering coefficients (LCC) and actor popularity interact to influence network expansion through triadic closure. -->
+
+<h1 id="method">Method</h1>
+
+<h2 id="triadic-closure">Triadic Closure</h2>
+
+<p>We use triadic closure to express the expansion of network:</p>
+
 <ul>
-  <li>Whether these advantages limit users’ ability to form new ties.</li>
-  <li>How factors like local clustering coefficients (LCC) and actor popularity interact to influence network expansion through triadic closure.</li>
+  <li>Ego: the focal person we consider</li>
+  <li>Degree-1 alter (d1): who have directed connection with ego</li>
+  <li>Degree-2 alter (d2): Who connect with d1 but not directly connect with ego</li>
 </ul>
 
-<h3 id="4-method">4. <strong>Method</strong></h3>
-<h4 id="41-hypotheses">4.1 <strong>Hypotheses</strong></h4>
-<ol>
-  <li><strong>Ego’s Sparse Network (Low LCC)</strong>:
-    <ul>
-      <li>Increases likelihood of triadic closure with degree-2 alters who also have sparse networks.</li>
-    </ul>
-  </li>
-  <li><strong>Ego’s Dense Network (High LCC)</strong>:
-    <ul>
-      <li>Reduces triadic closure with degree-1 alters due to restricted outreach.</li>
-    </ul>
-  </li>
-  <li><strong>Popularity Effects</strong>:
-    <ul>
-      <li>Popular degree-2 alters attract connections, but ego’s high LCC weakens this effect.</li>
-      <li>Similar effects are observed with degree-1 alters.</li>
-    </ul>
-  </li>
-</ol>
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/nw-expand.png" alt="Icon representing a visually impaired person" /></p>
 
-<h4 id="42-data-collection">4.2 <strong>Data Collection</strong></h4>
+<h2 id="local-clustering-coefficientlcc">Local Clustering Coefficient(LCC)</h2>
+
+<ul>
+  <li>We use local clustering coefficient(LCC) to measure the closeness of a social circle:
+    <ul>
+      <li>High LCC: Most of actor’s friend know each other</li>
+      <li>The Actor has a close social circle</li>
+    </ul>
+  </li>
+</ul>
+
+\[LCC=\frac{\text{𝑇ℎ𝑒 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑒𝑑𝑔𝑒𝑠 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑛𝑒𝑖𝑔ℎ𝑏𝑜𝑟𝑠}}{\text{𝑇ℎ𝑒 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑝𝑜𝑠𝑠𝑖𝑏𝑙𝑒 𝑒𝑑𝑔𝑒𝑠 𝑏𝑒𝑡𝑤𝑒𝑒𝑛 𝑛𝑒𝑖𝑔ℎ𝑏𝑜𝑟𝑠}}\]
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/nw-closure.png" width="200" height="200" alt="Icon representing a visually impaired person" /></p>
+
+<h2 id="hypotheses">Hypotheses</h2>
+
+<ul>
+  <li>Hypothesis 1 The interplay between Ego LCC and d2 LCC
+    <ul>
+      <li>Lower local clustering(sparse network) within an ego-centric network increases the likelihood of the ego initiating contact with a degree-2 alter, particularly when the degree-2 alter is have a close social circle.
+<br /><img src="/images/2025-01-22-The Price_of_Closeness/h1.png" alt="Icon representing a visually impaired person" /></li>
+    </ul>
+  </li>
+  <li>Hypothesis 2 The interplay between Ego LCC and d1 LCC
+    <ul>
+      <li>The likelihood of triadic closure between degree-1 alters increase as the local clustering coefficient of the degree-1 alters decreases. However, high local clustering of the ego moderates this effect, limiting the formation of new ties.
+<br /><img src="/images/2025-01-22-The Price_of_Closeness/h2.png" alt="Icon representing a visually impaired person" /></li>
+    </ul>
+  </li>
+  <li>Hypothesis 3 The interplay between Ego LCC and d2 Popularity
+    <ul>
+      <li>Higher popularity of a degree-2 alter increases the likelihood of triadic closure, but this effect is weakened by the ego’s high local clustering coefficient, as dense clusters restrict outreach to new ties.
+<br /><img src="/images/2025-01-22-The Price_of_Closeness/h3.png" alt="Icon representing a visually impaired person" /></li>
+    </ul>
+  </li>
+  <li>Hypothesis 4 The interplay between Ego LCC and d1 Popularity
+    <ul>
+      <li>Higher popularity of a degree-1 alter increases the likelihood of triadic closure, but this effect is weakened by the ego’s high local clustering coefficient, as dense clusters restrict outreach to new ties.
+<br /><img src="/images/2025-01-22-The Price_of_Closeness/h4.png" alt="Icon representing a visually impaired person" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="data-collection">Data Collection</h2>
+
+<ul>
+  <li>Random sampling colege graduates from the class of 2016 from universities across Taiwan</li>
+  <li>Background survey: Asking students to completed an online questionnaire</li>
+  <li>Asking student to authorized access to their Facebook usage records</li>
+  <li>Web crawlers were used to retrieve interaction records from their Facebook homepages</li>
+</ul>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/method-data-icon.png" alt="Icon representing a visually impaired person" /></p>
+
+<blockquote>
+  <p>Filter out the classes response rate &lt; 70%
+Getting both online and offline information</p>
+</blockquote>
+
 <ul>
   <li><strong>Participants</strong>: 919 college graduates from Taiwan (Class of 2016).</li>
   <li><strong>Data Sources</strong>:
@@ -348,60 +406,76 @@
   </li>
 </ul>
 
-<h4 id="43-analysis-framework">4.3 <strong>Analysis Framework</strong></h4>
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/method-data-number.png" width="400" height="400" alt="Icon representing a visually impaired person" /></p>
+
+<h2 id="model-survival-analysis">Model: Survival Analysis</h2>
+
 <ul>
-  <li><strong>Survival Analysis</strong>:
-    <ul>
-      <li>Unit of analysis: triad.</li>
-      <li>Dependent Variable: Time to triadic closure or end of observation period.</li>
-      <li>Independent Variables: LCC, popularity, and interaction terms.</li>
-      <li>Control Variables: Gender, extroversion, and shared neighbors.</li>
-    </ul>
-  </li>
-  <li><strong>Revised Hypotheses</strong>:
-    <ul>
-      <li>Refined after analyzing results, aligning with nuanced findings on LCC and popularity dynamics.</li>
-    </ul>
-  </li>
+  <li>Unit of analysis: triad.</li>
+  <li>Dependent Variable: Time to triadic closure or end of observation period.</li>
+  <li>Independent Variables: LCC, popularity, and interaction terms.</li>
+  <li>Control Variables: Gender, extroversion, and shared neighbors.</li>
 </ul>
 
-<h3 id="5-results">5. <strong>Results</strong></h3>
-<h4 id="51-findings">5.1 <strong>Findings</strong></h4>
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/method-survival.png" alt="Icon representing a visually impaired person" /></p>
+
+<h1 id="results">Results</h1>
+
+<h2 id="hypothesis-1">Hypothesis 1</h2>
+
 <ol>
-  <li><strong>Sparse Networks Encourage New Connections</strong>:
-    <ul>
-      <li>Ego’s low LCC fosters triadic closure with degree-2 alters, especially those with sparse networks.</li>
-      <li>Changes are most pronounced in groups with the lowest ego LCC.</li>
-    </ul>
-  </li>
-  <li><strong>Popularity Dynamics</strong>:
-    <ul>
-      <li>Popular degree-2 alters are more likely to form ties, but ego’s dense network reduces this effect.</li>
-      <li>For degree-1 alters, ego’s high LCC limits new connections to already popular actors.</li>
-    </ul>
-  </li>
-  <li><strong>Tightly-Knit Networks</strong>:
-    <ul>
-      <li>Ego’s high LCC prevents degree-1 alters from connecting with new degree-1 alters, reinforcing network constraints.</li>
-    </ul>
-  </li>
+  <li>Ego are more likely to initiated contact d2 when they don’t have a close social circle</li>
+  <li>Ego especialy prefer those d2 who also don’t have a close social circle</li>
 </ol>
 
-<h4 id="52-implications">5.2 <strong>Implications</strong></h4>
-<ul>
-  <li><strong>Network Expansion</strong>:
-    <ul>
-      <li>Sparse networks are beneficial for expanding ties, challenging traditional views of popularity and close social circles as universally advantageous.</li>
-    </ul>
-  </li>
-  <li><strong>Social Media Design</strong>:
-    <ul>
-      <li>Platforms could encourage sparse-network users to foster broader connections, balancing community dynamics.</li>
-    </ul>
-  </li>
-</ul>
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/res-h1.png" width="450" height="300" alt="Icon representing a visually impaired person" /></p>
 
-<p>This study highlights the complexities of social media relationships, demonstrating that network density and popularity are double-edged swords, shaping both opportunities and constraints for new social ties.</p>
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/res-1.png" alt="Icon representing a visually impaired person" /></p>
+
+<h2 id="hypothesis-2">Hypothesis 2</h2>
+
+<ol>
+  <li>Ego prefer popular d2</li>
+  <li>Those ego who don’t have a close social circle are most likely to be appeal by popular d2</li>
+</ol>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/res-h2.png" width="450" height="300" alt="Icon representing a visually impaired person" /></p>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/res-2.png" alt="Icon representing a visually impaired person" /></p>
+
+<h2 id="hypothesis-3">Hypothesis 3</h2>
+
+<ol>
+  <li>d1 are more likely to contact another d1 when they don’t have a close social circle (low LCC)</li>
+  <li>Old d1, which means those who know ego earlier are more passive on initiating contact to new d1 when ego already have a close social circle</li>
+  <li>However, for new d1 tend to take initiative if ego have a close social circle (When ego LCC &gt; 0.4)</li>
+</ol>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/res-h3.png" width="450" height="300" alt="Icon representing a visually impaired person" /></p>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/result-3.png" alt="Icon representing a visually impaired person" /></p>
+
+<h2 id="hypothesis-4">Hypothesis 4</h2>
+
+<ol>
+  <li>A popular d1 would be more likely to take initiative, while another d1 would also tend to be proactive</li>
+  <li>For new d1, Ego’s LCC stronger the effect of popularity.</li>
+  <li>However, for for old d1, Ego’s LCC weaken the effect of popularity</li>
+</ol>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/res-h4.png" width="450" height="300" alt="Icon representing a visually impaired person" /></p>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/result-4.png" alt="Icon representing a visually impaired person" /></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<blockquote>
+  <p>A presumably disadvantaged low degree of local clustering actualy helps expand one’s network by encouraging new social ties.
+<!-- > <br/><img src='/images/2025-01-22-The Price_of_Closeness/pos-and-neg.png' width="60" height="100" alt="Icon representing a visually impaired person"> -->
+Although it limits the access to tightly bound social groups and highly popular actors.</p>
+</blockquote>
+
+<p><br /><img src="/images/2025-01-22-The Price_of_Closeness/sum.png" alt="Icon representing a visually impaired person" /></p>
 
 
         
@@ -437,11 +511,11 @@
 
   <nav class="pagination">
     
-      <a href="http://localhost:4000/portfolio/portfolio-2-the-social-code_2025-01-22-2/" class="pagination--pager" title="Evaluation of the Use of LLM-Based Agents for Social Simulation
+      <a href="http://localhost:4000/portfolio/portfolio-2-the-social-code_2025-01-22-2/" class="pagination--pager" title="The Social Code: Evaluation of the Use of LLM-Based Agents for Social Simulation
 ">Previous</a>
     
     
-      <a href="http://localhost:4000/portfolio/portfolio-4-cloud-ancestral-worship_2025-01-22/" class="pagination--pager" title="Cloud Ancestral Worship - Building an Online Platform for Elders with Limited Mobility
+      <a href="http://localhost:4000/portfolio/portfolio-4-cloud-ancestral-worship_2025-01-22/" class="pagination--pager" title="Cloud Ancestral Worship: Building an Online Platform for Elders with Limited Mobility
 ">Next</a>
     
   </nav>
