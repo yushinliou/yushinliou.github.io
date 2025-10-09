@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout title={project.data.title} lang={project.data.lang}>
+  <Navigation />
+  <main class="flex-1 w-full">
+    <article class="max-w-4xl mx-auto px-8 py-12">
+      <!-- Hero Image -->
+      {project.data.image && (
+        <div class="mb-8">
+          <img
+            src={project.data.image}
+            alt={project.data.title}
+            class="w-full aspect-video object-cover rounded-lg"
+          />
+        </div>
+      )}
+
+      <!-- Project Header -->
+      <header class="mb-8">
+        <h1 class="text-h1 mb-4">{project.data.title}</h1>
+        {project.data.description && (
+          <p class="text-body-lg text-gray-600 mb-4">{project.data.description}</p>
+        )}
+
+        <!-- Metadata -->
+        <div class="flex flex-wrap gap-4 text-body-sm text-gray-500">
+          {project.data.year && <span>Year: {project.data.year}</span>}
+          {project.data.role && <span>Role: {project.data.role}</span>}
+        </div>
+
+        <!-- Tags -->
+        {project.data.tags && project.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-4">
+            {project.data.tags.map((tag) => (
+              <span class="px-3 py-1 bg-gray-100 rounded-full text-body-sm">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <!-- Links -->
+        <div class="flex gap-4 mt-6">
+          {project.data.link && (
+            <a
+              href={project.data.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-nav text-black hover:opacity-60 transition-opacity"
+            >
+              <i class="fas fa-external-link-alt mr-2"></i>
+              View Project
+            </a>
+          )}
+          {project.data.github && (
+            <a
+              href={project.data.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-nav text-black hover:opacity-60 transition-opacity"
+            >
+              <i class="fab fa-github mr-2"></i>
+              GitHub
+            </a>
+          )}
+        </div>
+      </header>
+
+      <!-- Project Content -->
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/translations';
+
+const t = useTranslations('zh');
+
+// Get all projects and filter by 'research' category and Chinese language
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.categories.includes('research') && data.lang === 'zh';
+});
+
+// Sort by featured first, then by publish date (newest first)
+const sortedProjects = allProjects.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+});
+
+// Transform to format expected by ProjectList component
+const projects = sortedProjects.map((project) => ({
+  title: project.data.title,
+  description: project.data.description,
+  image: project.data.image,
+  link: `/projects/${project.slug}`,
+}));
+---
+
+<BaseLayout title={t.pageTitle.research} lang="zh">
+  <Navigation />
+  <main class="flex-1 w-full">
+    <div class="max-w-4xl mx-auto px-8 py-12">
+      <ProjectList projects={projects} />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

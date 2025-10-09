@@ -1,0 +1,46 @@
+---
+interface Project {
+  title: string;
+  description?: string;
+  image: string;
+  link: string;
+}
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="w-full">
+  {projects.map((project) => (
+    <a
+      href={project.link}
+      class="block border-b border-gray-200 last:border-b-0 py-8 hover:bg-gray-50 transition-colors group"
+    >
+      <div class="flex gap-8 items-start">
+        <!-- Image -->
+        <div class="w-48 h-32 flex-shrink-0">
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-full h-full object-cover rounded"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 min-w-0">
+          <h3 class="text-h3 mb-3 group-hover:opacity-60 transition-opacity">
+            {project.title}
+          </h3>
+          {project.description && (
+            <p class="text-body text-gray-600">
+              {project.description}
+            </p>
+          )}
+        </div>
+      </div>
+    </a>
+  ))}
+</div>

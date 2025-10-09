@@ -1,0 +1,33 @@
+---
+const currentYear = new Date().getFullYear();
+const startYear = 2022; // Replace with your starting year
+
+const socialLinks = [
+  { name: 'LinkedIn', icon: 'fab fa-linkedin-in', href: 'https://linkedin.com/in/yourprofile' },
+  { name: 'GitHub', icon: 'fab fa-github', href: 'https://github.com/yourusername' },
+  { name: 'Email', icon: 'fas fa-envelope', href: 'mailto:your.email@example.com' },
+];
+---
+
+<footer class="mt-auto py-12 px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col items-end gap-6">
+      <div class="flex gap-6 items-center">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-black hover:opacity-60 transition-opacity text-h4"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.name}
+          >
+            <i class={link.icon}></i>
+          </a>
+        ))}
+      </div>
+      <div class="text-body-sm text-gray-600">
+        <p>© {startYear}-{currentYear}</p>
+      </div>
+    </div>
+  </div>
+</footer>

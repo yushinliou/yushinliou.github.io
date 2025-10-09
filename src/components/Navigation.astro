@@ -1,0 +1,95 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import { useTranslations, languages } from '../i18n/translations';
+
+const currentPath = Astro.url.pathname;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Define navigation items
+const navItems = [
+  { name: t.nav.work, href: lang === 'zh' ? '/zh' : '/', key: 'work' },
+  { name: t.nav.research, href: lang === 'zh' ? '/zh/research' : '/research', key: 'research' },
+  { name: t.nav.side, href: lang === 'zh' ? '/zh/side' : '/side', key: 'side' },
+  // { name: t.nav.custom, href: lang === 'zh' ? '/zh/custom' : '/custom', key: 'custom' }, // remove temporarily
+  { name: t.nav.about, href: lang === 'zh' ? '/zh/about' : '/about', key: 'about' },
+  { name: t.nav.cv, href: '/cv/cv.pdf', external: true, key: 'cv' }
+];
+
+const isActive = (href: string) => {
+  if (href === '/' || href === '/zh') {
+    return currentPath === href || currentPath === href + '/';
+  }
+  return currentPath.startsWith(href);
+};
+
+// Get current path without language prefix for switching
+const getPathWithoutLang = (path: string) => {
+  return path.replace(/^\/zh/, '') || '/';
+};
+---
+
+<nav class="w-full py-8">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="flex items-center justify-between">
+      <!-- Site Title on the left -->
+      <div class="text-nav-title">
+        <a href={lang === 'zh' ? '/zh' : '/'} class="hover:opacity-60 transition-opacity">
+          {t.site.title}
+        </a>
+      </div>
+
+      <!-- Navigation and Language Switcher on the right -->
+      <div class="flex items-center gap-8">
+        <!-- Language Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-2 hover:opacity-60 transition-opacity text-body-sm">
+            <span>{lang === 'en' ? 'EN' : '繁中'}</span>
+            <i class="fas fa-chevron-down text-caption"></i>
+          </button>
+          <div class="absolute right-0 top-full mt-2 bg-white shadow-lg rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50">
+            <a
+              href={getPathWithoutLang(currentPath)}
+              class="block px-4 py-2 hover:bg-gray-100 transition-colors"
+            >
+              English
+            </a>
+            <a
+              href={'/zh' + getPathWithoutLang(currentPath)}
+              class="block px-4 py-2 hover:bg-gray-100 transition-colors"
+            >
+              繁體中文
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="flex gap-8 items-center">
+          {navItems.map((item) => (
+            <li>
+              {item.external ? (
+                <a
+                  href={item.href}
+                  class="text-nav text-gray-500 hover:text-black transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <a
+                  href={item.href}
+                  class={`text-nav transition-colors ${
+                    isActive(item.href) ? 'text-black' : 'text-gray-500 hover:text-black'
+                  }`}
+                >
+                  {item.name}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
