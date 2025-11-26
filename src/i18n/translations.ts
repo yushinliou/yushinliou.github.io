@@ -15,6 +15,8 @@ export const translations = {
 
     // Navigation
     nav: {
+      home: 'Home',
+      allWork: 'All Work',
       work: 'Work',
       research: 'Research',
       side: 'Side',
@@ -25,6 +27,7 @@ export const translations = {
 
     // Page titles
     pageTitle: {
+      home: 'Portfolio - Home',
       work: 'Portfolio - Work',
       research: 'Portfolio - Research',
       side: 'Portfolio - Side Projects',
@@ -68,6 +71,8 @@ export const translations = {
 
     // Navigation
     nav: {
+      home: '首頁',
+      allWork: '所有作品',
       work: '作品',
       research: '研究',
       side: '其他',
@@ -78,6 +83,7 @@ export const translations = {
 
     // Page titles
     pageTitle: {
+      home: '作品集 - 首頁',
       work: '作品集 - 作品',
       research: '作品集 - 研究',
       side: '作品集 - 其他',

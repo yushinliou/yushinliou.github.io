@@ -1,0 +1,100 @@
+---
+/**
+ * Hero Component
+ * Used in: Home page
+ *
+ * Structure per specification:
+ * - Full-width GIF banner above content
+ * - Two-column layout below banner:
+ *   - Left: Text content (title, subtitle, description)
+ *   - Right: SVG icons with hover tooltips (UC Berkeley, NTU, KTH logos)
+ * - Center aligned on screen
+ */
+
+import { siteConfig } from '../config';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+
+// Example institution icons - customize these based on actual institutions
+const institutions = [
+  {
+    name: 'KTH Royal Institute of Technology',
+    location: 'Currently studying in Stockholm',
+    icon: '🎓', // Replace with actual SVG logo
+  },
+  {
+    name: 'UC Berkeley',
+    location: 'Exchange student',
+    icon: '🐻', // Replace with actual SVG logo
+  },
+  {
+    name: 'National Taiwan University',
+    location: 'Bachelor degree',
+    icon: '🏛️', // Replace with actual SVG logo
+  },
+];
+---
+
+<section class="hero-section w-full">
+  <!-- Full-width GIF Banner -->
+  <div class="w-full mb-12 bg-gray-100 dark:bg-gray-800">
+    <img
+      src={siteConfig.heroBanner}
+      alt="Hero banner"
+      class="w-full h-auto max-h-96 object-cover"
+    />
+  </div>
+
+  <!-- Two-column Content -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Text Content -->
+      <div class="space-y-6">
+        <h1 class="text-hero-title text-gray-900 dark:text-white font-semibold leading-tight">
+          {siteConfig.title}
+        </h1>
+        <p class="text-hero-subtitle text-gray-500 dark:text-gray-400">
+          {siteConfig.description}
+        </p>
+        <p class="text-body text-gray-700 dark:text-gray-300 leading-relaxed">
+          {siteConfig.subdescription}
+        </p>
+      </div>
+
+      <!-- Right: Institution Icons with Tooltips -->
+      <div class="flex justify-center lg:justify-end items-center gap-8">
+        {institutions.map((institution) => (
+          <div class="institution-icon-wrapper group relative">
+            <div class="text-5xl hover:scale-110 transition-transform duration-200 cursor-pointer">
+              {institution.icon}
+            </div>
+
+            <!-- Tooltip -->
+            <div class="tooltip absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-10">
+              <div class="font-semibold">{institution.name}</div>
+              <div class="text-xs text-gray-300 dark:text-gray-400">{institution.location}</div>
+              <!-- Arrow -->
+              <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
+                <div class="border-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .institution-icon-wrapper {
+    position: relative;
+  }
+
+  .tooltip {
+    pointer-events: none;
+  }
+</style>

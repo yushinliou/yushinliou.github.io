@@ -1,0 +1,159 @@
+---
+/**
+ * Language Switcher Component
+ *
+ * Dropdown menu for switching between languages
+ * - Shows current language with checkmark
+ * - Click to expand (hover on desktop)
+ * - Changes URL path: /about ↔ /zh/about
+ * - Persists user choice in localStorage
+ */
+
+import { siteConfig } from '../config';
+
+interface Props {
+  currentLang: string;
+  currentPath: string;
+}
+
+const { currentLang, currentPath } = Astro.props;
+
+// Generate alternate language URLs
+const getAlternatePath = (lang: string) => {
+  if (lang === 'en') {
+    // Remove /zh prefix if present
+    return currentPath.replace(/^\/zh/, '') || '/';
+  } else {
+    // Add /zh prefix if not present
+    return currentPath.startsWith('/zh') ? currentPath : `/zh${currentPath}`;
+  }
+};
+
+const languages = [
+  { code: 'en', name: 'English'},
+  { code: 'zh', name: '中文'}
+];
+---
+
+<div class="language-switcher relative">
+  <!-- Trigger Button -->
+  <button
+    id="lang-switcher-button"
+    class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+    aria-label="Switch language"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    <i class="fas fa-language"></i>
+    <!-- <span class="hidden sm:inline">
+      {languages.find(l => l.code === currentLang)?.name}
+    </span> -->
+    <i class="fas fa-caret-down text-xs"></i>
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div
+    id="lang-dropdown"
+    class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible transition-all duration-200 z-50"
+    role="menu"
+    aria-labelledby="lang-switcher-button"
+  >
+    {languages.map((lang) => (
+      <a
+        href={getAlternatePath(lang.code)}
+        class="flex items-center justify-between px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg transition-colors duration-150"
+        role="menuitem"
+        data-lang={lang.code}
+      >
+        <span class="flex items-center gap-2">
+          <span>{lang.name}</span>
+        </span>
+        {lang.code === currentLang && (
+          <i class="fas fa-check text-gray-600 dark:text-gray-400"></i>
+        )}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Language switcher dropdown functionality
+  const button = document.getElementById('lang-switcher-button');
+  const dropdown = document.getElementById('lang-dropdown');
+
+  if (button && dropdown) {
+    // Toggle dropdown on click
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!button.contains(event.target as Node) && !dropdown.contains(event.target as Node)) {
+        closeDropdown();
+      }
+    });
+
+    // Handle language selection
+    const langLinks = dropdown.querySelectorAll('[data-lang]');
+    langLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const selectedLang = (e.currentTarget as HTMLElement).getAttribute('data-lang');
+        if (selectedLang) {
+          // Store preference in localStorage
+          localStorage.setItem('preferredLanguage', selectedLang);
+        }
+      });
+    });
+  }
+
+  function openDropdown() {
+    if (button && dropdown) {
+      button.setAttribute('aria-expanded', 'true');
+      dropdown.classList.remove('opacity-0', 'invisible');
+      dropdown.classList.add('opacity-100', 'visible');
+    }
+  }
+
+  function closeDropdown() {
+    if (button && dropdown) {
+      button.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('opacity-100', 'visible');
+      dropdown.classList.add('opacity-0', 'invisible');
+    }
+  }
+
+  // Check for stored language preference on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const stored = localStorage.getItem('preferredLanguage');
+    const currentLang = document.documentElement.lang || 'en';
+
+    if (stored && stored !== currentLang) {
+      // Redirect to preferred language
+      const currentPath = window.location.pathname;
+      let newPath: string;
+
+      if (stored === 'en') {
+        newPath = currentPath.replace(/^\/zh/, '') || '/';
+      } else {
+        newPath = currentPath.startsWith('/zh') ? currentPath : `/zh${currentPath}`;
+      }
+
+      if (newPath !== currentPath) {
+        window.location.pathname = newPath;
+      }
+    }
+  });
+</script>
+
+<style>
+  .language-switcher {
+    position: relative;
+  }
+</style>

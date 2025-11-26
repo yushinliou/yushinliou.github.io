@@ -1,0 +1,160 @@
+---
+/**
+ * Table of Contents Component
+ * Used in: Individual project pages
+ *
+ * Features:
+ * - Auto-generates from H2 headings
+ * - Sticky/fixed position on right sidebar
+ * - Active section detection with Intersection Observer
+ * - Smooth scroll to sections
+ * - URL hash updates
+ * - Desktop only (hidden on mobile/tablet)
+ */
+
+interface Heading {
+  depth: number;
+  text: string;
+  slug: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+// Filter to only H2 headings
+const tocHeadings = headings.filter(h => h.depth === 2);
+---
+
+{tocHeadings.length > 0 && (
+  <nav
+    class="toc-container hidden lg:block sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto"
+    aria-label="Table of contents"
+  >
+    <h2 class="text-small font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+      Table of Contents
+    </h2>
+    <ul class="toc-list space-y-2">
+      {tocHeadings.map((heading) => (
+        <li>
+          <a
+            href={`#${heading.slug}`}
+            class="toc-link block py-1.5 px-3 text-small text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 rounded transition-all duration-200"
+            data-heading-id={heading.slug}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<script>
+  // Table of Contents functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const headings = document.querySelectorAll('h2[id]');
+
+    if (tocLinks.length === 0 || headings.length === 0) return;
+
+    // Smooth scroll to section when clicking TOC link
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href')?.slice(1);
+        const targetElement = document.getElementById(targetId || '');
+
+        if (targetElement) {
+          // Smooth scroll to element
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+          // Update URL hash without jumping
+          history.pushState(null, '', `#${targetId}`);
+
+          // Update active state
+          updateActiveLink(link);
+        }
+      });
+    });
+
+    // Intersection Observer for active section detection
+    const observerOptions = {
+      rootMargin: '-100px 0px -66% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          const correspondingLink = document.querySelector(`.toc-link[data-heading-id="${id}"]`);
+
+          if (correspondingLink) {
+            updateActiveLink(correspondingLink);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all h2 elements
+    headings.forEach(heading => observer.observe(heading));
+
+    // Function to update active link styling
+    function updateActiveLink(activeLink: Element) {
+      // Remove active class from all links
+      tocLinks.forEach(link => {
+        link.classList.remove('active', 'text-black', 'dark:text-white', 'font-semibold', 'bg-gray-100', 'dark:bg-gray-800');
+        link.classList.add('text-gray-500', 'dark:text-gray-400');
+      });
+
+      // Add active class to current link
+      activeLink.classList.remove('text-gray-500', 'dark:text-gray-400');
+      activeLink.classList.add('active', 'text-black', 'dark:text-white', 'font-semibold', 'bg-gray-100', 'dark:bg-gray-800');
+    }
+
+    // Set initial active link based on URL hash
+    if (window.location.hash) {
+      const initialLink = document.querySelector(`.toc-link[href="${window.location.hash}"]`);
+      if (initialLink) {
+        updateActiveLink(initialLink);
+      }
+    } else if (tocLinks.length > 0) {
+      // Set first link as active by default
+      updateActiveLink(tocLinks[0]);
+    }
+  });
+</script>
+
+<style>
+  .toc-container {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  .toc-container::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .toc-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .toc-container::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  .dark .toc-container::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+
+  .toc-link {
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

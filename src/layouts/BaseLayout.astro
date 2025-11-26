@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import Head from '../components/Head.astro';
 
 interface Props {
   title: string;
@@ -12,16 +12,9 @@ const { title, description = "Portfolio website", lang = 'en' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang} class="font-[Inter]">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body class="min-h-screen flex flex-col bg-white text-black">
+<html lang={lang}>
+  <Head title={title} description={description} lang={lang} />
+  <body class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
     <slot />
   </body>
 </html>

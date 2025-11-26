@@ -1,14 +1,18 @@
 ---
+coverImage:
+  src: "/src/assets/2025-01-22-Cloud_Ancestral_Worship/head.png"
+  alt: "Elderly person using online platform for ancestral worship"
 title: "Cloud Ancestral Worship: Building an Online Platform for Elders with Limited Mobility"
 description: "Designing an online platform to enable elderly individuals to maintain their spiritual practices and community connections despite physical limitations."
-categories: ["work"]
-image: "src/assets/2025-01-22-Cloud_Ancestral_Worship/head.png"
-featured: false
+tags: ["HCI", "elderly care", "cultural design", "interactive design"]
+tabs: []
+category: "UX Design"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
 publishDate: 2025-01-22
 year: 2024
 role: "UX Designer"
-tags: ["HCI", "elderly care", "cultural design", "interactive design"]
-lang: "en"
 ---
 
 ![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/old-person.png)

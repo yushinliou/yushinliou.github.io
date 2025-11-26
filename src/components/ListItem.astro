@@ -1,0 +1,104 @@
+---
+/**
+ * ListItem Component
+ * Used in: Home page, Research page
+ *
+ * Displays a project in list format with:
+ * - Cover image (16:9 aspect ratio)
+ * - Title
+ * - Description (truncated to 2-3 lines)
+ * - Tags (pill-shaped badges) - clickable to filter on All Work page
+ * - "Read more" button
+ *
+ * Interactions:
+ * - Hover: color change
+ * - Click: Navigate to project detail page
+ */
+
+interface Props {
+  title: string;
+  coverImage: {
+    src: string;
+    alt: string;
+  };
+  description: string;
+  tags: string[];
+  slug: string;
+  lang?: string;
+}
+
+const { title, coverImage, description, tags, slug, lang = 'en' } = Astro.props;
+
+const projectUrl = lang === 'zh' ? `/zh/projects/${slug}` : `/projects/${slug}`;
+const readMoreText = lang === 'zh' ? '閱讀更多' : 'Read more';
+---
+
+<article class="list-item group mb-12 pb-12 border-b border-gray-200 dark:border-gray-700 last:border-b-0 transition-colors duration-300">
+  <a href={projectUrl} class="block">
+    <!-- Cover Image -->
+    <div class="aspect-video overflow-hidden rounded-lg mb-6 bg-gray-100 dark:bg-gray-800">
+      <img
+        src={coverImage.src}
+        alt={coverImage.alt}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-hero-subtitle text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+      {title}
+    </h2>
+
+    <!-- Description -->
+    <p class="text-body text-gray-700 dark:text-gray-300 mb-6 line-clamp-3">
+      {description}
+    </p>
+  </a>
+
+  <!-- Tags -->
+  {tags && tags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-6">
+      {tags.map((tag) => (
+        <button
+          type="button"
+          data-tag={tag}
+          class="tag-button px-3 py-1.5 text-small font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-900 transition-colors duration-200"
+          onclick={`event.preventDefault(); event.stopPropagation(); window.location.href='${lang === 'zh' ? '/zh' : ''}/allWork?tag=${encodeURIComponent(tag)}';`}
+        >
+          {tag}
+        </button>
+      ))}
+    </div>
+  )}
+
+  <!-- Read More Button -->
+  <a
+    href={projectUrl}
+    class="read-more-button inline-flex items-center px-6 py-3 text-[20px] font-semibold text-white bg-[#2B5288] rounded hover:bg-[#1e3b5f] dark:hover:bg-[#3d6ba8] transition-colors duration-300"
+  >
+    {readMoreText}
+    <svg
+      class="ml-2 w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  </a>
+</article>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

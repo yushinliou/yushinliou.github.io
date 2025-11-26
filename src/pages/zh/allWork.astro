@@ -1,0 +1,129 @@
+---
+/**
+ * All Work Page (Chinese)
+ *
+ * Same as English version but for Chinese language projects
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Footer from '../../components/Footer.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'zh';
+
+// Get all Chinese projects, exclude drafts
+const allProjects = await getCollection('projects', ({ data }) => {
+  return !data.isDraft && data.lang === lang;
+});
+
+// Sort by publishDate (newest first)
+const sortedProjects = allProjects.sort((a, b) =>
+  b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+// Collect all unique tags
+const allTags = [...new Set(sortedProjects.flatMap(project => project.data.tags))];
+
+// Get selected tag from URL query parameter
+const selectedTag = Astro.url.searchParams.get('tag');
+
+// Filter projects if tag is selected
+const filteredProjects = selectedTag
+  ? sortedProjects.filter(project => project.data.tags.includes(selectedTag))
+  : sortedProjects;
+---
+
+<BaseLayout title="所有作品 - 作品集" description="完整的作品集" lang={lang}>
+  <Navigation />
+
+  <main class="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+      <!-- Page Title -->
+      <h1 class="text-hero-subtitle text-gray-900 dark:text-white mb-8">
+        所有作品
+      </h1>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Tag Filter Sidebar -->
+        <aside class="lg:w-64 flex-shrink-0">
+          <div class="lg:sticky lg:top-24">
+            <h2 class="text-body font-semibold text-gray-900 dark:text-white mb-4">
+              依標籤篩選
+            </h2>
+
+            <!-- All Categories Button -->
+            <a
+              href="/zh/allWork"
+              class={`block px-4 py-2 mb-2 text-sm rounded-lg transition-colors duration-200 ${
+                !selectedTag
+                  ? 'bg-black dark:bg-white text-white dark:text-black font-semibold'
+                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
+            >
+              所有分類
+            </a>
+
+            <!-- Tag List -->
+            <div class="flex flex-wrap lg:flex-col gap-2">
+              {allTags.map((tag) => (
+                <a
+                  href={`/zh/allWork?tag=${encodeURIComponent(tag)}`}
+                  class={`block px-4 py-2 text-sm rounded-lg transition-colors duration-200 ${
+                    selectedTag === tag
+                      ? 'bg-black dark:bg-white text-white dark:text-black font-semibold'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <!-- Project Grid -->
+        <div class="flex-1">
+          {selectedTag && (
+            <p class="text-body text-gray-600 dark:text-gray-400 mb-6">
+              顯示標籤為 <strong class="text-gray-900 dark:text-white">"{selectedTag}"</strong> 的作品
+              （共 {filteredProjects.length} 個作品）
+            </p>
+          )}
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+            {filteredProjects.map((project) => (
+              <Card
+                title={project.data.title}
+                coverImage={project.data.coverImage}
+                publishDate={project.data.publishDate}
+                category={project.data.category}
+                description={project.data.description}
+                tags={project.data.tags}
+                slug={project.slug}
+                lang={lang}
+              />
+            ))}
+          </div>
+
+          {filteredProjects.length === 0 && (
+            <div class="text-center py-12">
+              <p class="text-body text-gray-500 dark:text-gray-400">
+                找不到此標籤的作品。
+              </p>
+              <a
+                href="/zh/allWork"
+                class="inline-block mt-4 px-6 py-3 text-sm font-semibold text-white bg-[#2B5288] rounded hover:bg-[#1e3b5f] transition-colors duration-300"
+              >
+                查看所有作品
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

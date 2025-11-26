@@ -1,14 +1,18 @@
 ---
+coverImage:
+  src: "/src/assets/2025-01-22-Feel_The_Way/head.png"
+  alt: "Tactile evacuation map prototype with raised textures and Braille"
 title: "Feel the Way: Redesigning Emergency Evacuation Maps for Equal Access by the Visually Impaired"
 description: "Redesigning emergency evacuation maps to ensure equitable access for visually impaired individuals through tactile and visual integration."
-categories: ["work", "research"]
-image: "/src/assets/2025-01-22-Feel_The_Way/head.png"
-featured: true
+tags: ["accessibility", "UX research", "tactile design", "inclusive design"]
+tabs: ["home", "research"]
+category: "UX Research"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
 publishDate: 2025-01-22
 year: 2023
 role: "UX Designer & Researcher"
-tags: ["accessibility", "UX research", "tactile design", "inclusive design"]
-lang: "en"
 ---
 
 > How to create equal escape opportunities for blind people in emergency situation?

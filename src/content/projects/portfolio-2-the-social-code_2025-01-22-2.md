@@ -1,14 +1,18 @@
 ---
+coverImage:
+  src: "/src/assets/2025-01-22-The_Social_Code/head.png"
+  alt: "Illustration of LLM agents in social network simulation"
 title: "The Social Code: Evaluation of the Use of LLM-Based Agents for Social Simulation"
 description: "Evaluating the reliability of using Large Language Model (LLM) agents to simulate human social behaviors for network analysis with edge-level precision."
-categories: ["research"]
-image: "src/assets/2025-01-22-The_Social_Code/head.png"
-featured: true
+tags: ["LLM", "social networks", "computational social science", "machine learning"]
+tabs: ["home", "research"]
+category: "Research"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
 publishDate: 2025-01-22
 year: 2024
 role: "Research Assistant"
-tags: ["LLM", "social networks", "computational social science", "machine learning"]
-lang: "en"
 ---
 
 <!-- # 1. **Brief Summary**

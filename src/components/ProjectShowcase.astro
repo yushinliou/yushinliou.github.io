@@ -1,0 +1,79 @@
+---
+interface Metric {
+  value: string;
+  label: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  metrics: Metric[];
+  tags?: string[];
+}
+
+interface Props {
+  project: Project;
+  reverse?: boolean;
+}
+
+const { project, reverse = false } = Astro.props;
+---
+
+<article class={`project-showcase py-16 md:py-24 ${reverse ? 'bg-gray-50' : 'bg-white'}`}>
+  <div class="max-w-7xl mx-auto px-8">
+    <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reverse ? 'lg:grid-flow-dense' : ''}`}>
+      <!-- Project Image -->
+      <div class={`relative group ${reverse ? 'lg:col-start-2' : ''}`}>
+        <a href={project.link} class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+          />
+        </a>
+      </div>
+
+      <!-- Project Info -->
+      <div class={reverse ? 'lg:col-start-1 lg:row-start-1' : ''}>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          <a href={project.link} class="hover:opacity-70 transition-opacity">
+            {project.title}
+          </a>
+        </h2>
+
+        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+          {project.description}
+        </p>
+
+        <!-- Metrics -->
+        {project.metrics && project.metrics.length > 0 && (
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+            {project.metrics.map((metric) => (
+              <div class="metric-item">
+                <div class="text-3xl md:text-4xl font-bold text-black mb-2">
+                  {metric.value}
+                </div>
+                <div class="text-sm md:text-base text-gray-600 leading-snug">
+                  {metric.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <!-- Tags -->
+        {project.tags && project.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span class="px-3 py-1 bg-gray-200 text-gray-800 text-sm rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</article>

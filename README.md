@@ -20,26 +20,6 @@ npm run preview
 
 The dev server runs at `http://localhost:4321`
 
-## 📁 Project Structure
-
-```
-├── public/              # Static assets
-├── src/
-│   ├── components/      # Reusable components
-│   │   ├── Navigation.astro
-│   │   ├── Footer.astro
-│   │   └── ProjectGrid.astro
-│   ├── layouts/         # Page layouts
-│   │   └── BaseLayout.astro
-│   └── pages/           # File-based routing
-│       ├── index.astro      # Work (homepage)
-│       ├── research.astro   # Research projects
-│       ├── side.astro       # Side projects
-│       ├── custom.astro     # Custom section
-│       └── about.astro      # About page
-└── package.json
-```
-
 ## 🎨 Customization
 
 ### Add Projects

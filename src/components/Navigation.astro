@@ -1,17 +1,33 @@
 ---
+/**
+ * Navigation Bar Component
+ *
+ * Layout: [Avatar] Home All Work Research About CV [Languages ▾] [🌙/☀️]
+ *
+ * Features:
+ * - Sticky position at top
+ * - Translucent background with backdrop blur
+ * - Avatar (40x40px circle) links to home
+ * - Navigation links (active state: bold, hover: background gray)
+ * - Theme toggle (moon/sun icon)
+ * - Language switcher dropdown
+ * - Responsive: hide language text on mobile
+ */
+
 import { getLangFromUrl } from '../i18n/utils';
-import { useTranslations, languages } from '../i18n/translations';
+import { useTranslations } from '../i18n/translations';
+import { siteConfig } from '../config';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 
 const currentPath = Astro.url.pathname;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Define navigation items
+// Define navigation items per specification
 const navItems = [
-  { name: t.nav.work, href: lang === 'zh' ? '/zh' : '/', key: 'work' },
+  { name: t.nav.home, href: lang === 'zh' ? '/zh' : '/', key: 'home' },
+  { name: t.nav.allWork, href: lang === 'zh' ? '/zh/allWork' : '/allWork', key: 'allwork' },
   { name: t.nav.research, href: lang === 'zh' ? '/zh/research' : '/research', key: 'research' },
-  { name: t.nav.side, href: lang === 'zh' ? '/zh/side' : '/side', key: 'side' },
-  // { name: t.nav.custom, href: lang === 'zh' ? '/zh/custom' : '/custom', key: 'custom' }, // remove temporarily
   { name: t.nav.about, href: lang === 'zh' ? '/zh/about' : '/about', key: 'about' },
   { name: t.nav.cv, href: '/cv/cv.pdf', external: true, key: 'cv' }
 ];
@@ -22,55 +38,30 @@ const isActive = (href: string) => {
   }
   return currentPath.startsWith(href);
 };
-
-// Get current path without language prefix for switching
-const getPathWithoutLang = (path: string) => {
-  return path.replace(/^\/zh/, '') || '/';
-};
 ---
 
-<nav class="w-full py-8">
-  <div class="max-w-7xl mx-auto px-8">
-    <div class="flex items-center justify-between">
-      <!-- Site Title on the left -->
-      <div class="text-nav-title">
-        <a href={lang === 'zh' ? '/zh' : '/'} class="hover:opacity-60 transition-opacity">
-          {t.site.title}
-        </a>
-      </div>
+<nav class="navigation sticky top-0 w-full backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-700/50 z-50 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Left: Avatar -->
+      <a href={lang === 'zh' ? '/zh' : '/'} class="flex-shrink-0" aria-label="Home">
+        <img
+          src={siteConfig.avatar}
+          alt="Avatar"
+          class="w-12 h-10 rounded-full object-contain mr-1 hover:opacity-80 transition-opacity duration-200"
+        />
+      </a>
 
-      <!-- Navigation and Language Switcher on the right -->
-      <div class="flex items-center gap-8">
-        <!-- Language Dropdown -->
-        <div class="relative group">
-          <button class="flex items-center gap-2 hover:opacity-60 transition-opacity text-body-sm">
-            <span>{lang === 'en' ? 'EN' : '繁中'}</span>
-            <i class="fas fa-chevron-down text-caption"></i>
-          </button>
-          <div class="absolute right-0 top-full mt-2 bg-white shadow-lg rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[120px] z-50">
-            <a
-              href={getPathWithoutLang(currentPath)}
-              class="block px-4 py-2 hover:bg-gray-100 transition-colors"
-            >
-              English
-            </a>
-            <a
-              href={'/zh' + getPathWithoutLang(currentPath)}
-              class="block px-4 py-2 hover:bg-gray-100 transition-colors"
-            >
-              繁體中文
-            </a>
-          </div>
-        </div>
-
-        <!-- Navigation Menu -->
-        <ul class="flex gap-8 items-center">
+      <!-- Right: Nav Links, Language Switcher, Theme Toggle -->
+      <div class="flex items-center gap-2 md:gap-4">
+        <!-- Navigation Links -->
+        <ul class="flex items-center gap-1 md:gap-2">
           {navItems.map((item) => (
             <li>
               {item.external ? (
                 <a
                   href={item.href}
-                  class="text-nav text-gray-500 hover:text-black transition-colors"
+                  class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -79,8 +70,10 @@ const getPathWithoutLang = (path: string) => {
               ) : (
                 <a
                   href={item.href}
-                  class={`text-nav transition-colors ${
-                    isActive(item.href) ? 'text-black' : 'text-gray-500 hover:text-black'
+                  class={`px-3 py-2 text-sm transition-colors duration-200 rounded-lg ${
+                    isActive(item.href)
+                      ? 'font-bold text-gray-900 dark:text-white'
+                      : 'font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
                   {item.name}
@@ -89,7 +82,72 @@ const getPathWithoutLang = (path: string) => {
             </li>
           ))}
         </ul>
+
+        <!-- Language Switcher -->
+        <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
+
+        <!-- Theme Toggle -->
+        <button
+          id="theme-toggle"
+          class="p-2 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+          aria-label="Toggle theme"
+        >
+          <i class="fas fa-moon dark-mode-icon" id="theme-toggle-dark-icon"></i>
+          <i class="fas fa-sun light-mode-icon hidden" id="theme-toggle-light-icon"></i>
+        </button>
       </div>
     </div>
   </div>
 </nav>
+
+<script>
+  // Theme toggle functionality
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+  // Check for saved theme preference or default to 'light'
+  const currentTheme = localStorage.getItem('theme') || 'light';
+
+  // Set initial theme
+  if (currentTheme === 'dark') {
+    document.documentElement.classList.add('dark');
+    darkIcon?.classList.add('hidden');
+    lightIcon?.classList.remove('hidden');
+  } else {
+    document.documentElement.classList.remove('dark');
+    darkIcon?.classList.remove('hidden');
+    lightIcon?.classList.add('hidden');
+  }
+
+  // Theme toggle click handler
+  themeToggleBtn?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+
+    if (isDark) {
+      // Switch to light mode
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      darkIcon?.classList.remove('hidden');
+      lightIcon?.classList.add('hidden');
+    } else {
+      // Switch to dark mode
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      darkIcon?.classList.add('hidden');
+      lightIcon?.classList.remove('hidden');
+    }
+  });
+</script>
+
+<style>
+  /* Smooth transitions for theme changes */
+  :root {
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .navigation {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+</style>

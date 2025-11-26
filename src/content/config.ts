@@ -1,35 +1,48 @@
 import { defineCollection, z } from 'astro:content';
+import { siteConfig } from '../config';
 
 // Define the projects collection
 const projectsCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    // Cover image (required)
+    coverImage: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }),
+
     // Basic info
     title: z.string(),
-    description: z.string().optional(),
+    description: z.string(),
 
-    // Categories - array of strings to support multiple tabs
-    // Valid values: 'work', 'research', 'side', 'custom'
-    categories: z.array(z.enum(['work', 'research', 'side', 'custom'])),
+    // Tags for filtering
+    tags: z.array(z.string()),
 
-    // Project metadata
-    image: z.string(), // Path to project image (relative to public/)
-    featured: z.boolean().default(false), // Featured projects appear first
+    // Tabs - where this project appears (e.g., ["home", "research"])
+    tabs: z.array(z.string()),
 
-    // Dates
-    publishDate: z.date(),
-    updatedDate: z.date().optional(),
+    // Single category string
+    category: z.string(),
+
+    // Localization
+    lang: z.enum(siteConfig.languages),
+
+    // Draft status
+    isDraft: z.boolean().default(false),
+
+    // CJK language flag (for proper text rendering)
+    isCJKLanguage: z.boolean().default(false),
+
+    // Publish date
+    publishDate: z.coerce.date(),
 
     // Optional fields
-    tags: z.array(z.string()).optional(), // Additional tags beyond categories
+    updatedDate: z.date().optional(),
     client: z.string().optional(),
     year: z.number().optional(),
     role: z.string().optional(),
     link: z.string().url().optional(), // External project link
     github: z.string().url().optional(), // GitHub repository
-
-    // Localization
-    lang: z.enum(['en', 'zh']).default('en'),
   }),
 });
 

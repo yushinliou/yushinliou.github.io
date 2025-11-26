@@ -1,23 +1,18 @@
 ---
 /**
- * Individual Project Page
- *
- * Layout Structure per specification:
- * - 70/30 layout split (content left, TOC right)
- * - Table of Contents sidebar (desktop only)
- * - Markdown content rendering
- * - Full width on mobile (TOC hidden)
+ * Individual Project Page (Chinese)
+ * Same as English version
  */
 
 import { getCollection } from 'astro:content';
-import type { GetStaticPaths } from 'astro:';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Navigation from '../../components/Navigation.astro';
-import Footer from '../../components/Footer.astro';
-import TableOfContents from '../../components/TableOfContents.astro';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navigation from '../../../components/Navigation.astro';
+import Footer from '../../../components/Footer.astro';
+import TableOfContents from '../../../components/TableOfContents.astro';
 
 export const getStaticPaths = (async () => {
-  const projects = await getCollection('projects');
+  const projects = await getCollection('projects', ({ data }) => data.lang === 'zh');
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project },
@@ -63,14 +58,15 @@ const { Content, headings } = await project.render();
             <div class="flex flex-wrap gap-4 text-small text-gray-500 dark:text-gray-400 mb-4">
               {project.data.publishDate && (
                 <span>
-                  Published: {project.data.publishDate.toLocaleDateString(
-                    project.data.lang === 'zh' ? 'zh-TW' : 'en-US',
-                    { year: 'numeric', month: 'long', day: 'numeric' }
-                  )}
+                  發布日期: {project.data.publishDate.toLocaleDateString('zh-TW', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </span>
               )}
-              {project.data.year && <span>Year: {project.data.year}</span>}
-              {project.data.role && <span>Role: {project.data.role}</span>}
+              {project.data.year && <span>年份: {project.data.year}</span>}
+              {project.data.role && <span>角色: {project.data.role}</span>}
               {project.data.category && (
                 <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
                   {project.data.category}
@@ -100,7 +96,7 @@ const { Content, headings } = await project.render();
                     class="inline-flex items-center px-4 py-2 text-small font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
                     <i class="fas fa-external-link-alt mr-2"></i>
-                    View Project
+                    查看專案
                   </a>
                 )}
                 {project.data.github && (
@@ -124,7 +120,7 @@ const { Content, headings } = await project.render();
           </div>
         </article>
 
-        <!-- Table of Contents Sidebar (30% width on desktop, hidden on mobile) -->
+        <!-- Table of Contents Sidebar -->
         <aside class="lg:w-[30%] flex-shrink-0">
           <TableOfContents headings={headings} />
         </aside>

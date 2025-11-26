@@ -1,22 +1,51 @@
 ---
+/**
+ * Footer Component
+ *
+ * Layout:
+ * [Footer Head]              [GitHub] [LinkedIn] [Email]
+ * [Footer Description]                    ←right aligned
+ * © 2025 Your Name
+ *
+ * Features:
+ * - Two-column layout (left: text, right: icons)
+ * - Text from config
+ * - Social icons (24x24px) with hover effects
+ * - Auto-update copyright year
+ * - Responsive: stack vertically on mobile, center align
+ */
+
+import { siteConfig } from '../config';
+
 const currentYear = new Date().getFullYear();
-const startYear = 2022; // Replace with your starting year
 
 const socialLinks = [
-  { name: 'LinkedIn', icon: 'fab fa-linkedin-in', href: 'https://linkedin.com/in/yourprofile' },
-  { name: 'GitHub', icon: 'fab fa-github', href: 'https://github.com/yourusername' },
-  { name: 'Email', icon: 'fas fa-envelope', href: 'mailto:your.email@example.com' },
+  { name: 'GitHub', icon: 'fab fa-github', href: siteConfig.social.github },
+  { name: 'LinkedIn', icon: 'fab fa-linkedin-in', href: siteConfig.social.linkedin },
+  { name: 'Email', icon: 'fas fa-envelope', href: `mailto:${siteConfig.social.email}` },
 ];
 ---
 
-<footer class="mt-auto py-12 px-8">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col items-end gap-6">
-      <div class="flex gap-6 items-center">
+<footer class="mt-auto border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+    <!-- Two-column layout on desktop, stack on mobile -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-8">
+      <!-- Left: Footer text -->
+      <div class="text-center md:text-left">
+        <h3 class="text-body font-semibold text-gray-900 dark:text-white mb-2">
+          {siteConfig.footer.head}
+        </h3>
+        <p class="text-small text-gray-600 dark:text-gray-400">
+          {siteConfig.footer.description}
+        </p>
+      </div>
+
+      <!-- Right: Social icons -->
+      <div class="flex gap-6 items-center justify-center md:justify-end">
         {socialLinks.map((link) => (
           <a
             href={link.href}
-            class="text-black hover:opacity-60 transition-opacity text-h4"
+            class="text-2xl text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={link.name}
@@ -25,9 +54,13 @@ const socialLinks = [
           </a>
         ))}
       </div>
-      <div class="text-body-sm text-gray-600">
-        <p>© {startYear}-{currentYear}</p>
-      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center md:text-left">
+      <p class="text-small text-gray-500 dark:text-gray-400">
+        © {currentYear} {siteConfig.title}
+      </p>
     </div>
   </div>
 </footer>
