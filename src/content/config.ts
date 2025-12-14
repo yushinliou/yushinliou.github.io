@@ -1,15 +1,22 @@
 import { defineCollection, z } from 'astro:content';
 import { siteConfig } from '../config';
 
+
 // Define the projects collection
 const projectsCollection = defineCollection({
   type: 'content',
-  schema: z.object({
-    // Cover image (required)
+  schema: ({image}) => z.object({
+
     coverImage: z.object({
-      src: z.string(),
+      src: image(),
       alt: z.string(),
     }),
+    // Cover image (required)
+
+    // coverImage: z.object({
+    //   src: image(),
+    //   alt: z.string(),
+    // }),
 
     // Basic info
     title: z.string(),
