@@ -6,11 +6,11 @@ export const siteConfig = {
   subdescription: "I bridge social research and product design to build accessible, inclusive tools that work across cultures and communities.",
   
 
-  // Home page
-  heroBanner: "@/assets/hero/heroBanner.gif", // hero banner place in /assets/hero/heroBanner.gif
+  // // Home page
+  // heroBanner: "@/assets/hero/heroBanner.gif", // hero banner place in /assets/hero/heroBanner.gif
 
-  // Avatar
-  avatar: "@/assets/avatar/avatar.png", // avatar place in /assets/avatar/avatar.png
+  // // Avatar
+  // avatar: "@/assets/avatar/avatar.png", // avatar place in /assets/avatar/avatar.png
 
   // Languages
   defaultLanguage: "en" as const,

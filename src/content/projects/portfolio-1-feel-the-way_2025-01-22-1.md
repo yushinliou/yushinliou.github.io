@@ -1,6 +1,6 @@
 ---
 coverImage:
-  src: "/src/assets/2025-01-22-Feel_The_Way/head.png"
+  src: "@/assets/2025-01-22-Feel_The_Way/head.png"
   alt: "Tactile evacuation map prototype with raised textures and Braille"
 title: "Feel the Way: Redesigning Emergency Evacuation Maps for Equal Access by the Visually Impaired"
 description: "Redesigning emergency evacuation maps to ensure equitable access for visually impaired individuals through tactile and visual integration."

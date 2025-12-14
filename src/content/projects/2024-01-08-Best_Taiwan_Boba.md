@@ -1,6 +1,6 @@
 ---
 coverImage:
-  src: "/src/assets/2024-01-08-Best_Taiwan_Boba/tea.jpg"
+  src: "@/assets/2024-01-08-Best_Taiwan_Boba/tea.jpg"
   alt: "Boba tea cups on a table"
 title: 'Best Taiwan Boba Tea Shops'
 description: "A personal guide to the best boba tea shops in Taiwan, featuring both local favorites and popular chains."

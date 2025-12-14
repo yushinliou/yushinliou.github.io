@@ -1,6 +1,6 @@
 ---
 coverImage:
-  src: "/src/assets/2025-01-22-Cloud_Ancestral_Worship/head.png"
+  src: "@/assets/2025-01-22-Cloud_Ancestral_Worship/head.png"
   alt: "Elderly person using online platform for ancestral worship"
 title: "Cloud Ancestral Worship: Building an Online Platform for Elders with Limited Mobility"
 description: "Designing an online platform to enable elderly individuals to maintain their spiritual practices and community connections despite physical limitations."
