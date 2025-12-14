@@ -1,0 +1,78 @@
+---
+import whoAmI from '../assets/about/who-am-I/who-am-I.png';
+import me1 from '../assets/about/who-am-I/me-1.jpg';
+import me2 from '../assets/about/who-am-I/me-2.jpg';
+import me3 from '../assets/about/who-am-I/me-3.jpg';
+import me4 from '../assets/about/who-am-I/me-4.jpg';
+
+interface Props {
+  questionText?: string;
+  titleText?: string;
+}
+
+const { questionText = '? ? ?', titleText = 'Who am I' } = Astro.props;
+---
+
+<!-- Who Am I Section -->
+<section class="w-full py-20 px-8">
+  <div class="max-w-7xl mx-auto flex items-center justify-center gap-16 flex-wrap md:flex-nowrap">
+    <!-- Flippable Card -->
+    <div class="flip-card-container">
+      <div class="flip-card" id="flipCard">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src={whoAmI.src} alt="Who am I" class="w-full h-full object-cover" />
+          </div>
+          <div class="flip-card-back">
+            <img id="randomImage" src={me1.src} alt="Random me" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Elements -->
+    <div class="flex flex-col gap-4">
+      <p class="text-4xl text-gray-700 dark:text-white space-y-6">{questionText}</p>
+      <p class="text-4xl text-gray-700 dark:text-white space-y-6">{titleText}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const images = [
+    '/src/assets/about/who-am-I/me-1.jpg',
+    '/src/assets/about/who-am-I/me-2.jpg',
+    '/src/assets/about/who-am-I/me-3.jpg',
+    '/src/assets/about/who-am-I/me-4.jpg'
+  ];
+
+  let isFlipped = false;
+  let lastImageIndex = -1;
+
+  function getRandomImage() {
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * images.length);
+    } while (randomIndex === lastImageIndex && images.length > 1);
+
+    lastImageIndex = randomIndex;
+    return images[randomIndex];
+  }
+
+  const flipCard = document.getElementById('flipCard');
+  const randomImageElement = document.getElementById('randomImage');
+
+  if (flipCard && randomImageElement) {
+    flipCard.parentElement?.addEventListener('click', () => {
+      if (!isFlipped) {
+        // If already showing a "me" image, change to another random "me" image
+        const newImagePath = getRandomImage();
+        randomImageElement.setAttribute('src', newImagePath);
+      }
+
+      // Toggle flip
+      flipCard.classList.toggle('flipped');
+      isFlipped = !isFlipped;
+    });
+  }
+</script>

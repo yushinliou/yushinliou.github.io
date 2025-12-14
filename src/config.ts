@@ -1,9 +1,10 @@
 // Site Configuration
 export const siteConfig = {
   // Site metadata
-  title: "Lexi Yu Shin Liou",
-  description: "Product designer & Developer",
-  subdescription: "Interactive Media Technology @ KTH",
+  title: "Hi, I'm Lexi Yu Shin Liou.",
+  description: "Product designer bridging social research and technology",
+  subdescription: "I bridge social research and product design to build accessible, inclusive tools that work across cultures and communities.",
+  
 
   // Home page
   heroBanner: "/src/assets/hero/heroBanner.gif", // hero banner place in /assets/hero/heroBanner.gif
@@ -19,6 +20,7 @@ export const siteConfig = {
   footer: {
     head: "Thank you for stopping by!",
     description: "Made with a lots of iteration, experiment and love ❤️",
+    subDescription: "Lexi Yu Shin Liou",
   },
 
   // Social links

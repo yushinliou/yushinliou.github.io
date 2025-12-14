@@ -29,7 +29,7 @@ const navItems = [
   { name: t.nav.allWork, href: lang === 'zh' ? '/zh/allWork' : '/allWork', key: 'allwork' },
   { name: t.nav.research, href: lang === 'zh' ? '/zh/research' : '/research', key: 'research' },
   { name: t.nav.about, href: lang === 'zh' ? '/zh/about' : '/about', key: 'about' },
-  { name: t.nav.cv, href: '/cv/cv.pdf', external: true, key: 'cv' }
+  { name: t.nav.cv, href: '/cv/cv.pdf', external: true, key: 'cv' },
 ];
 
 const isActive = (href: string) => {
@@ -40,15 +40,15 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav class="navigation sticky top-0 w-full backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/50 dark:border-gray-700/50 z-50 transition-colors duration-300">
+<nav class="navigation sticky top-0 w-full backdrop-blur-xs bg-room-green/50 dark:bg-gray-900/80 z-50 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+    <div class="flex items-center justify-between h-18">
       <!-- Left: Avatar -->
       <a href={lang === 'zh' ? '/zh' : '/'} class="flex-shrink-0" aria-label="Home">
         <img
           src={siteConfig.avatar}
           alt="Avatar"
-          class="w-12 h-10 rounded-full object-contain mr-1 hover:opacity-80 transition-opacity duration-200"
+          class="w-10 h-8 rounded-full object-contain mr-1 hover:opacity-80 transition-opacity duration-200"
         />
       </a>
 
@@ -61,7 +61,7 @@ const isActive = (href: string) => {
               {item.external ? (
                 <a
                   href={item.href}
-                  class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                  class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-500 rounded-lg transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -70,10 +70,10 @@ const isActive = (href: string) => {
               ) : (
                 <a
                   href={item.href}
-                  class={`px-3 py-2 text-sm transition-colors duration-200 rounded-lg ${
+                  class={`px-3 py-2 text-sm transition-colors rounded-lg ${
                     isActive(item.href)
                       ? 'font-bold text-gray-900 dark:text-white'
-                      : 'font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      : 'font-medium text-gray-700 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-500'
                   }`}
                 >
                   {item.name}
@@ -85,69 +85,8 @@ const isActive = (href: string) => {
 
         <!-- Language Switcher -->
         <LanguageSwitcher currentLang={lang} currentPath={currentPath} />
-
-        <!-- Theme Toggle -->
-        <button
-          id="theme-toggle"
-          class="p-2 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
-          aria-label="Toggle theme"
-        >
-          <i class="fas fa-moon dark-mode-icon" id="theme-toggle-dark-icon"></i>
-          <i class="fas fa-sun light-mode-icon hidden" id="theme-toggle-light-icon"></i>
-        </button>
       </div>
     </div>
   </div>
 </nav>
 
-<script>
-  // Theme toggle functionality
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const darkIcon = document.getElementById('theme-toggle-dark-icon');
-  const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-  // Check for saved theme preference or default to 'light'
-  const currentTheme = localStorage.getItem('theme') || 'light';
-
-  // Set initial theme
-  if (currentTheme === 'dark') {
-    document.documentElement.classList.add('dark');
-    darkIcon?.classList.add('hidden');
-    lightIcon?.classList.remove('hidden');
-  } else {
-    document.documentElement.classList.remove('dark');
-    darkIcon?.classList.remove('hidden');
-    lightIcon?.classList.add('hidden');
-  }
-
-  // Theme toggle click handler
-  themeToggleBtn?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.contains('dark');
-
-    if (isDark) {
-      // Switch to light mode
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      darkIcon?.classList.remove('hidden');
-      lightIcon?.classList.add('hidden');
-    } else {
-      // Switch to dark mode
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      darkIcon?.classList.add('hidden');
-      lightIcon?.classList.remove('hidden');
-    }
-  });
-</script>
-
-<style>
-  /* Smooth transitions for theme changes */
-  :root {
-    transition: background-color 300ms ease, color 300ms ease;
-  }
-
-  .navigation {
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-</style>

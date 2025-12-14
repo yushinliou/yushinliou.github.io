@@ -47,14 +47,6 @@ const sortedProjects = allProjects.sort((a, b) =>
 
 // Collect all unique tags
 const allTags = [...new Set(sortedProjects.flatMap(project => project.data.tags))];
-
-// Get selected tag from URL query parameter
-const selectedTag = Astro.url.searchParams.get('tag');
-
-// Filter projects if tag is selected
-const filteredProjects = selectedTag
-  ? sortedProjects.filter(project => project.data.tags.includes(selectedTag))
-  : sortedProjects;
 ---
 
 <BaseLayout title="All Work - Portfolio" description="Complete portfolio of all projects" lang={lang}>
@@ -78,11 +70,8 @@ const filteredProjects = selectedTag
             <!-- All Categories Button -->
             <a
               href="/allWork"
-              class={`block px-4 py-2 mb-2 text-sm rounded-lg transition-colors duration-200 ${
-                !selectedTag
-                  ? 'bg-black dark:bg-white text-white dark:text-black font-semibold'
-                  : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-              }`}
+              id="all-categories-btn"
+              class="block px-4 py-2 mb-2 text-sm rounded-lg transition-colors duration-200 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               All Categories
             </a>
@@ -92,11 +81,8 @@ const filteredProjects = selectedTag
               {allTags.map((tag) => (
                 <a
                   href={`/allWork?tag=${encodeURIComponent(tag)}`}
-                  class={`block px-4 py-2 text-sm rounded-lg transition-colors duration-200 ${
-                    selectedTag === tag
-                      ? 'bg-black dark:bg-white text-white dark:text-black font-semibold'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
+                  data-tag={tag}
+                  class="tag-filter-btn block px-4 py-2 text-sm rounded-lg transition-colors duration-200 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 >
                   {tag}
                 </a>
@@ -107,41 +93,41 @@ const filteredProjects = selectedTag
 
         <!-- Project Grid -->
         <div class="flex-1">
-          {selectedTag && (
-            <p class="text-body text-gray-600 dark:text-gray-400 mb-6">
-              Showing projects tagged with <strong class="text-gray-900 dark:text-white">"{selectedTag}"</strong>
-              ({filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'})
-            </p>
-          )}
+          <!-- Filter Status Message -->
+          <p id="filter-status" class="text-body text-gray-600 dark:text-gray-400 mb-6 hidden">
+            Showing projects tagged with <strong id="current-tag" class="text-gray-900 dark:text-white"></strong>
+            (<span id="project-count">0</span> <span id="project-label">projects</span>)
+          </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-            {filteredProjects.map((project) => (
-              <Card
-                title={project.data.title}
-                coverImage={project.data.coverImage}
-                publishDate={project.data.publishDate}
-                category={project.data.category}
-                description={project.data.description}
-                tags={project.data.tags}
-                slug={project.slug}
-                lang={lang}
-              />
+          <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+            {sortedProjects.map((project) => (
+              <div class="project-card" data-tags={JSON.stringify(project.data.tags)}>
+                <Card
+                  title={project.data.title}
+                  coverImage={project.data.coverImage}
+                  publishDate={project.data.publishDate}
+                  category={project.data.category}
+                  description={project.data.description}
+                  tags={project.data.tags}
+                  slug={project.slug}
+                  lang={lang}
+                />
+              </div>
             ))}
           </div>
 
-          {filteredProjects.length === 0 && (
-            <div class="text-center py-12">
-              <p class="text-body text-gray-500 dark:text-gray-400">
-                No projects found with this tag.
-              </p>
-              <a
-                href="/allWork"
-                class="inline-block mt-4 px-6 py-3 text-sm font-semibold text-white bg-[#2B5288] rounded hover:bg-[#1e3b5f] transition-colors duration-300"
-              >
-                View All Projects
-              </a>
-            </div>
-          )}
+          <!-- No Results Message -->
+          <div id="no-results" class="text-center py-12 hidden">
+            <p class="text-body text-gray-500 dark:text-gray-400">
+              No projects found with this tag.
+            </p>
+            <a
+              href="/allWork"
+              class="inline-block mt-4 px-6 py-3 text-sm font-semibold text-white bg-[#2B5288] rounded hover:bg-[#1e3b5f] transition-colors duration-300"
+            >
+              View All Projects
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -149,3 +135,80 @@ const filteredProjects = selectedTag
 
   <Footer />
 </BaseLayout>
+
+<script>
+  // Client-side tag filtering
+  function filterProjects() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTag = urlParams.get('tag');
+
+    const projectCards = document.querySelectorAll('.project-card');
+    const filterStatus = document.getElementById('filter-status');
+    const currentTagEl = document.getElementById('current-tag');
+    const projectCountEl = document.getElementById('project-count');
+    const projectLabelEl = document.getElementById('project-label');
+    const noResults = document.getElementById('no-results');
+    const allCategoriesBtn = document.getElementById('all-categories-btn');
+    const tagFilterBtns = document.querySelectorAll('.tag-filter-btn');
+
+    let visibleCount = 0;
+
+    if (selectedTag) {
+      // Filter projects
+      projectCards.forEach(card => {
+        const tags = JSON.parse(card.dataset.tags || '[]');
+        if (tags.includes(selectedTag)) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Update UI
+      if (visibleCount > 0) {
+        filterStatus?.classList.remove('hidden');
+        noResults?.classList.add('hidden');
+        if (currentTagEl) currentTagEl.textContent = `"${selectedTag}"`;
+        if (projectCountEl) projectCountEl.textContent = visibleCount.toString();
+        if (projectLabelEl) projectLabelEl.textContent = visibleCount === 1 ? 'project' : 'projects';
+      } else {
+        filterStatus?.classList.add('hidden');
+        noResults?.classList.remove('hidden');
+      }
+
+      // Highlight selected tag button
+      allCategoriesBtn?.classList.remove('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-semibold');
+      allCategoriesBtn?.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+
+      tagFilterBtns.forEach(btn => {
+        if (btn.dataset.tag === selectedTag) {
+          btn.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+          btn.classList.add('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-semibold');
+        } else {
+          btn.classList.remove('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-semibold');
+          btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        }
+      });
+    } else {
+      // Show all projects
+      projectCards.forEach(card => {
+        card.style.display = '';
+      });
+      filterStatus?.classList.add('hidden');
+      noResults?.classList.add('hidden');
+
+      // Highlight "All Categories" button
+      allCategoriesBtn?.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      allCategoriesBtn?.classList.add('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-semibold');
+
+      tagFilterBtns.forEach(btn => {
+        btn.classList.remove('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-semibold');
+        btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      });
+    }
+  }
+
+  // Run on page load
+  filterProjects();
+</script>

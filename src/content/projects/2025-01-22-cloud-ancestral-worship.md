@@ -1,0 +1,112 @@
+---
+coverImage:
+  src: "/src/assets/2025-01-22-Cloud_Ancestral_Worship/head.png"
+  alt: "Elderly person using online platform for ancestral worship"
+title: "Cloud Ancestral Worship: Building an Online Platform for Elders with Limited Mobility"
+description: "Designing an online platform to enable elderly individuals to maintain their spiritual practices and community connections despite physical limitations."
+tags: ["HCI", "elderly care", "cultural design", "interactive design", "web application"]
+tabs: []
+category: "UX Design"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
+publishDate: 2025-01-22
+year: 2024
+role: "UX Designer"
+---
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/old-person.png)
+
+> How can we enable elder to maintain their spiritual practice and community connections despite their physical limitations?
+
+
+# Context
+
+Visiting temples to burn incense and pay respects to ancestors is an important part of daily life for many elderly people in Taiwan. However, as they age and their physical conditions decline, many are unable to visit temples and perform worship. This not only results in a loss of spiritual support but, more importantly, diminishes their connection to the local community—a vital source of social and emotional support.
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/web-problem.png)
+
+- **Conducted at**: National Taiwan University
+- **Supervisor**: Prof. Cheng-Yuan Ho
+- **Project Type**: Course project
+
+# Target Problem
+
+Online worship is actualy an important national policy for reducing air polution from burning incense and joss paper, which endanger people's health, particularly the elderly.
+
+Since pandemic time, it has become increasingly common for ceremonies to be held both onsite and online. Youtube is an popular option.
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/YT.png)
+
+However, many the elderly individual report that the online worship experience can be challenging.
+
+Conducted interviews with four elderly participants who attended online ceremonies, revealing three key problems:
+
+- **Loss of Social Connection**: Lack of interaction with other participants leads to loneliness.
+> It feels like Iamjust sitting there staring at the screen, and that's it —like I didn't actualy do anything.
+- **Environmental Distractions**: Home settings hinder concentration during rituals.
+> It feels like Iamjust sitting there staring at the screen, and that's it —like I didn't actualy do anything.
+- **Absence of Physical Presence**: Inability to burn joss paper or incense limits the sense of active participation.
+> It feels like Iamjust sitting there staring at the screen, and that's it —like I didn't actualy do anything.
+
+
+<!-- ### Distractions in Home Environment
+chalenging to stay focused while chanting or praying
+> At home, it's so easy to get distracted, especialy when people cal out to me or something.
+
+### Lack of Social Connection
+Unable to interact or connect with others participating in the ritual.
+> All I can do is watch them worship, and it just makes me feel even lonelier.
+
+### Loss of Physical Presence
+Cannot burning joss paper or incense
+> It feels like Iamjust sitting there staring at the screen, and that's it —like I didn't actualy do anything. -->
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/web-challenge.png)
+
+
+These issues reduce engagement and motivation for online worship, necessitating a platform that recreates the immersive and communal aspects of traditional ceremonies.
+
+
+# Solution
+
+To overcome those chalenges, we created a platform with 3 interactive features. We hope that online worship transcends being merely a necessity.
+
+1. **Burning Joss Paper**:
+   - Virtual joss paper burning where the fire grows as more users contribute.
+   - Promotes a sense of collaboration and shared purpose.
+2. **Pray Board**:
+   - Users leave prayers for ancestors and view others' prayers to mirror traditional temple interactions.
+3. **Read Mode**:
+   - Real-time scripture reading with interactive sound wave animations responding to users' voices.
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/web-struct.png)
+
+# Results
+
+- **Homepage Structure**:
+  - Features to join or create ceremony forums.
+  - Navigation options for different modes: Pray Mode, Wish Mode, and Burning Joss Paper.
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/web-home.png)
+
+- **Key Feature 1**: Burning Joss Paper
+  - The fire would grow larger when user add joss paper. Fosters a sense of collaboration allows users to feel as though they are "building something together."
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/web-feature_3.png)
+
+- **Key Feature 2**: Pray Broad
+  - Leave messages to pray for their ancestors. They can also view others' prayers, mirroring traditional temple practices in order to increase the engagement for user.
+  - Wish card for user to write down message
+  - Alows users to make wishes as they would in a temple while creating a timeless record in a virtual space.
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/wish.png)
+
+- **Key Feature 3**: Read Mode
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/sound-move.png)
+  - Scripture Reading with Interactive Sound Wave
+  - Users can read Buddhist scriptures simultaneously online, accompanied by a real-time sound wave animation. The animation changes shape based on the users' voices
+  - Provide users with various types of scriptures to choose from.
+
+![Icon representing a visually impaired person](../../assets/2025-01-22-Cloud_Ancestral_Worship/read.png)

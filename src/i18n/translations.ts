@@ -38,8 +38,6 @@ export const translations = {
     // About page
     about: {
       heading: 'About',
-      bio1: 'I’m a Taiwanese student pursuing a Master’s degree in Interactive Media Technology at KTH. Before moving to Stockholm, I spent one year at UC Berkeley and three years at National Taiwan University. During my time at NTU, my main research interest centered on computational social science using social media data. Later in California, I shifted my focus toward LLM-based agent simulations of social behavior. In my current master’s program, I’m broadly exploring human–machine interaction, with a focus on enhancing the quality of user experience in interactive systems. My most recent project is Pastedown, an iOS app born from my frustration with converting rich text into clean, Markdown-formatted blog posts.',
-      bio2: '🍄‍🟫 Outside of coding, I’m exploring the best mushroom-picking spots around Stockholm.'
     },
 
     // Custom page
@@ -94,8 +92,6 @@ export const translations = {
     // About page
     about: {
       heading: '關於',
-      bio1: '這是您的關於頁面。在此添加您的簡介、背景和興趣。',
-      bio2: '您可以自訂此部分，包含有關您的工作、教育、獎項或任何您想分享的內容。'
     },
 
     // Custom page

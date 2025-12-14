@@ -12,6 +12,14 @@
  */
 
 import { siteConfig } from '../config';
+import berkeleyIcon from '../assets/hero/icon-berkeley.png';
+import berkeleyColoredIcon from '../assets/hero/icon-berkeley-colored.png';
+import kthIcon from '../assets/hero/icon-kth.png';
+import kthColoredIcon from '../assets/hero/icon-kth-colored.png';
+import ntuIcon from '../assets/hero/icon-ntu.png';
+import ntuColoredIcon from '../assets/hero/icon-ntu-colored.png';
+import wallLeft from '../assets/hero/wall-left.svg';
+import wallRight from '../assets/hero/wall-right.svg';
 
 interface Props {
   lang?: string;
@@ -19,27 +27,102 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 
-// Example institution icons - customize these based on actual institutions
+// Institution icons with hover effect (grayscale to colored)
 const institutions = [
   {
     name: 'KTH Royal Institute of Technology',
     location: 'Currently studying in Stockholm',
-    icon: '🎓', // Replace with actual SVG logo
+    icon: kthIcon.src,
+    iconColored: kthColoredIcon.src,
   },
   {
     name: 'UC Berkeley',
     location: 'Exchange student',
-    icon: '🐻', // Replace with actual SVG logo
+    icon: berkeleyIcon.src,
+    iconColored: berkeleyColoredIcon.src,
   },
   {
     name: 'National Taiwan University',
     location: 'Bachelor degree',
-    icon: '🏛️', // Replace with actual SVG logo
+    icon: ntuIcon.src,
+    iconColored: ntuColoredIcon.src,
   },
 ];
 ---
 
-<section class="hero-section w-full">
+<section class="hero-section w-full bg-room-green ">
+
+  
+<div class="flex flex-col lg:flex-row gap-0 items-stretch">
+
+
+<!-- Wall Left: only show on large screen --> 
+<div class="hidden lg:flex">
+  <img 
+    src={wallLeft.src} 
+    alt="Wall Left" 
+    class="h-96 -mt-10 z-50 dark:z-auto w-auto" 
+  />
+</div>
+
+   <!-- Yellow box -->
+  <div class="flex-1 px-16 lg:px-16 py-10 bg-amber-50 border-b-15 border-room-green border-x-15 md:border-x">
+
+    <!-- Text Content -->
+    <div class="space-y-4 mb-12 ">
+      <h1 class="text-hero-title text-gray-900 font-semibold leading-tight ">
+        {siteConfig.title}
+      </h1>
+      <p class="text-hero-subtitle text-gray-500 ">
+        {siteConfig.description}
+      </p>
+      <p class="text-body text-gray-700 leading-relaxed max-w-4xl">
+        {siteConfig.subdescription}
+      </p>
+    </div>
+
+    <!-- Institution Icons Row -->
+    <div class="flex flex-wrap items-center gap-8 lg:gap-10 ">
+      {institutions.map((institution) => (
+        <div class="institution-icon-wrapper group relative ">
+          <div class="relative w-16 h-16 lg:w-20 lg:h-20 transition-transform duration-200 cursor-pointer ">
+            <!-- Default grayscale icon -->
+            <img
+              src={institution.icon}
+              alt={institution.name}
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0"
+            />
+            <!-- Colored icon on hover -->
+            <img
+              src={institution.iconColored}
+              alt={institution.name}
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+            />
+          </div>
+
+          <!-- Tooltip -->
+          <div class="tooltip absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-10">
+            <div class="font-semibold">{institution.name}</div>
+            <div class="text-xs text-gray-300 dark:text-gray-400">{institution.location}</div>
+
+            <!-- Arrow -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
+              <div class="border-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <!-- Wall Right: only show on large screen --> 
+  <div class="hidden lg:flex">
+    <img src={wallRight.src} alt="Wall Right" class="h-96 -mt-10 z-50 dark:z-auto w-auto" />
+  </div>
+  
+</div>
+
+</section>
   <!-- Full-width GIF Banner -->
   <div class="w-full mb-12 bg-gray-100 dark:bg-gray-800">
     <img
@@ -47,45 +130,6 @@ const institutions = [
       alt="Hero banner"
       class="w-full h-auto max-h-96 object-cover"
     />
-  </div>
-
-  <!-- Two-column Content -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- Left: Text Content -->
-      <div class="space-y-6">
-        <h1 class="text-hero-title text-gray-900 dark:text-white font-semibold leading-tight">
-          {siteConfig.title}
-        </h1>
-        <p class="text-hero-subtitle text-gray-500 dark:text-gray-400">
-          {siteConfig.description}
-        </p>
-        <p class="text-body text-gray-700 dark:text-gray-300 leading-relaxed">
-          {siteConfig.subdescription}
-        </p>
-      </div>
-
-      <!-- Right: Institution Icons with Tooltips -->
-      <div class="flex justify-center lg:justify-end items-center gap-8">
-        {institutions.map((institution) => (
-          <div class="institution-icon-wrapper group relative">
-            <div class="text-5xl hover:scale-110 transition-transform duration-200 cursor-pointer">
-              {institution.icon}
-            </div>
-
-            <!-- Tooltip -->
-            <div class="tooltip absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-10">
-              <div class="font-semibold">{institution.name}</div>
-              <div class="text-xs text-gray-300 dark:text-gray-400">{institution.location}</div>
-              <!-- Arrow -->
-              <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
-                <div class="border-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
   </div>
 </section>
 

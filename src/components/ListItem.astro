@@ -33,28 +33,29 @@ const projectUrl = lang === 'zh' ? `/zh/projects/${slug}` : `/projects/${slug}`;
 const readMoreText = lang === 'zh' ? '閱讀更多' : 'Read more';
 ---
 
-<article class="list-item group mb-12 pb-12 border-b border-gray-200 dark:border-gray-700 last:border-b-0 transition-colors duration-300">
+<article class="list-item group mb-12 pb-12 border-b border-gray-200 dark:border-gray-700 last:border-b-0 transition-colors duration-300 lg:flex">
   <a href={projectUrl} class="block">
     <!-- Cover Image -->
-    <div class="aspect-video overflow-hidden rounded-lg mb-6 bg-gray-100 dark:bg-gray-800">
+    <div class="aspect-video overflow-hidden rounded-lg mb-6 mr-12 bg-gray-100 dark:bg-gray-800 lg:basis-2/6">
       <img
         src={coverImage.src}
         alt={coverImage.alt}
-        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        class="w-xl object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
       />
     </div>
-
-    <!-- Title -->
-    <h2 class="text-hero-subtitle text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-      {title}
-    </h2>
-
-    <!-- Description -->
-    <p class="text-body text-gray-700 dark:text-gray-300 mb-6 line-clamp-3">
-      {description}
-    </p>
   </a>
+
+     <div class="text-content lg:basis-4/6">
+      <!-- Title -->
+      <h2 class="text-hero-subtitle text-gray-900 dark:text-white mb-4 group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-colors duration-300">
+        {title}
+      </h2>
+
+      <!-- Description -->
+      <p class="text-body text-gray-700 dark:text-gray-300 mb-6 line-clamp-3">
+        {description}
+      </p>
 
   <!-- Tags -->
   {tags && tags.length > 0 && (
@@ -75,7 +76,7 @@ const readMoreText = lang === 'zh' ? '閱讀更多' : 'Read more';
   <!-- Read More Button -->
   <a
     href={projectUrl}
-    class="read-more-button inline-flex items-center px-6 py-3 text-[20px] font-semibold text-white bg-[#2B5288] rounded hover:bg-[#1e3b5f] dark:hover:bg-[#3d6ba8] transition-colors duration-300"
+    class="read-more-button inline-flex items-center px-5 py-3 text-[18px] font-semibold text-white bg-[#2B5288] rounded hover:bg-[#1e3b5f] dark:hover:bg-[#3d6ba8] transition-colors duration-300"
   >
     {readMoreText}
     <svg
@@ -92,6 +93,9 @@ const readMoreText = lang === 'zh' ? '閱讀更多' : 'Read more';
       />
     </svg>
   </a>
+
+     </div>
+
 </article>
 
 <style>

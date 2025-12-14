@@ -1,7 +1,10 @@
+
+
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
+import WhoAmISection from '../../components/WhoAmISection.astro';
 import { useTranslations } from '../../i18n/translations';
 
 const t = useTranslations('zh');
@@ -12,13 +15,23 @@ const t = useTranslations('zh');
   <main class="flex-1 w-full">
     <div class="max-w-4xl mx-auto px-8">
       <div class="py-12">
-        <h1 class="text-h1 mb-8">{t.about.heading}</h1>
-        <div class="text-body-lg text-gray-700 space-y-6">
-          <p>{t.about.bio1}</p>
-          <p>{t.about.bio2}</p>
+        <h1 class="page-about-heading mb-8">{t.about.heading}</h1>
+        <div class="text-body-lg text-gray-700 dark:text-white space-y-6">
+          <p>
+            我目前在瑞典的皇家理工大學 (KTH) 唸Interactive media technology，已經非常習慣大家聽到這個系名疑惑的眼神，在美國的體系裡這個系叫做Human-Computer Interaction，在台灣的體系裡面則類似於網媒所，主要研究人類跟機器的互動，更具體來說，下面是幾個我最近project的主題：
+          </p>
+          <ul class="list-disc list-inside space-y-2">
+            <li>那首歌應該是什麼眼色的？幫 KTH 核反應爐設計音樂表演的燈光</li>
+            <li>零干擾捕捉婚禮瞬間，有可能嗎</li>
+            <li>讓盲人讀得見：撰寫替代文字還可以更輕鬆嗎？</li>
+          </ul>
+          <p>學術之外，最近的目標是成為斯德哥爾摩小當家 👩‍🍳</p>
         </div>
       </div>
     </div>
+
+    <WhoAmISection questionText="? ? ?" titleText="Who am I" />
+
   </main>
   <Footer />
 </BaseLayout>

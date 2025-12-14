@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import WhoAmISection from '../components/WhoAmISection.astro';
 import { useTranslations } from '../i18n/translations';
 
 const t = useTranslations('en');
@@ -10,15 +11,31 @@ const t = useTranslations('en');
 <BaseLayout title={t.pageTitle.about} lang="en">
   <Navigation />
   <main class="flex-1 w-full">
+    
     <div class="max-w-4xl mx-auto px-8">
       <div class="py-12">
-        <h1 class="text-h1 mb-8">{t.about.heading}</h1>
-        <div class="text-body-lg text-gray-700 space-y-6">
-          <p>{t.about.bio1}</p>
-          <p>{t.about.bio2}</p>
+        <h1 class="page-about-heading mb-8">{t.about.heading}</h1>
+        <div class="text-body-lg text-gray-700 dark:text-white space-y-6">
+          
+          <p>
+            I’m currently studying Interactive Media Technology at KTH Royal Institute of Technology in Sweden. If you are confusing what is it, don’t worried, you are not the first one.
+          </p>
+            In the US system, it’s called Human-Computer Interaction, and in Taiwan, it’s similar to the Networking and Multimedia program. The field focuses on the interaction between humans and machines. More specifically. here are some themes from my recent projects:
+          <p>
+
+          </p>
+          <ul class="list-disc list-inside space-y-2">
+              <li>What color should a song be? Designing audiovisual performances for nuclear reactors</li>
+              <li>Is it possible to capture wedding moments without any disruption?</li>
+              <li>Making images readable for the blind: Can alt text be paste-and-done?</li>
+          </ul>
+            <p>Outside of academia, my recent goal is to become a master chef in Stockholm 👩‍🍳</p>
         </div>
       </div>
     </div>
+
+    <WhoAmISection questionText="? ? ?" titleText="Who am I" />
+
   </main>
   <Footer />
 </BaseLayout>

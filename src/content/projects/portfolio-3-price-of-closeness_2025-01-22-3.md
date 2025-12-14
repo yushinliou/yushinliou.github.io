@@ -4,7 +4,7 @@ coverImage:
   alt: "Social network visualization showing triadic closure patterns"
 title: "The Price of Closeness: Answering How Popularity and Close Social Circles Limit People Meet New People On Social Media"
 description: "Examining how social media dynamics, particularly popularity and tightly-knit social circles, influence opportunities for forming new connections through triadic closure analysis."
-tags: ["social networks", "computational social science", "survival analysis", "Facebook"]
+tags: ["academic research", "social networks analysis", "data analysis", "social media", "quantitative research"]
 tabs: ["home", "research"]
 category: "Research"
 lang: "en"

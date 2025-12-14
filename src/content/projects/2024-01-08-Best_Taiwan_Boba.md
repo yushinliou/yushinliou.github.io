@@ -5,7 +5,7 @@ coverImage:
 title: 'Best Taiwan Boba Tea Shops'
 description: "A personal guide to the best boba tea shops in Taiwan, featuring both local favorites and popular chains."
 tags: ["personal", "boba tea", "Taiwan", "food"]
-tabs: ["home"]
+tabs: []
 category: "Personal Guide"
 lang: "en"
 isDraft: false

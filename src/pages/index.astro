@@ -35,7 +35,7 @@ const sortedProjects = featuredProjects.sort((a, b) =>
 );
 ---
 
-<BaseLayout title="Portfolio - Home" description="Featured projects and work" lang={lang}>
+<BaseLayout title="Portfolio - Home" description="Selected work" lang={lang}>
   <Navigation />
 
   <main class="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -44,9 +44,9 @@ const sortedProjects = featuredProjects.sort((a, b) =>
 
     <!-- Featured Projects Section -->
     <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-      <h2 class="text-hero-subtitle text-gray-900 dark:text-white mb-12">
-        Featured Work
-      </h2>
+      <!-- <h2 class="text-hero-subtitle text-gray-900 dark:text-white mb-12">
+        Selected Work
+      </h2> -->
 
       {sortedProjects.length > 0 ? (
         <div class="space-y-0">
