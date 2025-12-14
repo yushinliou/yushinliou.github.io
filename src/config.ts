@@ -7,10 +7,10 @@ export const siteConfig = {
   
 
   // Home page
-  heroBanner: "/src/assets/hero/heroBanner.gif", // hero banner place in /assets/hero/heroBanner.gif
+  heroBanner: "@/assets/hero/heroBanner.gif", // hero banner place in /assets/hero/heroBanner.gif
 
   // Avatar
-  avatar: "/src/assets/avatar/avatar.png", // avatar place in /assets/avatar/avatar.png
+  avatar: "@/assets/avatar/avatar.png", // avatar place in /assets/avatar/avatar.png
 
   // Languages
   defaultLanguage: "en" as const,
