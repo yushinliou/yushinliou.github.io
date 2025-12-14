@@ -11,6 +11,9 @@ interface Props {
 }
 
 const { questionText = '? ? ?', titleText = 'Who am I' } = Astro.props;
+
+// 準備圖片路徑陣列
+const imageUrls = [me1.src, me2.src, me3.src, me4.src];
 ---
 
 <!-- Who Am I Section -->
@@ -38,25 +41,18 @@ const { questionText = '? ? ?', titleText = 'Who am I' } = Astro.props;
   </div>
 </section>
 
-<script>
-  const images = [
-    '@assets/about/who-am-I/me-1.jpg',
-    '@assets/about/who-am-I/me-2.jpg',
-    '@assets/about/who-am-I/me-3.jpg',
-    '@assets/about/who-am-I/me-4.jpg'
-  ];
-
+<script define:vars={{ imageUrls }}>
   let isFlipped = false;
   let lastImageIndex = -1;
 
   function getRandomImage() {
     let randomIndex;
     do {
-      randomIndex = Math.floor(Math.random() * images.length);
-    } while (randomIndex === lastImageIndex && images.length > 1);
-
+      randomIndex = Math.floor(Math.random() * imageUrls.length);
+    } while (randomIndex === lastImageIndex && imageUrls.length > 1);
+    
     lastImageIndex = randomIndex;
-    return images[randomIndex];
+    return imageUrls[randomIndex];
   }
 
   const flipCard = document.getElementById('flipCard');
@@ -65,12 +61,10 @@ const { questionText = '? ? ?', titleText = 'Who am I' } = Astro.props;
   if (flipCard && randomImageElement) {
     flipCard.parentElement?.addEventListener('click', () => {
       if (!isFlipped) {
-        // If already showing a "me" image, change to another random "me" image
         const newImagePath = getRandomImage();
         randomImageElement.setAttribute('src', newImagePath);
       }
-
-      // Toggle flip
+      
       flipCard.classList.toggle('flipped');
       isFlipped = !isFlipped;
     });
