@@ -13,7 +13,7 @@
  * - Language switcher dropdown
  * - Responsive: hide language text on mobile
  */
-
+import AvatarImage from '@/assets/avatar/avatar.png';
 import { getLangFromUrl } from '../i18n/utils';
 import { useTranslations } from '../i18n/translations';
 import { siteConfig } from '../config';
@@ -46,7 +46,7 @@ const isActive = (href: string) => {
       <!-- Left: Avatar -->
       <a href={lang === 'zh' ? '/zh' : '/'} class="flex-shrink-0" aria-label="Home">
         <img
-          src={siteConfig.avatar}
+          src={AvatarImage.src}
           alt="Avatar"
           class="w-10 h-8 rounded-full object-contain mr-1 hover:opacity-80 transition-opacity duration-200"
         />
