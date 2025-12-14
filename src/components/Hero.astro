@@ -11,15 +11,18 @@
  * - Center aligned on screen
  */
 
+import heroBannerImg from "@/assets/hero/heroBanner.gif";
+import avatarImg from "@/assets/avatar/avatar.png";
+
 import { siteConfig } from '../config';
-import berkeleyIcon from '@assets/hero/icon-berkeley.png';
-import berkeleyColoredIcon from '@assets/hero/icon-berkeley-colored.png';
-import kthIcon from '@assets/hero/icon-kth.png';
-import kthColoredIcon from '@assets/hero/icon-kth-colored.png';
-import ntuIcon from '@assets/hero/icon-ntu.png';
-import ntuColoredIcon from '@assets/hero/icon-ntu-colored.png';
-import wallLeft from '@assets/hero/wall-left.svg';
-import wallRight from '@assets/hero/wall-right.svg';
+import berkeleyIcon from '@/assets/hero/icon-berkeley.png';
+import berkeleyColoredIcon from '@/assets/hero/icon-berkeley-colored.png';
+import kthIcon from '@/assets/hero/icon-kth.png';
+import kthColoredIcon from '@/assets/hero/icon-kth-colored.png';
+import ntuIcon from '@/assets/hero/icon-ntu.png';
+import ntuColoredIcon from '@/assets/hero/icon-ntu-colored.png';
+import wallLeft from '@/assets/hero/wall-left.svg';
+import wallRight from '@/assets/hero/wall-right.svg';
 
 interface Props {
   lang?: string;
@@ -126,7 +129,7 @@ const institutions = [
   <!-- Full-width GIF Banner -->
   <div class="w-full mb-12 bg-gray-100 dark:bg-gray-800">
     <img
-      src={siteConfig.heroBanner}
+      src={heroBannerImg.src}
       alt="Hero banner"
       class="w-full h-auto max-h-96 object-cover"
     />
