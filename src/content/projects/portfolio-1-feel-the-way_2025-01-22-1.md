@@ -3,7 +3,7 @@ coverImage:
   src: "@/assets/2025-01-22-Feel_The_Way/head.png"
   alt: "Tactile evacuation map prototype with raised textures and Braille"
 title: "Feel the Way: Redesigning Emergency Evacuation Maps for Equal Access by the Visually Impaired"
-description: "Redesigning emergency evacuation maps to ensure equitable access for visually impaired individuals through tactile and visual integration."
+description: "We introduce Generalised Emergency Evacuation Maps. A map can be accessed equally by both visually impaired and non-visually impaired individuals. "
 tags: ["accessibility", "UX research", "tactile design", "inclusive design"]
 tabs: ["home", "research"]
 category: "UX Research"
@@ -17,20 +17,15 @@ role: "UX Designer & Researcher"
 
 > How to create equal escape opportunities for blind people in emergency situation?
 
-
-<!-- ## 1. **Summary**
-This project focuses on redesigning emergency evacuation maps to ensure equitable access for visually impaired individuals. The redesigned tactile maps integrate both tactile and visual elements, overcoming limitations in existing maps and promoting inclusive safety measures. The results were influential in establishing the first official tactile map design guidelines in Taiwan. -->
-
-
 # Context
 
 Evacuation directional maps are essential for people to find their way out of a building in emergency situations. Therefore, Taiwan's Public Place Safety Regulations require them to be installed in public places. Blind people are more vulnerable than sighted people in such situations; however, most directional maps are designed only for sighted people.
 
 
-- **Conducted at**: OurCityLove, a social enterprise in Taiwan
-- **Supervisor**: Cong-Wei Lin
-- **Project Type**: Professional project
-- **Impact**: Results shared with visually impaired groups and contributed to Taiwan's National Fire Agency's guidelines for tactile map design.
+* **Conducted at**: OurCityLove, a social enterprise in Taiwan
+* **Supervisor**: Cong-Wei Lin
+* **Project Type**: Professional project
+* **Impact**: Results shared with visually impaired groups and contributed to Taiwan's National Fire Agency's guidelines for tactile map design.
 
 
 
