@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  images: {
+    src: ImageMetadata;
+    alt: string;
+    caption: string;
+  }[];
+  gap?: string;
+}
+
+const { images, gap = "gap-6" } = Astro.props;
+---
+
+<div class={`grid grid-cols-1 md:grid-cols-2 ${gap} my-8 max-w-5xl mx-auto`}>
+  {images.map((img) => (
+    <figure class="flex flex-col">
+      <div class=" flex items-center justify-center">
+        <Image 
+          src={img.src} 
+          alt={img.alt}
+          quality={90}
+          class="h-40 w-auto"
+        />
+      </div>
+      <figcaption class="text-sm text-gray-600 text-center mt-3">
+        {img.caption}
+      </figcaption>
+    </figure>
+  ))}
+</div>

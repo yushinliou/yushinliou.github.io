@@ -1,0 +1,41 @@
+---
+interface Props {
+  title?: string;
+  learnings: {
+    heading: string;
+    description: string;
+  }[];
+}
+
+const { 
+  title = "What I learned",
+  learnings
+} = Astro.props;
+---
+
+<div class="learning-section my-16 max-w-6xl mx-auto">
+  <!-- Heading -->
+  <h2 >
+    {title}
+  </h2>
+
+  <!-- Learning Points Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+    {learnings.map((learning) => (
+      <div class="learning-item">
+        <h3 class="font-serif  mb-4 leading-snug">
+          {learning.heading}
+        </h3>
+        <p class="  leading-relaxed">
+          {learning.description}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  h2, h3 {
+    font-family: 'Georgia', 'Cambria', 'Times New Roman', serif;
+  }
+</style>

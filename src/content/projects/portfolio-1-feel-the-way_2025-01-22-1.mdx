@@ -1,0 +1,287 @@
+---
+coverImage:
+  src: "@/assets/2025-01-22-Feel_The_Way/head.png"
+  alt: "Tactile evacuation map prototype with raised textures and Braille"
+title: "Feel the Way: Redesigning Emergency Evacuation Maps for Equal Access by the Visually Impaired"
+description: "We introduce Generalised Emergency Evacuation Maps. A map can be accessed equally by both visually impaired and non-visually impaired individuals. "
+tags: ["accessibility", "UX research", "tactile design", "inclusive design"]
+tabs: ["home", "research"]
+category: "UX Research"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
+publishDate: 2025-12-15
+year: 2023
+role: "UX Designer & Researcher"
+---
+
+
+import ProjectMeta from '../../components/ProjectMeta.astro';
+import Quote from '../../components/Quote.astro';
+import FourImageGrid from '../../components/FourImageGrid.astro';
+import { Image } from 'astro:assets';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+
+
+import conceptSketchImg from '../../assets/2025-01-22-Feel_The_Way/concept_sketch.jpg';
+import blindAvatarImg from '../../assets/2025-01-22-Feel_The_Way/blind_avatar.jpg';
+import blindAvatarFemaleImg from '../../assets/2025-01-22-Feel_The_Way/blind-avatar-f.jpg';
+import prototypeImg from '../../assets/2025-01-22-Feel_The_Way/prototype.png';
+import broadEleImg from '../../assets/2025-01-22-Feel_The_Way/broad-ele.png';
+import expEleImg from '../../assets/2025-01-22-Feel_The_Way/exp-stat.png';
+import expProcedureImg from '../../assets/2025-01-22-Feel_The_Way/exp_procedure.png';
+import expStat from '../../assets/2025-01-22-Feel_The_Way/exp-stat.png';
+import expDataImg from '../../assets/2025-01-22-Feel_The_Way/exp-data.png';
+import expStatDist from '../../assets/2025-01-22-Feel_The_Way/exp-stat-distribution.png';
+import expStatGain from '../../assets/2025-01-22-Feel_The_Way/exp-stat-gain.png';
+import expGrid1 from '../../assets/2025-01-22-Feel_The_Way/exp-grid1.png';
+import expGrid2 from '../../assets/2025-01-22-Feel_The_Way/exp-grid2.png';
+import expGrid3 from '../../assets/2025-01-22-Feel_The_Way/exp-grid3.png';
+import expGrid4 from '../../assets/2025-01-22-Feel_The_Way/exp-grid4.png';
+import ROCFireLogoImg from '../../assets/2025-01-22-Feel_The_Way/ROCFA_logo.png';
+import broadTextureImg from '../../assets/2025-01-22-Feel_The_Way/broad_texture.png';
+import broadLineImg from '../../assets/2025-01-22-Feel_The_Way/broad_line.png';
+import broadArrowImg from '../../assets/2025-01-22-Feel_The_Way/broad_arrow.png';
+import broadShapeImg from '../../assets/2025-01-22-Feel_The_Way/broad_shape.png';
+import broadCornerImg from '../../assets/2025-01-22-Feel_The_Way/broad_corner.png';
+import broadIconImg from '../../assets/2025-01-22-Feel_The_Way/broad_icon.png';
+import expLineImg from '../../assets/2025-01-22-Feel_The_Way/exp_line.png';
+import expShapeImg from '../../assets/2025-01-22-Feel_The_Way/exp_shape.png';
+import expIconImg from '../../assets/2025-01-22-Feel_The_Way/exp_icon.png';
+import expArrowImg from '../../assets/2025-01-22-Feel_The_Way/exp_arrow.png';
+import expCornerImg from '../../assets/2025-01-22-Feel_The_Way/exp_corner.png';
+import photo4Img from '../../assets/2025-01-22-Feel_The_Way/photo4.png';
+import mapOriImg from '../../assets/2025-01-22-Feel_The_Way/map_ori.png';
+import redesignImg from '../../assets/2025-01-22-Feel_The_Way/redesign.png';
+
+<ProjectMeta 
+  role="UX Researcher"
+  skills={["Product design", "UX Research", "Prototyping", "User Testing"]}
+  timeframe="Feb 2022 - Apr 2022"
+/>
+
+# Context
+
+Evacuation directional maps are essential for people to find their way out of a building in emergency situations. Therefore, Taiwan's Public Place Safety Regulations require them to be installed in public places.
+
+Blind people are more vulnerable than sighted people in such situations; however, most emergency evacuation maps are designed only for sighted people. Most public safety guidelines advise blind people to stay put during emergencies and wait for assistance, which often leaves them in a passive position and without agency.
+
+
+<Quote 
+  text="Most government guidelines advise blind people to stay put during emergency situations and wait for assistance. Honestly, I don’t feel safe relying on this"
+  attribution="Interview quote from a visually impaired participant"
+  image={blindAvatarImg}
+  imageAlt="Illustration of a visually impaired person"
+/>
+
+
+# How Might We
+
+> How might we create equal escape opportunities for blind people in emergency situation?
+
+There are already some tactile evacuation maps designed for blind users, which use textures to help blind users read. However, there are 2 problems:
+
+* **Problem 1.** Design relies on textures and Braille, which is unintuitive for sighted users
+* **Problem 2.** Limited installation: Since those map are specifically for blind user, They typically installed only in locations frequented by the visually impaired, such as special schools.
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={conceptSketchImg}
+    alt="Concept sketch of generalized tactile evacuation map"
+    width={400}
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    one evacuation map usable by both blind and sighted users
+  </figcaption>
+</figure>
+
+By integrating both tactile and visual elements into a single map, we aimed to create a solution that can be intuitively used by both sighted and blind people. This approach avoids treating accessibility as a special add-on, and instead makes it a default feature—ensuring that everyone shares the same information, in the same space, especially in emergency situations where equality can be a matter of survival.
+
+# Prototype
+
+Designing a universal evacuation map sounds simple, right? We just need to add Braille to the text and raise the lines. With this in mind, we created our first prototype:
+
+<Image src={prototypeImg} alt="Experiment design test broad pictures" />
+
+* Integrated tactile elements (textures, shapes, and lines) with traditional visual map designs.
+* Used a 3D printer to create map prototypes.
+
+# User Testing
+
+However, when we tested it with visually impaired users, we found that they could not use it efficiently.
+
+Which line indicates the evacuation route? Which line is just decoration or part of the wall? We made a lot of icons raised, such as female/male toilets and emergency exits, but when they went through them with their fingers, they simply went through them without noticing them.
+
+Most blind users with congenital blindness can recognise Braille without effort, but for those who lost their sight after becoming adults, it is time consuming.
+
+So we realised that:
+
+> Not all blind people know Braille, and simply transforming a traditional map into a tactile map is not enough. We need to find a way to design it to meet people's intuitive tactile perception.
+
+# Quantitative: Experiment Design
+
+The main challenge is: How to quantify the intuitiveness of a evacuation map? And how to convert it into a practical design guideline?
+
+We categorized map elements into 6 groups: texture, line, arrow, icon, shape, and corner. Afterwards, we design a experiment for each element.
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={broadEleImg}
+    alt="6 catagories of tactile evacuation map: texture, line, arrow, icon, shape, corner"
+    class="w-[400px]"
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    6 catagories of tactile map elements
+  </figcaption>
+</figure>
+
+Because of NDAs with the organizations involved, I can’t show the exact designs or experiment results The image below, however, demonstrates the test boards used for each map element, giving an overview of the research setup:
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={expProcedureImg}
+    alt="the experiment test broad for each element"  
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    the experiment test broad for each element
+  </figcaption>
+</figure>
+
+In total, we recruited 36 visually impaired participants, which is the largest sample size in similar studies in Taiwan, and it is also rare internationally.
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={expStatDist}
+    alt="Experiment design statistics: age and gender distribution"  
+    class="w-[600px]"
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    Age and gender distribution
+  </figcaption>
+</figure>
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={expStatGain}
+    alt="distribution of congenitally and aquired blind participants"  
+    class="w-[600px]"
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    Distribution of congenitally and aquired blind participants
+  </figcaption>
+</figure>
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={expDataImg}
+    alt="Data visualization for experiment results"  
+    class="w-[600px]"
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    Data visualization for experiment results
+  </figcaption>
+</figure>
+
+<FourImageGrid 
+  images={[
+    {
+      src: expGrid1,
+      alt: "A broad with mini map",
+      caption: "Test board No1."
+    },
+    {
+      src: expGrid2,
+      alt: "Guiding the participants",
+      caption: "Test board No1."
+    },
+    {
+      src: expGrid3,
+      alt: "A board with Arrow and texture",
+      caption: "Test board No2."
+    },
+    {
+      src: expGrid4,
+      alt: "Instructing the participants",
+      caption: "Test is conduting"
+    }
+  ]}
+/>
+
+# Qualitative: Interview
+
+We conducted semi-structured interviews to understand what made each test easy or difficult. More importantly, we designed the sessions so participants felt empowered, included, and connected throughout the process.
+
+<Quote 
+  text="The simpler the lines, the better. Tactile resolution cannot distinguish subtle difference between dashed lines"
+  attribution="Participant No.3: Interview after line experiment"
+  image={blindAvatarImg}
+  imageAlt="Illustration of a visually impaired person"
+/>
+
+<Quote 
+  text="The textures within shape is confusing. Should I focus is on feeling the shape, the texture, or something else?"
+  attribution="Participant No.11: Interview after shape experiment"
+  image={blindAvatarFemaleImg}
+  imageAlt="Illustration of a visually impaired person"
+/>
+
+Most of our finding is similar with previous work suggested (Wabiński et al. 2022), for example: 
+
+* The internal patterns of the texture should be as simple as possible
+* Textures should not be too dense or intricate, as tactile resolution cannot distinguish overly fine details.
+* The number of different textures used in a single map should be limited to avoid cognitive overload.
+
+
+{/* * Star for participants are "something with sharp angles". It often confused with triangles.
+* For congenitally blind participants, the concept of "images" does not exist in their life experience, so icons are entirely non-intuitive for them. */}
+
+
+# Impact #1: Inform Public Policy
+
+The results of the experiment provided to Taiwan's National Fire Agency as reference to establish guidelines for tactile evacuation map design. 
+
+<figure className="flex flex-col items-center">
+  <Image
+    src={ROCFireLogoImg}
+    alt="Logo of Taiwan's National Fire Agency"
+    class="w-40"
+  />
+  <figcaption className="mt-2 text-sm text-gray-500 text-center">
+    Taiwan's National Fire Agency
+  </figcaption>
+</figure>
+
+# Impact #2: Real-World Implementation
+
+Our research findings were presented and adopted by related advocacy groups in blind people welfare.
+Thanks to the efforts of these organisations, government agencies and local NGOs, the first generalised tactile evacuation maps were installed at Moon Peach Story House, a tourist spot in Taiwan with over 400,000 visitors per year.
+
+<BeforeAfter 
+  beforeImage={mapOriImg}
+  afterImage={redesignImg}
+
+  beforeSubtitle="Before"
+  afterSubtitle="After"
+
+  beforeAlt="Original 2D designed map"
+  afterAlt="Designed applied our research findings"
+/>
+
+
+
+<div class="my-16 not-prose">
+  <div class="max-w-3xl mx-auto bg-gray-50 rounded-2xl p-12 border border-gray-200">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-3xl">💭</span>
+      <h2 class="text-2xl font-mono text-gray-700">
+        Some final thoughts...
+      </h2>
+    </div>
+    
+    <h2 class="text-lg font-mono text-gray-600 leading-relaxed">
+      My background in academic research taught me to value large-scale datasets and complex statistical models: the bigger and more sophisticated, the better.
+
+      This project challenged that assumption. I discovered that impactful design research isn't just about methodological rigor; it's about participatory processes. Through continuous engagement with stakeholders, users, and government agencies, we shape the future we want. The key is not just producing evidence, but creating spaces for dialogue where stakeholders can shape the solution they need.
+    </h2>
+  </div>
+</div>

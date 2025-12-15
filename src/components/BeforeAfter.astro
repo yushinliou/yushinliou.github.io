@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  beforeImage: ImageMetadata;
+  afterImage: ImageMetadata;
+  beforeSubtitle?: string;
+  afterSubtitle?: string;
+  beforeAlt: string;
+  afterAlt: string;
+}
+
+const { 
+  beforeImage, 
+  afterImage, 
+  beforeSubtitle = "Before redesign", 
+  afterSubtitle = "V1 redesign",
+  beforeAlt,
+  afterAlt 
+} = Astro.props;
+---
+
+<div class="before-after-container my-8 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
+    <!-- Before -->
+    <figure class="flex flex-col">
+      <div class="relative rounded-lg shadow-md overflow-hidden h-80 flex items-center justify-center">
+        <Image 
+          src={beforeImage} 
+          alt={beforeAlt}
+          quality={90}
+          class="w-full h-full object-contain"
+        />
+      </div>
+      <figcaption class="text-base font-medium text-gray-700 text-center mt-4">
+        {beforeSubtitle}
+      </figcaption>
+      <p class="text-sm text-gray-500 text-center mt-1">
+        {beforeAlt}
+      </p>
+    </figure>
+
+    <!-- Arrow Icon -->
+    <div class="hidden md:flex items-center justify-center text-gray-400 text-3xl">
+      <i class="fas fa-arrow-right"></i>
+    </div>
+
+    <!-- After -->
+    <figure class="flex flex-col">
+      <div class="relative rounded-lg shadow-md overflow-hidden h-80 flex items-center justify-center">
+        <Image 
+          src={afterImage} 
+          alt={afterAlt}
+          quality={90}
+          class="w-full h-full object-contain"
+        />
+      </div>
+      <figcaption class="text-base font-medium text-gray-700 text-center mt-4">
+        {afterSubtitle}
+      </figcaption>
+      <p class="text-sm text-gray-500 text-center mt-1">
+        {afterAlt}
+      </p>
+    </figure>
+  </div>
+</div>

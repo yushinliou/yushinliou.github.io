@@ -1,0 +1,47 @@
+---
+// src/components/Quote.astro
+interface Props {
+  text: string;
+  attribution?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const { text, attribution, image, imageAlt = "Quote author" } = Astro.props;
+---
+
+<div class="quote-container my-8 p-6 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+  <div class="flex gap-6 items-start">
+    {image && (
+      <div class="flex-shrink-0">
+        <img 
+          src={image.src} 
+          alt={imageAlt}
+          class="w-20 h-20 md:w-24 md:h-24 rounded-full object-contain grayscale"
+        />
+      </div>
+    )}
+    
+    <div class="flex-1">
+      <p class="text-lg italic text-gray-800 dark:text-gray-200 leading-relaxed mb-3">
+        "{text}"
+      </p>
+      
+      {attribution && (
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          {attribution}
+        </p>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .quote-container {
+    transition: transform 0.2s ease;
+  }
+  
+  .quote-container:hover {
+    transform: translateY(-2px);
+  }
+</style>

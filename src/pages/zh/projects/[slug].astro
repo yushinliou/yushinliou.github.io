@@ -58,24 +58,24 @@ const { Content, headings } = await project.render();
             <div class="flex flex-wrap gap-4 text-small text-gray-500 dark:text-gray-400 mb-4">
               {project.data.publishDate && (
                 <span>
-                  發布日期: {project.data.publishDate.toLocaleDateString('zh-TW', {
+                  Publish: {project.data.publishDate.toLocaleDateString('zh-TW', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                   })}
                 </span>
               )}
-              {project.data.year && <span>年份: {project.data.year}</span>}
-              {project.data.role && <span>角色: {project.data.role}</span>}
-              {project.data.category && (
+              <!-- {project.data.year && <span>Year: {project.data.year}</span>}
+              {project.data.role && <span>Role: {project.data.role}</span>} -->
+              <!-- {project.data.category && (
                 <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
                   {project.data.category}
                 </span>
-              )}
+              )} -->
             </div>
 
             <!-- Tags -->
-            {project.data.tags && project.data.tags.length > 0 && (
+            <!-- {project.data.tags && project.data.tags.length > 0 && (
               <div class="flex flex-wrap gap-2 mb-6">
                 {project.data.tags.map((tag) => (
                   <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-small">
@@ -83,7 +83,7 @@ const { Content, headings } = await project.render();
                   </span>
                 ))}
               </div>
-            )}
+            )} -->
 
             <!-- External Links -->
             {(project.data.link || project.data.github) && (

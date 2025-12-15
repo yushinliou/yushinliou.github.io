@@ -4,7 +4,7 @@
  * Used in: Individual project pages
  *
  * Features:
- * - Auto-generates from H2 headings
+ * - Auto-generates from H1 headings
  * - Sticky/fixed position on right sidebar
  * - Active section detection with Intersection Observer
  * - Smooth scroll to sections
@@ -24,8 +24,8 @@ interface Props {
 
 const { headings } = Astro.props;
 
-// Filter to only H2 headings
-const tocHeadings = headings.filter(h => h.depth === 2);
+// Filter to only H1 headings
+const tocHeadings = headings.filter(h => h.depth === 1);
 ---
 
 {tocHeadings.length > 0 && (
@@ -56,7 +56,7 @@ const tocHeadings = headings.filter(h => h.depth === 2);
   // Table of Contents functionality
   document.addEventListener('DOMContentLoaded', () => {
     const tocLinks = document.querySelectorAll('.toc-link');
-    const headings = document.querySelectorAll('h2[id]');
+    const headings = document.querySelectorAll('h1[id]');
 
     if (tocLinks.length === 0 || headings.length === 0) return;
 
@@ -102,7 +102,7 @@ const tocHeadings = headings.filter(h => h.depth === 2);
       });
     }, observerOptions);
 
-    // Observe all h2 elements
+    // Observe all h1 elements
     headings.forEach(heading => observer.observe(heading));
 
     // Function to update active link styling
