@@ -14,7 +14,7 @@ const { title, description = "Portfolio website", lang = 'en' } = Astro.props;
 <!doctype html>
 <html lang={lang}>
   <Head title={title} description={description} lang={lang} />
-  <body class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+  <body class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:prose-invert transition-colors duration-300">
     <slot />
   </body>
 </html>

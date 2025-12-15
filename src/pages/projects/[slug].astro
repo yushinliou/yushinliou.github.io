@@ -35,7 +35,7 @@ const { Content, headings } = await project.render();
     <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
       <div class="flex flex-col lg:flex-row gap-12">
         <!-- Project Content (70% width on desktop) -->
-        <article class="flex-1 lg:max-w-[70%]">
+        <article class="prose flex-1 lg:max-w-[70%] ">
 
           <!-- Project Header -->
           <header class="mb-8">
@@ -71,7 +71,7 @@ const { Content, headings } = await project.render();
 
             <!-- Cover Image -->
           {project.data.coverImage && (
-            <div class="mb-2 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <div class="mb-2 rounded-lg overflow-hidden dark:bg-gray-800">
               <img
                 src={project.data.coverImage.src.src}
                 alt={project.data.coverImage.alt}
@@ -127,7 +127,7 @@ const { Content, headings } = await project.render();
           </header>
 
           <!-- Project Content (Markdown) -->
-          <div class="prose prose-lg dark:prose-invert max-w-none">
+          <div class="prose dark:prose-invert max-w-none">
             <Content />
           </div>
         </article>

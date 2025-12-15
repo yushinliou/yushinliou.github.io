@@ -33,7 +33,7 @@ const { Content, headings } = await project.render();
         <article class="flex-1 lg:max-w-[70%]">
           <!-- Cover Image -->
           {project.data.coverImage && (
-            <div class="mb-8 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <div class="mb-8 rounded-lg overflow-hidden dark:bg-gray-800">
               <img
                 src={project.data.coverImage.src.src}
                 alt={project.data.coverImage.alt}
@@ -115,7 +115,7 @@ const { Content, headings } = await project.render();
           </header>
 
           <!-- Project Content (Markdown) -->
-          <div class="prose prose-lg dark:prose-invert max-w-none">
+          <div class="prose dark:prose-invert max-w-none">
             <Content />
           </div>
         </article>
