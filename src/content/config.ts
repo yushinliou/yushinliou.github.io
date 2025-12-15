@@ -13,11 +13,6 @@ const projectsCollection = defineCollection({
     }),
     // Cover image (required)
 
-    // coverImage: z.object({
-    //   src: image(),
-    //   alt: z.string(),
-    // }),
-
     // Basic info
     title: z.string(),
     description: z.string(),

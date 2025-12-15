@@ -35,7 +35,7 @@ const { Content, headings } = await project.render();
           {project.data.coverImage && (
             <div class="mb-8 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
               <img
-                src={project.data.coverImage.src}
+                src={project.data.coverImage.src.src}
                 alt={project.data.coverImage.alt}
                 class="w-full aspect-video object-cover"
               />
