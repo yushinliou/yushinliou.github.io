@@ -33,19 +33,19 @@ const { lang = 'en' } = Astro.props;
 const institutions = [
   {
     name: 'KTH Royal Institute of Technology',
-    location: 'Currently studying in Stockholm',
+    location: 'Currently, I explore how to combine multiple models like sound, light, or haptics to create better interactive experiences',
     icon: kthIcon.src,
     iconColored: kthColoredIcon.src,
   },
   {
     name: 'UC Berkeley',
-    location: 'Exchange student',
+    location: 'I refined my interest in human–machine interaction through AI-focused research projects',
     icon: berkeleyIcon.src,
     iconColored: berkeleyColoredIcon.src,
   },
   {
     name: 'National Taiwan University',
-    location: 'Bachelor degree',
+    location: 'Where I built my foundation in human behavior research and programming',
     icon: ntuIcon.src,
     iconColored: ntuColoredIcon.src,
   },
@@ -103,13 +103,12 @@ const institutions = [
           </div>
 
           <!-- Tooltip -->
-          <div class="tooltip absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-10">
-            <div class="font-semibold">{institution.name}</div>
-            <div class="text-xs text-gray-300 dark:text-gray-400">{institution.location}</div>
+          <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-3 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50 w-72 shadow-lg">
+            <div class="text-xs text-gray-300 dark:text-gray-400 whitespace-normal leading-relaxed">{institution.location}</div>
 
-            <!-- Arrow -->
-            <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
-              <div class="border-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+            <!-- Arrow pointing down -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2">
+              <div class="w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-gray-900 dark:border-t-gray-700"></div>
             </div>
           </div>
         </div>
@@ -135,12 +134,3 @@ const institutions = [
   </div>
 </section>
 
-<style>
-  .institution-icon-wrapper {
-    position: relative;
-  }
-
-  .tooltip {
-    pointer-events: none;
-  }
-</style>
