@@ -8,7 +8,7 @@ tags: ["HCI", "elderly care", "cultural design", "interactive design", "web appl
 tabs: []
 category: "UX Design"
 lang: "en"
-isDraft: false
+isDraft: true
 isCJKLanguage: false
 publishDate: 2025-01-22
 year: 2024
