@@ -1,0 +1,743 @@
+---
+coverImage:
+  src: "@/assets/2025-01-22-The_Social_Code/head.png"
+  alt: "Pixel human stand on world map: Visualization comparing LLM-generated social networks with real-world networks across different countries"
+title: "Can AI Simulate Human Social Networks? Testing LLM Agents Across Countries"
+description: "An investigation into whether Large Language Models can reliably simulate human social behavior, revealing how language and cultural context impact AI-generated social networks."
+tags: ["machine learning", "LLM agents", "data analysis", "academic research"]
+tabs: ["home", "research"]
+category: "ML Research"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
+publishDate: 2025-01-22
+year: 2024
+role: "ML Researcher"
+---
+
+
+import SideNote from '../../components/SideNote.astro';
+
+import ProjectMeta from '../../components/ProjectMeta.astro';
+import Quote from '../../components/Quote.astro';
+import FourImageGrid from '../../components/FourImageGrid.astro';
+import { Image } from 'astro:assets';
+
+import cultureImg from '../../assets/2025-01-22-The_Social_Code/culture.png';
+import structuralNotAccurateImg from '../../assets/2025-01-22-The_Social_Code/Structural-not-Accurate.png';
+import validateImg from '../../assets/2025-01-22-The_Social_Code/validate.png';
+
+import finalReportImg from '../../assets/2025-01-22-The_Social_Code/final-report.png';
+import referenceImg from '../../assets/2025-01-22-The_Social_Code/reference.png';
+import methodNetworkImg from '../../assets/2025-01-22-The_Social_Code/old/method-network.png';
+import ROSEImg from '../../assets/2025-01-22-The_Social_Code/old/ROSE.png';
+import SMOTEImg from '../../assets/2025-01-22-The_Social_Code/old/SMOTE.png';
+import downSampleImg from '../../assets/2025-01-22-The_Social_Code/down-sample.png';
+import barBalanceImg from '../../assets/2025-01-22-The_Social_Code/old/bar-balance.png';
+import barTopVarsImg from '../../assets/2025-01-22-The_Social_Code/old/bar-top-vars.png';
+import methodPromptImg from '../../assets/2025-01-22-The_Social_Code/old/method-prompt.png';
+import evalStructImg from '../../assets/2025-01-22-The_Social_Code/old/eval-struct.png';
+import evalEdgeImg from '../../assets/2025-01-22-The_Social_Code/old/eval-edge.png';
+import ISSPWebpageImg from '../../assets/2025-01-22-The_Social_Code/ISSP-webpage.png';
+import avgDegreeComparisonImg from '../../assets/2025-01-22-The_Social_Code/avg-degree-comparison.png';
+import precisionComparisonImg from '../../assets/2025-01-22-The_Social_Code/precision-comparison.png';
+import cultureCorrelationImg from '../../assets/2025-01-22-The_Social_Code/culture-correlation.png';
+import PromptExplorer from '../../components/PromptExplorer.astro';
+import CountryDegDistImg from '../../assets/2025-01-22-The_Social_Code/country-deg-dist.png';
+import weakCorrelationImg from '../../assets/2025-01-22-The_Social_Code/weak-correlation.png';
+import LanguagesImg from '../../assets/2025-01-22-The_Social_Code/languages.png';
+import NetworkingImg from '../../assets/2025-01-22-The_Social_Code/networking.png';
+import ImaginationImg from '../../assets/2025-01-22-The_Social_Code/imagination.png';
+
+
+import FlipCard from '../../components/FlipCard.astro';
+
+export const edgeLevelPrompts = [
+  {
+    id: 'seq-friendlist',
+    title: 'Sequential (Friend List)',
+    description: 'Agents join one-by-one, seeing who others are connected to',
+    systemPrompt: `You are 60. backward class caste, HINDUISM, Woman, KANNADA, age 65. You are joining a social network.
+
+You will be provided a list of people in the network, where each person is described as "ID. Caste, Religion, Gender, Mothertongue, Age", followed by <strong>their current friends IDs</strong>. In your free time, whose house do you visit? Provide a list of YOUR friends in the format ID, ID, ID, etc.
+
+Do not include any other text in your response. Do not include any people who are not listed below. Do not select yourself.`,
+    userPrompt: `3. backward class caste, HINDUISM, Woman, KANNADA, age 28; <strong>friends with IDs 43, 22, 1</strong>
+31. backward class caste, HINDUISM, Woman, KANNADA, age 70; <strong>friends with IDs 21, 33</strong>
+56. backward class caste, HINDUISM, Woman, KANNADA, age 20; <strong>friends with IDs 8, 15, 42</strong>`,
+  },
+  {
+    id: 'seq-degree',
+    title: 'Sequential (Degree)',
+    description: 'Agents join one-by-one, seeing how many friends others have',
+    systemPrompt: `You are 60. backward class caste, HINDUISM, Woman, KANNADA, age 65. You are joining a social network.
+
+You will be provided a list of people in the network, where each person is described as "ID. Caste, Religion, Gender, Mothertongue, Age", followed by <strong>their current number of friends</strong>. In your free time, whose house do you visit? Provide a list of YOUR friends in the format ID, ID, ID, etc.
+
+Do not include any other text in your response. Do not include any people who are not listed below. Do not select yourself.`,
+    userPrompt: `3. backward class caste, HINDUISM, Woman, KANNADA, age 28; <strong>has 6 friends</strong>
+31. backward class caste, HINDUISM, Woman, KANNADA, age 70; <strong>has 4 friends</strong>
+56. backward class caste, HINDUISM, Woman, KANNADA, age 20; <strong>has 5 friends</strong>`,
+  },
+  {
+    id: 'global-macro',
+    title: 'Global (Macro Info)',
+    description: 'Generate entire network at once with network-level statistics',
+    systemPrompt: `Your task is to create a realistic social network of an indian village. <strong>The village size is 93, the average degree is 8.80, the density is 0.096, the shortest path is 2.26, the diameter is 4.</strong>
+
+You will be provided a list of people in the network, where each person is described as "ID. Caste, Religion, Gender, Mothertongue, Age". Provide a list of relationship pairs in the format ID, ID with each pair separated by a newline. Specifically, each pair of network tie ID1, ID2 means that ID1 visits ID2's house in their free time.
+
+Do not include any other text in your response. Do not include any people who are not listed below.`,
+    userPrompt: `3. backward class caste, HINDUISM, Woman, KANNADA, age 28
+31. backward class caste, HINDUISM, Woman, KANNADA, age 70
+56. backward class caste, HINDUISM, Woman, KANNADA, age 20`,
+  },
+];
+
+export const culturalPrompts = [
+  {
+    id: 'local-benchmark',
+    title: 'Local Method (Benchmark)',
+    description: 'English baseline prompt for individual agent',
+    systemPrompt: `You are a typical adult.
+
+<strong>Task:</strong>
+• After silent reasoning, list EVERY person in the roster you would be close friends with. By "friends," we mean people you regularly interact with and trust enough to discuss personal matters or ask small favors.
+• Output one line of IDs separated by comma + single space: ID1, ID2, ID3, ...
+• Use ONLY IDs from the roster. Do NOT include your own ID. No extra text.
+
+Think step-by-step internally; reveal ONLY the final ID list. DO NOT ADD ANY ADDITIONAL WORDS`,
+    userPrompt: `<strong>YOUR PROFILE</strong>
+ID: 24
+24. female, age 69, Upper secondary, In paid work
+
+<strong>ROSTER:</strong>
+ID, Sex, Age, Education, Working Status
+2. male, age 48, Lower secondary, Retired
+28. female, age 23, Lower level tertiary, In paid work
+13. male, age 77, Lower level tertiary, Retired`,
+  },
+  {
+    id: 'global-benchmark',
+    title: 'Global Method (Benchmark)',
+    description: 'English baseline prompt for network generation',
+    systemPrompt: `You are a network generator.
+
+<strong>Task:</strong>
+• Using ONLY the people in the roster, create a realistic undirected friendship network. By "friends," we mean people you regularly interact with and trust enough to discuss personal matters or ask small favors.
+• Output each friendship as: ID1, ID2 (comma + single space).
+• One pair per line. No headers, no commentary, no duplicates, no self-ties.
+
+Think silently; reveal ONLY the list of pairs.`,
+    userPrompt: `<strong>ROSTER:</strong>
+ID, Sex, Age, Education, Working Status
+2. male, age 48, Lower secondary, Retired
+28. female, age 23, Lower level tertiary, In paid work
+13. male, age 77, Lower level tertiary, Retired`,
+  },
+  {
+    id: 'local-spain',
+    title: 'Local Method (Spain)',
+    description: 'Spanish prompt for Spain context',
+    systemPrompt: `Eres un adulto típico que vive en <strong>España</strong>.
+
+<strong>Tarea:</strong>
+Después de pensar en silencio, enumera a todas las personas del listado con las que llegarías a ser amigo íntimo. Por «amigos» nos referimos a aquellas personas con las que interactúas con frecuencia y en las que confías lo suficiente como para hablar de asuntos personales o pedir pequeños favores.
+
+• Salida: una línea con los IDs separados por una coma y un solo espacio: ID1, ID2, ID3, …
+• Usa únicamente los IDs del listado. No incluyas tu propio ID. Ningún otro texto adicional.
+
+Piensa paso a paso en privado; muestra solo la lista final de IDs; no añadas ningún otro texto. Por favor, asegúrate de que el texto dentro de los paréntesis permanezca sin cambios.`,
+    userPrompt: `<strong>Tu perfil personal</strong>
+ID: 12
+12. Hombre, 44 años, educación superior (avanzada), trabajo remunerado, vive en Spain
+
+<strong>Lista:</strong>
+ID, sexo, edad, nivel educativo, situación laboral, país
+16. Mujer, 34 años, educación secundaria, trabajo remunerado, Spain
+20. Mujer, 38 años, educación secundaria, trabajo remunerado, Spain
+18. Mujer, 37 años, educación postsecundaria (no universitaria), trabajo remunerado, Spain`,
+  },
+  {
+    id: 'global-spain',
+    title: 'Global Method (Spain)',
+    description: 'Spanish prompt for Spain network generation',
+    systemPrompt: `Eres un generador de redes.
+
+<strong>Tarea:</strong>
+Usando solo las personas del listado, crea una red realista y no dirigida de amistades para <strong>Spain</strong>. El término "amigos" se refiere a aquellas personas con las que interactúas con frecuencia y en quienes confías lo suficiente como para hablar de asuntos personales o pedir pequeños favores.
+
+• Salida: cada relación de amistad debe tener el formato: ID1, ID2 (coma + un solo espacio).
+
+Ejemplo de salida:
+6, 22
+7, 13
+8, 10
+
+Una pareja por línea, sin título, sin comentarios, sin repeticiones ni autoenlaces.
+
+Piensa en silencio; solo muestra la lista de pares correctos. Asegúrate de que todo el texto dentro de las llaves se mantenga sin cambios.`,
+    userPrompt: `<strong>Lista:</strong>
+ID, sexo, edad, nivel educativo, situación laboral, país
+16. Mujer, 34 años, educación secundaria, trabajo remunerado, España
+20. Mujer, 38 años, educación secundaria, trabajo remunerado, España
+18. Mujer, 37 años, educación postsecundaria (no universitaria), trabajo remunerado, España
+23. Mujer, 54 años, educación postsecundaria (no universitaria), trabajo remunerado, España`,
+  },
+];
+
+<ProjectMeta 
+  role="Data Scientist"
+  skills={["Data Analysis", "Machine Learning", "LLM Integration"]}
+  timeframe="Sep 2024 - Jun 2025"
+/>
+
+## The Big Picture
+
+Imagine asking an AI to roleplay as a person from Spain. Would it form friendships the same way as when it roleplays as someone from Japan? This seemingly simple question has profound implications for the growing field of AI-powered social simulations.
+
+Large Language Models (LLMs) like GPT-4 are increasingly being used to simulate human behavior in social science research[^1][^2]. Researchers use these AI "agents" to conduct virtual user studies, model social dynamics, and predict community behavior—all without the ethical complexities and costs of human participants. But how reliable are these simulations?
+
+> My research reveals a critical gap: **LLMs generate networks that look structurally similar to real-world ones, but fail at the individual connection level**. Additionally, the predicted network structure would vary significantly based on the language and cultural context of the prompt.
+
+## Why This Matters
+
+Social simulation with AI agents is being used in political science, economics, and communication studies. If researchers trust these simulations to predict real human behavior, they need to know the limitations.
+
+Previous research has shown that LLM-generated networks have similar *overall structures* (density, clustering) to human networks[^3]. But does structural similarity mean the AI is actually predicting *who would be friends with whom*? Think of it this way: I could generate a random social network with 100 people where everyone has about 5 friends on average—that might have similar statistics to a real network, but it wouldn't tell us anything meaningful about actual friendship patterns.
+
+Other studies have raised concerns about biases. This is particularly concerning when LLM agents play minority roles, as it suggests that LLM values may align more closely with specific cultural groups[^4][^5].
+
+
+## Research Questions
+
+1. **Edge-level accuracy**: When we ask LLM agents to predict friendships, how accurate are they at the individual connection level?
+2. **Cross-cultural variation**: Does the language of the prompt affect how LLMs simulate social behavior? Do these variations reflect real-world cultural differences?
+
+<div className="my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+  <figure className="flex flex-col items-center">
+    <Image
+      src={finalReportImg}
+      alt="Final report from HCI research course"
+      class="w-full rounded-lg shadow-md"
+    />
+    <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+      Initially this project is my final report in HCI research course in UC Berkeley, I bring them to New York University afterwards
+    </figcaption>
+  </figure>
+
+  <figure className="flex flex-col items-center">
+    <Image
+      src={referenceImg}
+      alt="Literature review diagram"
+      class="w-full rounded-lg shadow-md"
+    />
+    <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+      Literature review before starting the project
+    </figcaption>
+  </figure>
+</div>
+
+## Testing Edge-Level Prediction Accuracy
+
+I used the Indian Village Microfinance dataset[^6]. It is a real social network data from 77 Indian villages that records who people borrow money from, ask for advice, etc.
+
+### Data Preprocessing
+
+Our dataset is tie level, where each row represents a possible edge (friendship) between two people, along with their demographic attributes.
+
+
+Find all possible pair of connections between any two villagers: ($V_i$, $V_j$)
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={methodNetworkImg}
+    alt="Network data structure visualization"
+    class="w-full max-w-3xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Our data structure: edge-level representation of social networks
+  </figcaption>
+</figure>
+
+* Y= if the edge exist (0 or 1)
+* X = demographic features of $V_i$, $V_j$
+
+Since the number of not exist edges is much more the existed edge, we applied balance method to prevent bias prediction.
+
+In here we applied three balance method: SMOTE (Synthetic Minority Over-sampling Technique), ROSE (Random Over-Sampling Examples) and down sampled to handle class imbalance in friendship prediction.
+
+<div className="my-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div className="flex flex-col items-center">
+    <h4 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">SMOTE</h4>
+    <Image
+      src={SMOTEImg}
+      alt="SMOTE balancing method"
+      class="w-full mb-4"
+    />
+    <div className="text-sm text-gray-600 dark:text-gray-400">
+      <p className="font-semibold mb-2">Generate new edge (Y=1)</p>
+      <ol className="list-decimal list-inside space-y-1">
+        <li>Select a random edge</li>
+        <li>Find the sample's nearest KNN neighbors in feature space</li>
+        <li>Generate a new edge between them</li>
+      </ol>
+    </div>
+  </div>
+
+  <div className="flex flex-col items-center">
+    <h4 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">ROSE</h4>
+    <Image
+      src={ROSEImg}
+      alt="ROSE balancing method"
+      class="w-full mb-4"
+    />
+    <div className="text-sm text-gray-600 dark:text-gray-400">
+      <p className="font-semibold mb-2">Generate new edge (Y=1)</p>
+      <ol className="list-decimal list-inside space-y-1">
+        <li>Select a random edge</li>
+        <li>Create a small noise according to data distribution</li>
+        <li>Generate a new edge</li>
+      </ol>
+    </div>
+  </div>
+
+  <div className="flex flex-col items-center">
+    <h4 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-3 text-center">Down Sampling</h4>
+    <Image
+      src={downSampleImg}
+      alt="Down sampling balancing method"
+      class="w-full mb-4"
+    />
+    <div className="text-sm text-gray-600 dark:text-gray-400">
+      <p className="font-semibold mb-2">Drop non-existed edge (Y=0)</p>
+      <ol className="list-decimal list-inside space-y-1">
+        <li>Select a random non-existed edge</li>
+        <li>Drop it</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={barBalanceImg}
+    alt="Comparison of balancing methods performance"
+    class="w-full max-w-3xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Comparison of different balancing methods on edge-level prediction performance
+  </figcaption>
+</figure>
+
+We trained Lasso Logistic Regression models on datasets processed with different class balancing methods to predict edge existence. Model performance was evaluated using precision, recall, and F1 score.
+All balancing methods yielded similar performance across these metrics, with SMOTE achieving the highest overall F1 score. We therefore selected the SMOTE-balanced dataset for subsequent analysis.
+
+### Identify What Predicts Real Friendships
+
+Using Lasso Logistic Regression on the real network data, I identified which attributes most strongly predict whether two people will be connected. The top predictors were caste, religion, gender, and mother tongue—reflecting the homophily principle (people tend to befriend similar others).
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={barTopVarsImg}
+    alt="Top demographic attributes predicting friendships"
+    class="w-full max-w-3xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Histogram of abs(coef): Top demographic attributes predicting friendships in real-world data
+  </figcaption>
+</figure>
+
+> However, notice that most of the variance in friendship formation is unexplained by demographics alone. This suggests a realistic upper bound for how well any model (including LLMs) can predict friendships based solely on these attributes.  
+
+Rank from the most influential variable to the least influential variables:
+
+1. Caste
+2. Religion
+3. Gender
+4. Mother
+5. Tongue
+6. If vilager have savings
+7. Ration card ownership
+8. Election card ownership
+9. Ration card classify
+10. Speak English or not
+11. If vilager participate SHG or not
+12. Status
+
+### Ask LLM Agents to Predict Friendships
+
+Now it comes to the core of the experiment: Can LLMs predict friendships based on these attributes?
+The prompt design refer methods from existing research [^3], which proven to generate structurally realistic networks:
+
+| Method | Description |
+|--------|-------------|
+| **Global** | Show all 30 personas, ask AI to generate entire network at once |
+| **Local** | Give one persona at a time, ask who they'd befriend from the others |
+| **Sequential** | Like local, but include existing network information(from previous LLM-agent's response) |
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={methodPromptImg}
+    alt="Three prompting methods for LLM network generation"
+    class="w-full max-w-4xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Three prompting methods for LLM social network generation
+  </figcaption>
+</figure>
+
+From previous step, we know which attributes matter for network formation.
+
+We select one of the smallest village (village 10th) with 93 villagers to run the simulation in order to know how different attributes affect the prediction accuracy.
+We select the top 2, 4, 6, 8 and all 12 attributes to include in the prompts and see how prediction accuracy changes.
+
+### Findings
+
+Interestingly, the performance did not improve consistently as we added more attributes. 4 attributes performed best and adding more led to diminishing returns.
+  <figure className="flex flex-col items-center">
+    <Image
+      src={evalStructImg}
+      alt="Structural evaluation of different methods"
+      class="w-full"
+    />
+    <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+      Structural metrics: Global method performs best on overall network structure
+    </figcaption>
+  </figure>
+    <figure className="flex flex-col items-center">
+    <Image
+      src={evalEdgeImg}
+      alt="Edge-level evaluation of different methods"
+      class="w-full"
+    />
+    <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+      Edge-level accuracy: Sequential method leads but still shows low precision
+    </figcaption>
+  </figure>
+
+
+1. **More attributes didn't help.** The model perform best when there are 4 attributes, but keep adding more attributes showed no consistent improvement in prediction accuracy.
+
+2. **Structural similarity is misleading.** When evaluated by traditional network metrics (density, average degree), the Global method performed best. But at the edge level, it performed poorly. This is the critical insight: **a network can look statistically similar while being completely wrong about who connects to whom.**
+
+## Can Real-World Information Improve Accuracy?
+
+I tested whether providing LLMs with real network information—either **micro-level** (individual friend counts or lists) or **macro-level** (network-wide statistics)—could improve predictions.
+
+<PromptExplorer
+  prompts={edgeLevelPrompts}
+  uniqueId="edge-level"
+  title="🔍  Explore Prompts by Method"
+/>
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={precisionComparisonImg}
+    alt="Precision comparison across different methods"
+    class="w-full"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Precision comparison across different LLM methods and information conditions
+  </figcaption>
+</figure>
+
+
+**Real information helps, but only marginally.** Precision improved from ~5% (random baseline) to ~8% at best. Interestingly, providing degree counts often outperformed giving complete friend lists—more information didn't mean better predictions.
+
+## How LLMs Misunderstand Network Structure
+
+Looking at the structural properties of generated networks revealed why:
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={avgDegreeComparisonImg}
+    alt="Average degree comparison across methods"
+    class="w-full"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Average degree comparison across different LLM methods and information conditions
+  </figcaption>
+</figure>
+
+**LLMs fail in two opposite directions:**
+
+- **With friend lists → Over-prediction.** GPT-4o generated networks with ~50 average connections, far exceeding the actual ~9. Detailed information triggered an "everyone knows everyone" bias.
+
+- **With macro statistics → Under-prediction.** Even when told "average degree is 8.8," the Global method produced networks with only ~5 connections per person.
+
+<div className="border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/20 p-4 my-6">
+  <p className="text-gray-700 dark:text-gray-300">
+    <strong>Key insight:</strong> LLMs cannot translate between micro and macro levels of network understanding. This fundamental limitation shifted my focus from optimizing accuracy to understanding <em>how</em> LLMs conceptualize social relationships differently.
+  </p>
+</div>
+
+## Does Language Change AI Social Behavior?
+
+Due to unequal distribution of language in training datasets, LLMs generally perform better in English[^7][^8]. Most research on multilingual prompts focuses on improving LLM performance in minority languages—but rarely examines how prompt language affects LLM behavior in social simulations.
+
+### Cross-National Dataset
+
+I used the ISSP 2017 Social Networks survey: a dataset from 30 countries measuring social behavior like frequency of meeting friends, trust levels, and loneliness.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={ISSPWebpageImg}
+    alt="ISSP dataset webpage screenshot"
+    class="w-full max-w-4xl rounded-lg shadow-md"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    The ISSP 2017 Social Networks survey dataset webpage
+  </figcaption>
+</figure>
+
+### Simulation Design
+
+For each country, I:
+
+1. Added country context to the persona (e.g., "You are a typical adult living in Spain") and translated prompts into corresponding local language (e.g., Spanish for Spain, Japanese for Japan)
+
+<PromptExplorer
+  prompts={culturalPrompts}
+  uniqueId="cultural"
+  title="🌍 Explore Cross-Cultural Prompts"
+/>
+
+2. Generated 30 networks per country using both Local and Global methods, each network with 30 personas
+3. Tested with GPT-3.5-turbo and GPT-4o
+
+### Overview of Generated Networks
+
+We starting from examining the most basic network property: degree distribution.
+The degree distribution of most of countries predicted network are similar, which follow the power law distribution similar in the real-world.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={CountryDegDistImg}
+    alt="Degree distribution across countries"
+    class="w-full"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Degree distribution of LLM-generated networks across different countries
+  </figcaption>
+</figure>
+
+## Language Context Matters
+
+I computed correlations between:
+
+- **Real-world country-level variables** (GDP, democracy score, loneliness, depression, trust, etc.)
+- **Network metrics from LLM simulations** (average degree, clustering, density, etc.)
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={cultureCorrelationImg}
+    alt="Correlation heatmap between LLM network metrics and real-world variables"
+    class="w-full max-w-4xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Correlation heatmap between LLM network metrics and real-world country variables (the missing part in zero_degree_nodes is due to no node in the generated network have zero degree)
+  </figcaption>
+</figure>
+
+<details className="my-6 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden variable-details">
+  <summary className="px-4 py-3 bg-gray-50 dark:bg-gray-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors font-medium text-gray-900 dark:text-gray-100 text-sm flex items-center gap-2">
+    <i className="fas fa-angle-right text-blue-600 dark:text-blue-400 text-sm transition-transform duration-200"></i>
+    To view variable definitions, Click me!
+  </summary>
+  <div className="p-4 bg-white dark:bg-gray-900">
+    <table className="w-full text-sm">
+      <thead>
+        <tr className="border-b border-gray-200 dark:border-gray-700">
+          <th className="text-left py-2 px-3 font-semibold text-gray-900 dark:text-gray-100">Variables</th>
+          <th className="text-left py-2 px-3 font-semibold text-gray-900 dark:text-gray-100">Explain</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">cont_tot</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">In contact with how many people on a typical weekday</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">cont_f2f</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Face-to-face contacts on a weekday</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">outfr</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">How often go out with friend</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">newfr</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">How often make new friends when going out</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">untrust</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">People cannot be trusted or cannot be too careful in dealing with people</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">domtalk</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">One person dominates conversation with friends</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">avg_degree</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Average number of connections per node in the network</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">avg_closeness_centrality</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Average measure of how close each node is to all other nodes</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">degree_assortativity</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Tendency of nodes to connect with others of similar degree</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">modularity</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Strength of division of the network into distinct communities</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">zero_degree_nodes</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Number of isolated nodes with no connections</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">avg_clustering</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Average probability that a node's neighbors are also connected</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">density</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Ratio of actual connections to all possible connections</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">avg_betweenness_centrality</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Average measure of how often a node lies on shortest paths between others</td>
+        </tr>
+        <tr>
+          <td className="py-2 px-3 text-gray-700 dark:text-gray-300 font-mono text-xs">shortest_path_length</td>
+          <td className="py-2 px-3 text-gray-600 dark:text-gray-400">Average minimum number of steps between any two nodes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<style>{`
+  .variable-details[open] summary i {
+    transform: rotate(90deg);
+  }
+`}</style>
+
+
+
+
+
+Interestingly, if we simply use english prompts for all countries, the correlations are much weaker. The maximum correlation coefficient between network matrix and country variables is around 0.1, it is about 1/3 of the correlation when using local language prompts.
+It suggest that **language amplify the LLM's pattern when predicted a social network**, whatever it is a bias stereotype or a pattern existed in real world.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={weakCorrelationImg}
+    alt="Weak correlation when using English prompts for all countries"
+    class="w-full max-w-4xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Correlation heatmap when using English prompts for all countries (much weaker than language-specific prompts)
+  </figcaption>
+</figure>
+
+1. **Prompt language affects network structure but inconsistently**. For example, in GPT-3.5-turbo, higher GDP countries show lower average degree and sparser networks, while GPT-4o shows the opposite pattern.
+2. **LLM-generated networks don't have a stable pattern**. For instance, cont_tot (weekly contact frequency) should positively correlate with avg_degree, but this only holds for GPT-3.5-turbo local and GPT-4o global. GPT-4o local shows a negative correlation, and GPT-3.5-turbo global shows no significant relationship.
+3. **GPT-4o produces more significant correlations than GPT-3.5-turbo, but not more valid ones**. Notably, GPT-4o's generated networks correlate more strongly and consistently with country-level variables (GDP, democracy index) than with individual-level behavioral measures (e.g., cont_tot, cont_f2f). This suggests GPT-4o may rely more on stereotypical associations about "what social networks should look like in certain types of countries" rather than capturing actual individual-level variations.
+
+When we look further into the correlations, a surprising pattern emerges: GDP and democracy index show stronger correlations with predicted network metrics, while individual-level social behavior variables (contact frequency, loneliness) which should relate to networks more directly, show weaker or inconsistent correlations.
+
+
+
+<FlipCard 
+  question="GDP predicts friendships, but weekly contact frequency doesn't. Why?" 
+  answer="These indicators represent an outsider's view—how the world ranks and describes countries. And that's exactly what's in the training data: text that talks about countries, not the lived experience of people in them."
+/>
+
+## Key Takeaways
+
+<div className="my-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+
+
+
+  <div className="flex flex-col items-center">
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 text-center min-h-[3.5rem] flex items-center justify-center">Structural ≠ Accurate</h3>
+
+    <Image
+      src={NetworkingImg}
+      alt="Structural similarity does not guarantee accuracy at edge level"
+      class="w-28 h-auto mb-4"
+    />
+    <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+      Networks can look statistically similar while being completely wrong at the individual level
+    </p>
+  </div>
+  <div className="flex flex-col items-center">
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 text-center min-h-[3.5rem] flex items-center justify-center">Imagined, Not Lived</h3>
+
+    <Image
+      src={ImaginationImg}
+      alt="Imagined Social Life"
+      class="w-28 h-auto mb-4"
+    />
+    <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+      The predicted network structure are more related to how countries are described from the outside than to measures of people's lived experience within the country
+    </p>
+  </div>
+  <div className="flex flex-col items-center">
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 text-center min-h-[3.5rem] flex items-center justify-center">Language As Amplifier</h3>
+
+    <Image
+      src={LanguagesImg}
+      alt="Language as Amplifier"
+      class="w-28 h-auto mb-4"
+    />
+    <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+      Prompt language amplifys LLM's pattern when predicting social networks, whether it's bias or real-world patterns
+    </p>
+  </div>
+
+
+
+
+</div>
+
+<div className="my-16 not-prose">
+  <div className="max-w-3xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-2xl p-12 border border-gray-200 dark:border-gray-700">
+    <div className="flex items-center gap-3 mb-6">
+      <span className="text-3xl">💭</span>
+      <h2 className="text-2xl font-mono text-gray-700 dark:text-gray-300">
+        Reflection
+      </h2>
+    </div>
+    
+    <p className="text-lg font-mono text-gray-600 dark:text-gray-300 leading-relaxed">
+      Through this project, I realized again that there's no such thing as "terrible data" that's impossible to extract insights from—only the challenge of figuring out how to visualize it, find patterns, and come up with statistical tests suitable for what you have.
+    </p>
+    <p className="text-lg font-mono text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+      The results also taught me that <strong>hoping LLMs can magically produce behavior that accurately captures human behavior is unrealistic</strong>. LLMs are technical products, and the outcomes of LLM-based simulations are largely shaped by how you design prompts, post-process responses, and visualize the results. There's no magic here, only design choices and their consequences.
+    </p>
+  </div>
+</div>
+
+
+# References
+
+[^1]: Grossmann, I., et al. (2023). AI and the transformation of social science research. *Science, 380*(6650), 1108–1109. https://doi.org/10.1126/science.adi1778
+
+[^2]: Gürcan, Ö. (2024). LLM-Augmented Agent-Based Modelling for Social Simulations: Challenges and Opportunities. In *Frontiers in Artificial Intelligence and Applications*. IOS Press. https://doi.org/10.3233/FAIA240190
+
+[^3]: Chang, S., et al. (2024). LLMs generate structurally realistic social networks but overestimate political homophily. *arXiv:2408.16629*. http://arxiv.org/abs/2408.16629
+
+[^4]: Atari, M., et al. (2023). Which Humans? *PsyArXiv*. https://doi.org/10.31234/osf.io/5b26t
+
+[^5]: Wang, A., et al. (2024). Large language models cannot replace human participants because they cannot portray identity groups. *arXiv:2402.01908*. https://doi.org/10.48550/arXiv.2402.01908
+
+[^6]: Banerjee, A., et al. (2013). The diffusion of microfinance. *Science, 341*(6144), 1236498. https://doi.org/10.1126/science.1236498
+
+[^7]: Kreutzer, J., et al. (2022). Quality at a Glance: An Audit of Web-Crawled Multilingual Datasets. *Transactions of the Association for Computational Linguistics, 10*, 50–72. https://doi.org/10.1162/tacl_a_00447
+
+[^8]: Li, Z., et al. (2025). Language Ranker: A Metric for Quantifying LLM Performance Across High and Low-Resource Languages. *Proceedings of the AAAI Conference on Artificial Intelligence, 39*(27), 28186–28194. https://doi.org/10.1609/aaai.v39i27.35038

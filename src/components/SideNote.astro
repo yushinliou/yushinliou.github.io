@@ -1,0 +1,23 @@
+---
+// src/components/SideNote.astro
+interface Props {
+  note: string;
+}
+const { note } = Astro.props;
+---
+
+<div class="relative">
+  <div class="prose-content">
+    <slot />
+  </div>
+  <aside class="
+    hidden xl:block
+    absolute right-0 top-0 
+    translate-x-full 
+    pl-6 w-44
+    text-sm text-gray-400 dark:text-gray-500
+    font-mono leading-relaxed
+  ">
+    {note}
+  </aside>
+</div>

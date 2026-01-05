@@ -1,0 +1,128 @@
+---
+interface Prompt {
+  id: string;
+  title: string;
+  description: string;
+  systemPrompt: string;
+  userPrompt: string | null;
+}
+
+interface Props {
+  title?: string;
+  prompts: Prompt[];
+  uniqueId?: string;
+}
+
+const {
+  title = "🔍  Explore Prompts by Method",
+  prompts,
+  uniqueId = "default"
+} = Astro.props;
+---
+
+<div class={`my-8 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden prompt-explorer-${uniqueId}`}>
+  <!-- Header -->
+  <div class="bg-gray-50 dark:bg-gray-800 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+    <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+      {title}
+    </h4>
+  </div>
+
+  <!-- Tab buttons -->
+  <div class="flex flex-wrap gap-1 p-2 bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700">
+    {prompts.map((prompt, index) => (
+      <button
+        data-prompt-id={prompt.id}
+        data-explorer-id={uniqueId}
+        class={`prompt-tab-${uniqueId} px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+          index === 0
+            ? 'bg-blue-600 text-white'
+            : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
+        }`}
+      >
+        {prompt.title}
+      </button>
+    ))}
+  </div>
+
+  <!-- Content -->
+  {prompts.map((prompt, index) => (
+    <div
+      data-prompt-content={prompt.id}
+      data-explorer-id={uniqueId}
+      class={`p-4 prompt-content-${uniqueId} ${index === 0 ? '' : 'hidden'}`}
+    >
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        {prompt.description}
+      </p>
+
+      <!-- System Prompt -->
+      <div class="mb-4">
+        <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">
+          System Prompt
+        </p>
+        <pre class="bg-gray-100 dark:bg-gray-900 p-3 rounded-lg text-xs overflow-x-auto whitespace-pre-wrap text-gray-800 dark:text-gray-200 leading-relaxed" set:html={prompt.systemPrompt} />
+      </div>
+
+      <!-- User Prompt -->
+      {prompt.userPrompt && (
+        <div>
+          <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide">
+            User Prompt (example)
+          </p>
+          <pre class="bg-gray-100 dark:bg-gray-900 p-3 rounded-lg text-xs overflow-x-auto whitespace-pre-wrap text-gray-800 dark:text-gray-200 leading-relaxed" set:html={prompt.userPrompt} />
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+<style>
+  [class^="prompt-explorer-"] pre strong {
+    color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.15);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  :global(.dark) [class^="prompt-explorer-"] pre strong {
+    color: #fbbf24;
+    background-color: rgba(251, 191, 36, 0.2);
+  }
+</style>
+
+<script define:vars={{ uniqueId }}>
+  // Tab switching functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const explorer = document.querySelector(`.prompt-explorer-${uniqueId}`);
+    if (!explorer) return;
+
+    const tabs = explorer.querySelectorAll(`.prompt-tab-${uniqueId}`);
+    const contents = explorer.querySelectorAll(`.prompt-content-${uniqueId}`);
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-prompt-id');
+        const explorerId = tab.getAttribute('data-explorer-id');
+
+        // Update tab styles
+        tabs.forEach((t) => {
+          t.classList.remove('bg-blue-600', 'text-white');
+          t.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-600');
+        });
+        tab.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-600', 'dark:text-gray-300', 'border', 'border-gray-200', 'dark:border-gray-600');
+        tab.classList.add('bg-blue-600', 'text-white');
+
+        // Update content visibility
+        contents.forEach((content) => {
+          if (content.getAttribute('data-prompt-content') === targetId && content.getAttribute('data-explorer-id') === explorerId) {
+            content.classList.remove('hidden');
+          } else {
+            content.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>

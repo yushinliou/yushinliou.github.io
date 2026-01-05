@@ -25,12 +25,12 @@ interface Props {
 const { headings } = Astro.props;
 
 // Filter to only H1 headings
-const tocHeadings = headings.filter(h => h.depth === 1);
+const tocHeadings = headings.filter(h => h.depth === 2);
 ---
 
 {tocHeadings.length > 0 && (
   <nav
-    class="toc-container hidden lg:block sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto"
+    class="toc-container hidden lg:block sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto bg-white dark:bg-gray-900 p-4 rounded-lg relative z-10"
     aria-label="Table of contents"
   >
     <h2 class="text-small font-semibold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
