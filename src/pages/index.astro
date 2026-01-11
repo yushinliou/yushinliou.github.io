@@ -20,6 +20,7 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import ListItem from '../components/ListItem.astro';
+import NetworkPreview from './network-preview.astro';
 import { getCollection } from 'astro:content';
 
 const lang = 'en';
@@ -36,11 +37,12 @@ const sortedProjects = featuredProjects.sort((a, b) =>
 ---
 
 <BaseLayout title="Portfolio - Home" description="Selected work" lang={lang}>
-  <Navigation />
+  
+  <NetworkPreview />
 
   <main class="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
     <!-- Hero Section -->
-    <Hero lang={lang} />
+    <!-- <Hero lang={lang} /> -->
 
     <!-- Featured Projects Section -->
     <section class="max-w-7xl mx-auto px-6 lg:px-8 py-12">

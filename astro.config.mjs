@@ -20,8 +20,15 @@ export default defineConfig({
   // Uncomment if deploying to a subpath
   // base: '/your-repo-name',
   site: 'https://yushinliou.github.io',
-
   vite: {
     plugins: [tailwindcss()],
+  },
+  theme: {
+    extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"','"Monaco"', '"Consolas"', '"Courier New"', 'monospace'],
+        system: ['-apple-system', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+      },
+    },
   },
 });

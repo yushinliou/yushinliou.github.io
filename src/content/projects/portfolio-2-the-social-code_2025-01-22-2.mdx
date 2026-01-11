@@ -21,6 +21,8 @@ import SideNote from '../../components/SideNote.astro';
 import ProjectMeta from '../../components/ProjectMeta.astro';
 import Quote from '../../components/Quote.astro';
 import FourImageGrid from '../../components/FourImageGrid.astro';
+import Callout from '../../components/Callout.astro';
+
 import { Image } from 'astro:assets';
 
 import cultureImg from '../../assets/2025-01-22-The_Social_Code/culture.png';
@@ -466,11 +468,9 @@ Looking at the structural properties of generated networks revealed why:
 
 - **With macro statistics → Under-prediction.** Even when told "average degree is 8.8," the Global method produced networks with only ~5 connections per person.
 
-<div className="border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/20 p-4 my-6">
-  <p className="text-gray-700 dark:text-gray-300">
-    <strong>Key insight:</strong> LLMs cannot translate between micro and macro levels of network understanding. This fundamental limitation shifted my focus from optimizing accuracy to understanding <em>how</em> LLMs conceptualize social relationships differently.
-  </p>
-</div>
+<Callout type="insight">
+  <strong>Key insight:</strong> LLMs cannot translate between micro and macro levels of network understanding. This fundamental limitation shifted my focus from optimizing accuracy to understanding <em>how</em> LLMs conceptualize social relationships differently.
+</Callout>
 
 ## Does Language Change AI Social Behavior?
 

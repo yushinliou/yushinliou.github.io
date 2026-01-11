@@ -1,0 +1,304 @@
+---
+coverImage:
+  src: "@/assets/2025-01-05-Pastedown/head.png"
+  alt: "Pastedown app icon and interface: An iOS app that converts rich text from Apple Notes to properly formatted Markdown with AI-generated alt text"
+title: "Pastedown: Making Alt Text a Natural Part of Content Creation"
+description: "An iOS app that helps creators fulfill their accessibility responsibilities by seamlessly generating alt text for images during the Markdown conversion process."
+tags: ["iOS development", "Swift", "accessibility", "product design", "developer tools"]
+tabs: ["home", "dev"]
+category: "iOS App"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
+publishDate: 2026-01-11
+year: 2025
+role: "Developer & Designer"
+---
+
+import SideNote from '../../components/SideNote.astro';
+import ProjectMeta from '../../components/ProjectMeta.astro';
+import Quote from '../../components/Quote.astro';
+import { Image } from 'astro:assets';
+import Callout from '../../components/Callout.astro';
+import GitHubRepo from '../../components/GithubRepo.astro';
+
+import demoGif from '../../assets/2025-01-05-Pastedown/Demo-Pastedown.gif';
+import filenameImageImg from '../../assets/2025-01-05-Pastedown/templateSetting-filename-image.png';
+import frontmatterImg from '../../assets/2025-01-05-Pastedown/templateSetting-frontmatter.png';
+import resultPreviewImg from '../../assets/2025-01-05-Pastedown/templateSetting-result-same-markdown.png';
+import richtextMdAnnoying from '../../assets/2025-01-05-Pastedown/richtext-md-annoying.png';
+import noAltTextImg from '../../assets/2025-01-05-Pastedown/no-alt-text.png';
+import mainFeatureDemo from '../../assets/2025-01-05-Pastedown/video/main-feature-demo.gif';
+import imageHandleDemo from '../../assets/2025-01-05-Pastedown/video/image-handle.gif';
+import frontMatterAddDemo from '../../assets/2025-01-05-Pastedown/video/font-matter-add.gif';
+import manageTemplateDemo from '../../assets/2025-01-05-Pastedown/video/manage-template.gif';
+import lightDarkSwitchDemo from '../../assets/2025-01-05-Pastedown/video/lightdark-switch.gif';
+
+<GitHubRepo 
+    url="https://github.com/yushinliou/pastedown" 
+    text="Github"
+  />
+
+<ProjectMeta 
+  role="Developer & Designer"
+  skills={["Product design", "iOS development", "Swift", "Accessibility", "AI integration"]}
+  timeframe="Jun 2025 - Present"
+/>
+
+
+## The Invisible Problem
+
+Alt text is one of the most neglected aspects of web content. For screen reader users, an image without alt text is essentially invisible—or worse, read aloud as a meaningless filename like "IMG_4392.png." Yet most content creators skip it, not out of malice, but because **the friction is just high enough to make it easy to forget**.
+
+As someone who [works on accessibility](https://yushinliou.github.io/projects/portfolio-1-feel-the-way_2025-01-22-1/), I feel bad about this situation, but I also have to admit sometimes I skip alt text. Why?
+
+Writing in Apple Notes and publishing to my personal blog meant converting rich text to Markdown every time. That process was already tedious: save each image to a folder, name it properly, insert the Markdown syntax, make sure the path is correct... By the time I got to alt text, it felt like an afterthought. Something I'd "get to later" but rarely did.
+
+<figure className="flex flex-col items-center my-8">
+  <div className="flex gap-8 w-full justify-center">
+    <div>
+      <Image
+        src={richtextMdAnnoying}
+        alt="Illustration of a person annoyed by converting images to markdown"
+        width={400}
+      />
+      <figcaption className="mt-2 text-sm text-gray-500 text-center">
+        Me everytime dealing with formatting
+      </figcaption>
+    </div>
+
+    <div>
+      <Image
+        src={noAltTextImg}
+        alt="Illustration of a person annoyed by missing alt text"
+        width={400}
+      />
+      <figcaption className="mt-2 text-sm text-gray-500 text-center">
+        Missing or meaningless alt text might be troublesome
+      </figcaption>
+    </div>
+  </div>
+</figure>
+
+
+## Editing is easier than creating from scratch
+
+Then I realized: **why not solve all these problems at once?**
+
+What if I could just copy and paste my content, and get a ready-to-go Markdown file—complete with tables, properly named image files, correct syntax, *and* automatically generated alt text? 
+
+<Callout type="insight">
+  Alt text generation could be seamlessly integrated into a workflow creators were already doing. No extra steps, no guilt—just copy and paste.
+</Callout>
+
+The solution wasn't to guilt creators into writing alt text. It was to *make alt text appear automatically**, giving them a starting point to review and refine rather than a blank field to ignore.
+
+Even an imperfect AI description prompts creators to engage with accessibility. For example, they might think, "Actually, this shows X, not Y" and make the edit. That's infinitely better than an empty field. AI can also catch details sighted creators overlook, surfacing context that seems obvious visually but is crucial for those who can't see the image.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={demoGif}
+    alt="Pastedown demo: copying content from Apple Notes and converting to Markdown with automatically generated alt text"
+    class="w-full max-w-md rounded-xl shadow-lg"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Copy from Apple Notes → Paste in Pastedown → Get Markdown with alt text already filled in
+  </figcaption>
+</figure>
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={mainFeatureDemo}
+    alt="Main feature demonstration of Pastedown converting rich text to Markdown with images and tables"
+    class="w-full max-w-md rounded-xl shadow-lg"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Demo on phone: rich text with images and tables → formatted Markdown with alt text
+  </figcaption>
+</figure>
+
+## Why Clipboard, Not Database?
+
+iOS doesn't allow apps to access Apple Notes' data directly. Many developers would see this as a limitation to work around. I saw it as a feature.
+
+By reading from the clipboard instead of a specific app's database, Pastedown becomes **platform-agnostic**. Today I write in Apple Notes; tomorrow I might switch to Bear, Notion, or something new. The app doesn't care—it works with any rich text source.
+
+This also explains why I didn't just build a mobile backend for my blog. I might run multiple sites on different frameworks. Not every project needs a CMS, especially in early stages. A clipboard-based tool gives me flexibility to adapt without rebuilding my publishing workflow from scratch.
+
+## Key Features
+
+### AI Alt Text Generation
+
+Three options to match different needs and privacy preferences:
+
+- **Apple Vision** (default): On-device analysis using iOS's built-in Vision framework. Free, private, works offline.
+- **External API**: Connect your own OpenAI or Claude API key for more sophisticated descriptions.
+- **Custom text**: Set a fixed value for consistent styling.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={imageHandleDemo}
+    alt="Demo of configuring image handling options including alt text generation with Apple Vision"
+    class="w-full max-w-md rounded-xl shadow-lg"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Configure image handling and alt text generation settings
+  </figcaption>
+</figure>
+
+### Template System
+
+For creators publishing to static site generators (Astro, Hugo, Jekyll), the template system handles the repetitive configuration:
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={filenameImageImg}
+    alt="Template settings showing filename pattern and image path configuration with dynamic variables"
+    class="w-full max-w-xs rounded-xl shadow-lg"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Configure once, reuse across all your posts
+  </figcaption>
+</figure>
+
+**Dynamic variables** like `{date}`, `{title}`, or `{clipboard_preview}` let you define patterns for filenames and image paths. **Flexible front matter** supports multiple data types—text, dates, tags, lists—with options to comment out or indent fields.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={frontmatterImg}
+    alt="Front matter editor showing fields for title, date, tags, and draft status"
+    class="w-full max-w-xs rounded-xl shadow-lg"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Create different templates for different sites or content types
+  </figcaption>
+</figure>
+
+<div className="flex flex-col md:flex-row gap-6 my-8 items-start justify-center">
+  <figure className="flex flex-col items-center flex-1">
+    <Image
+      src={frontMatterAddDemo}
+      alt="Demo of adding front matter fields to a template with different data types"
+      class="w-full max-w-md rounded-xl shadow-lg"
+    />
+    <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+      Add custom front matter fields with multiple data types
+    </figcaption>
+  </figure>
+
+  <figure className="flex flex-col items-center flex-1">
+    <Image
+      src={manageTemplateDemo}
+      alt="Demo of managing multiple templates and switching between them"
+      class="w-full max-w-md rounded-xl shadow-lg"
+    />
+    <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+      Manage multiple templates for different publishing workflows
+    </figcaption>
+  </figure>
+</div>
+
+The template system exists because I might publish to different sites with different requirements. One blog might need `publishDate` in ISO format; another might use `date` as a simple string. Rather than hardcoding any single format, I built the flexibility in from the start.
+
+### Smart Table Conversion
+
+Apple Notes tables are notoriously difficult to parse—the standard APIs don't expose cell positions. Pastedown uses a two-phase approach: extracting structure from raw RTF data, then mapping formatted content to the correct cells.
+
+<details className="technical-details my-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+  <summary className="cursor-pointer p-4 font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+    <span className="flex items-center gap-2">
+      <i className="fas fa-code text-gray-500"></i>
+      Technical Deep Dive: Parsing Challenges
+    </span>
+  </summary>
+  <div className="p-4 pt-0 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+
+**The Encoding Trap**
+
+The app worked perfectly with plain text but failed mysteriously when content included images. The culprit: character encoding. RTF documents with embedded images may use Windows-1252 or Mac OS Roman instead of ASCII/UTF-8.
+
+The fix was implementing a fallback chain that tries multiple encodings and validates the result:
+
+```swift
+let encodings: [String.Encoding] = [
+    .ascii, .utf8, .windowsCP1252, .macOSRoman, .isoLatin1
+]
+
+for encoding in encodings {
+    if let decoded = String(data: rtfData, encoding: encoding),
+       decoded.hasPrefix("{\\rtf") {
+        return decoded
+    }
+}
+```
+
+**The Last-Item List Bug**
+
+Apple Notes renders the last item in a bullet list differently depending on whether there's content after it—producing `\t•\tPoint1` with trailing content, but `\t•\t\t•\tPoint1` without. This happens regardless of nesting level. The fix required pattern matching to detect and normalize this edge case.
+
+**Lesson**: Apple's rich text formats optimize for display, not programmatic access. Edge cases like "last item" or "single item" scenarios need explicit testing.
+
+  </div>
+</details>
+
+### Design & User Experience
+
+The app supports both light and dark modes, with a clean, intuitive interface that gets out of your way.
+
+<figure className="flex flex-col items-center my-8">
+  <Image
+    src={lightDarkSwitchDemo}
+    alt="Demo of switching between light and dark modes in the Pastedown app"
+    class="w-full max-w-md rounded-xl shadow-lg"
+  />
+  <figcaption className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+    Seamless light and dark mode support
+  </figcaption>
+</figure>
+
+## Architecture
+
+The app follows MVVM with separation between data models, business logic, and UI. The core `RichTextProcessor` handles conversion from `NSAttributedString` to Markdown, delegating specialized parsing to utility modules for tables, lists, and images.
+
+<details className="technical-details my-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+  <summary className="cursor-pointer p-4 font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+    <span className="flex items-center gap-2">
+      <i className="fas fa-folder-tree text-gray-500"></i>
+      Project Structure
+    </span>
+  </summary>
+  <div className="p-4 pt-0 text-sm text-gray-600 dark:text-gray-400">
+
+```
+pastedown/
+├── Models/           # Template, FrontMatterField, ImageHandling
+├── ViewModels/       # RichTextProcessor, ClipboardService, ImageAnalyzer
+├── Views/            # SwiftUI components
+├── Utilities/        # TableUtilities, ListUtilities, MarkdownUtilities
+└── DesignSystem/     # Reusable UI components
+```
+
+  </div>
+</details>
+
+<div className="my-16 not-prose">
+  <div className="max-w-3xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-2xl p-12 border border-gray-200 dark:border-gray-700">
+    <div className="flex items-center gap-3 mb-6">
+      <span className="text-3xl">💭</span>
+      <h2 className="text-2xl font-mono text-gray-700 dark:text-gray-300">
+        Reflection
+      </h2>
+    </div>
+    
+    <p className="text-lg font-mono text-gray-600 dark:text-gray-300 leading-relaxed">
+      At the beginning of this project, I had only a vague idea and dove straight into coding. I soon found my progress was slow, spending too much time on visual details and UI design. I went back and forth on how to make the interface intuitive—especially for the font settings, which involved many options like date format, variable insertion, and indent levels that needed to work together coherently.
+This taught me that starting with low-fidelity prototypes, like paper sketches, before coding would be much more efficient.
+    </p>
+  </div>
+</div>
+
+## What's Next
+
+- **App Store release**: Currently in TestFlight, preparing for public launch
+- **Shortcuts integration**: Enable automation with iOS Shortcuts for one-tap conversion
+- **macOS companion**: Bring the same workflow to desktop with batch processing support

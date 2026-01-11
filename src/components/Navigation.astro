@@ -40,17 +40,17 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav class="navigation sticky top-0 w-full backdrop-blur-xs bg-room-green/50 dark:bg-gray-900/80 z-50 transition-colors duration-300">
+<nav class="navigation sticky top-0 w-full backdrop-blur-xs z-50 transition-colors duration-300 font-system">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-18">
+    <div class="flex items-center justify-center h-18">
       <!-- Left: Avatar -->
-      <a href={lang === 'zh' ? '/zh' : '/'} class="flex-shrink-0" aria-label="Home">
+      <!-- <a href={lang === 'zh' ? '/zh' : '/'} class="flex-shrink-0" aria-label="Home">
         <img
           src={AvatarImage.src}
           alt="Avatar"
           class="w-10 h-8 rounded-full object-contain mr-1 hover:opacity-80 transition-opacity duration-200"
         />
-      </a>
+      </a> -->
 
       <!-- Right: Nav Links, Language Switcher, Theme Toggle -->
       <div class="flex items-center gap-2 md:gap-4">

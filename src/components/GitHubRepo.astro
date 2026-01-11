@@ -1,0 +1,31 @@
+---
+/**
+ * GitHub Repository Link Component
+ *
+ * Displays a styled GitHub icon with repo link
+ * Usage in MDX:
+ * import GitHubRepo from '../../components/GitHubRepo.astro';
+ * <GitHubRepo url="https://github.com/username/repo" />
+ */
+
+interface Props {
+  url: string;
+  text?: string;
+}
+
+const { url, text = "View on GitHub" } = Astro.props;
+---
+
+<div class="not-prose my-6">
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center rounded-xl gap-3 px-5 py-3 bg-blue-100 dark:bg-blue-800 hover:bg-blue-200 dark:hover:bg-blue-700 text-gray-900 dark:text-gray-100 transition-colors duration-200 no-underline font-mono text-sm"
+  >
+    <i class="fab fa-github text-lg"></i>
+    <span>
+      {text}
+    </span>
+  </a>
+</div>
