@@ -391,6 +391,48 @@ export function createNetwork(canvas: HTMLCanvasElement) {
     ctx.stroke();
   };
 
+  const drawDynamicYouConnections = (t: number) => {
+    if (!youNode) return;
+
+    const connectionRadius = 150; // Distance within which connections are drawn
+
+    for (const node of nodes) {
+      const dx = node.x - youNode.x;
+      const dy = node.y - youNode.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < connectionRadius && distance > 0) {
+        // Calculate opacity based on distance (fade in as they get closer)
+        const opacity = 1 - (distance / connectionRadius);
+
+        // Calculate midpoint for control point
+        const midX = (youNode.x + node.x) / 2;
+        const midY = (youNode.y + node.y) / 2;
+
+        // Calculate perpendicular direction for parabolic arc
+        const length = distance;
+        const perpX = -dy / length;
+        const perpY = dx / length;
+
+        // Create a dynamic control offset that varies with time
+        const baseOffset = distance * 0.3; // Arc height proportional to distance
+        const timeOffset = Math.sin(t * 0.002 + node.id * 0.5) * 15;
+        const controlOffset = baseOffset + timeOffset;
+
+        const controlX = midX + perpX * controlOffset;
+        const controlY = midY + perpY * controlOffset;
+
+        // Draw the parabolic arc
+        ctx.strokeStyle = `rgba(232, 93, 93, ${opacity * 0.4})`;
+        ctx.lineWidth = 1.5 * opacity;
+        ctx.beginPath();
+        ctx.moveTo(youNode.x, youNode.y);
+        ctx.quadraticCurveTo(controlX, controlY, node.x, node.y);
+        ctx.stroke();
+      }
+    }
+  };
+
   const animate = () => {
     time += 1;
 
@@ -422,6 +464,9 @@ export function createNetwork(canvas: HTMLCanvasElement) {
     for (const edge of edges) {
       drawEdge(edge, time);
     }
+
+    // Draw dynamic connections from "You" node
+    drawDynamicYouConnections(time);
 
     // Draw nodes
     for (const node of nodes) {
