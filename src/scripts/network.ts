@@ -481,14 +481,12 @@ export function createNetwork(canvas: HTMLCanvasElement) {
     requestAnimationFrame(animate);
   };
 
-  // Mouse events
-  canvas.addEventListener('mouseenter', (e) => {
+  // Helper function to create "You" node
+  const createYouNode = (x: number, y: number) => {
     cursorInCanvas = true;
-    const rect = canvas.getBoundingClientRect();
-    cursorX = e.clientX - rect.left;
-    cursorY = e.clientY - rect.top;
+    cursorX = x;
+    cursorY = y;
 
-    // Create "You" node
     youNode = {
       id: nodes.length,
       x: cursorX,
@@ -502,17 +500,58 @@ export function createNetwork(canvas: HTMLCanvasElement) {
       breatheOffset: 0,
       isYou: true,
     };
+  };
+
+  // Helper function to update cursor position
+  const updateCursorPosition = (x: number, y: number) => {
+    cursorX = x;
+    cursorY = y;
+  };
+
+  // Helper function to remove "You" node
+  const removeYouNode = () => {
+    cursorInCanvas = false;
+    youNode = null;
+  };
+
+  // Mouse events
+  canvas.addEventListener('mouseenter', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    createYouNode(e.clientX - rect.left, e.clientY - rect.top);
   });
 
   canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
-    cursorX = e.clientX - rect.left;
-    cursorY = e.clientY - rect.top;
+    updateCursorPosition(e.clientX - rect.left, e.clientY - rect.top);
   });
 
   canvas.addEventListener('mouseleave', () => {
-    cursorInCanvas = false;
-    youNode = null;
+    removeYouNode();
+  });
+
+  // Touch events for mobile
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevent scrolling when touching the canvas
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    createYouNode(touch.clientX - rect.left, touch.clientY - rect.top);
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault(); // Prevent scrolling when touching the canvas
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    updateCursorPosition(touch.clientX - rect.left, touch.clientY - rect.top);
+  });
+
+  canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    removeYouNode();
+  });
+
+  canvas.addEventListener('touchcancel', (e) => {
+    e.preventDefault();
+    removeYouNode();
   });
 
   // Resize handler
