@@ -1,0 +1,535 @@
+---
+coverImage:
+  src: "@/assets/2026-01-16-Capture-Wedding/App-demo.gif"
+  alt: "Moments app - A collaborative wedding memory timeline"
+title: "Moments: Capturing Wedding Memories Through Collaborative Storytelling"
+description: "A mobile app that helps couples and guests co-create a multi-perspective timeline of wedding moments, balancing the desire to stay present with the need to preserve authentic memories."
+tags: [ "Figma prototyping", "mobile app", "UX research", "UI design"]
+tabs: ["home", "design"]
+category: "Product Design"
+lang: "en"
+isDraft: false
+isCJKLanguage: false
+publishDate: 2025-01-16
+year: 2025
+role: "UX Designer & Researcher"
+---
+
+import ProjectMeta from '../../components/ProjectMeta.astro';
+import Quote from '../../components/Quote.astro';
+import FourImageGrid from '../../components/FourImageGrid.astro';
+import { Image } from 'astro:assets';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import Reflect from '../../components/Reflect.astro';
+
+
+import brideWestImg from '../../assets/2026-01-16-Capture-Wedding/bride-west.png';
+import brideEastImg from '../../assets/2026-01-16-Capture-Wedding/bride-east.png';
+import problemImg from '../../assets/2026-01-16-Capture-Wedding/problem.png';
+import heroImg from '../../assets/2026-01-16-Capture-Wedding/hifi-navigation.png';
+import interviewDocsImg from '../../assets/2026-01-16-Capture-Wedding/interview-documents.png';
+import affinityDiagramImg from '../../assets/2026-01-16-Capture-Wedding/affinity-diagram.png';
+import critFeedbackImg from '../../assets/2026-01-16-Capture-Wedding/crit-session-feedback.png';
+import personaMagganImg from '../../assets/2026-01-16-Capture-Wedding/persona-maggan.png';
+import personaJanImg from '../../assets/2026-01-16-Capture-Wedding/persona-jan.png';
+import personaViviImg from '../../assets/2026-01-16-Capture-Wedding/persona-vivi.png';
+import scenarioImg from '../../assets/2026-01-16-Capture-Wedding/scenario.png';
+import worstIdeasImg from '../../assets/2026-01-16-Capture-Wedding/worst-ideas-workshop.png';
+import ideationIndividualImg from '../../assets/2026-01-16-Capture-Wedding/ideation-individual.png';
+import ideationOverviewImg from '../../assets/2026-01-16-Capture-Wedding/ideation-overview.png';
+import critPovImg from '../../assets/2026-01-16-Capture-Wedding/crit-pov-hmw.jpg';
+import moodboardWeddingImg from '../../assets/2026-01-16-Capture-Wedding/moodboard-wedding.png';
+import moodboardAudioImg from '../../assets/2026-01-16-Capture-Wedding/moodboard-audio.png';
+import moodboardSocialImg from '../../assets/2026-01-16-Capture-Wedding/moodboard-social.png';
+import moodboardUiImg from '../../assets/2026-01-16-Capture-Wedding/moodboard-ui.png';
+import sketchHeartsImg from '../../assets/2026-01-16-Capture-Wedding/sketch-timeline-hearts.jpg';
+import sketchEventsImg from '../../assets/2026-01-16-Capture-Wedding/sketch-timeline-events.jpg';
+import sketchCirclesImg from '../../assets/2026-01-16-Capture-Wedding/sketch-timeline-circles.jpg';
+import wireframeDigitalImg from '../../assets/2026-01-16-Capture-Wedding/wireframe-digital.jpg';
+import appFlowImg from '../../assets/2026-01-16-Capture-Wedding/app-flow-whiteboard.jpg';
+import wireframeParallelImg from '../../assets/2026-01-16-Capture-Wedding/wireframe-parallel-design.jpg';
+import wireframeDiscussionImg from '../../assets/2026-01-16-Capture-Wedding/wireframe-discussion.jpg';
+import teamSketchingImg from '../../assets/2026-01-16-Capture-Wedding/team-sketching.jpg';
+import lofiPrototypeImg from '../../assets/2026-01-16-Capture-Wedding/lofi-prototype.png';
+import userTestingImg from '../../assets/2026-01-16-Capture-Wedding/user-testing.jpg';
+import paperPrototypeImg from '../../assets/2026-01-16-Capture-Wedding/paper-prototype-testing.jpg';
+import hifiTimelineImg from '../../assets/2026-01-16-Capture-Wedding/hifi-timeline-add.png';
+import hifiMomentImg from '../../assets/2026-01-16-Capture-Wedding/hifi-moment-view.png';
+import hifiNavImg from '../../assets/2026-01-16-Capture-Wedding/hifi-navigation.png';
+import timelinePhoneGif from '../../assets/2026-01-16-Capture-Wedding/timeline-phone.gif';
+import addPhoneGif from '../../assets/2026-01-16-Capture-Wedding/add-phone.gif';
+import savePhoneGif from '../../assets/2026-01-16-Capture-Wedding/save-phone.gif';
+
+<ProjectMeta 
+  role="UX Designer & Researcher"
+  skills={["User Research", "Figma Prototyping", "Usability Testing"]}
+  timeframe="Sep 2024 - Dec 2024"
+  team="4 members"
+/>
+
+## The Challenge
+
+Weddings are deeply meaningful rituals that bring families together across generations. How can we add meaning to a ritual already so well-established and layered with many smaller rituals?
+
+## The opportunity
+
+We conducted **7 semi-structured interviews** with couples married within the last 5 years, complemented by a literature review on wedding rituals and technology's role in memory-making.
+
+<figure className="my-8">
+  <Image
+    src={interviewDocsImg}
+    alt="Interview transcripts from 7 participants"
+    class="rounded-lg"
+  />
+  <figcaption className="mt-3 text-sm text-gray-500 text-center">
+    Interview transcripts organized by participant
+  </figcaption>
+</figure>
+
+We synthesized our findings using a **4-level affinity diagram**, moving from raw quotes to themes to actionable insights.
+
+<figure className="my-8">
+  <Image
+    src={affinityDiagramImg}
+    alt="Affinity diagram showing analysis from quotes to themes"
+    class="rounded-lg"
+  />
+  <figcaption className="mt-3 text-sm text-gray-500 text-center">
+    From bottom up: descriptive codes → clusters → themes → key insights
+  </figcaption>
+</figure>
+
+### Key Insights
+
+<div class="grid md:grid-cols-3 gap-6 my-10">
+  <div >
+    <div class="text-3xl mb-3">📸</div>
+    <h3 class="text-lg font-semibold mb-2 mt-0">Photos Drive Memory</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Photos are the primary medium for revisiting wedding memories. Viewing them together sparks conversations that enhance emotional recall.</p>
+  </div>
+  <div >
+    <div class="text-3xl mb-3">🎞️</div>
+    <h3 class="text-lg font-semibold mb-2 mt-0">Guest Photos > Professional</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Spontaneous, "lo-fi" photos from guests preserve raw emotions better than polished professional shots that can feel emotionally distant.</p>
+  </div>
+  <div>
+    <div class="text-3xl mb-3">🧘</div>
+    <h3 class="text-lg font-semibold mb-2 mt-0">Presence Over Documentation</h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Couples deliberately avoid intrusive recording. One bride left her phone at the hotel to stay fully present.</p>
+  </div>
+</div>
+
+<Quote 
+  text="You only get married once, but for professional photographers, it's like an assembly line — a bit fast-food style."
+  attribution="Interview participant C"
+  image={brideEastImg}
+  imageAlt="Illustration of a bride with red dress"
+
+/>
+
+<Quote 
+  text="I literally left my phone in the hotel room, so I couldn't personally take any photos. It felt best to have that presence there."
+  attribution="Interview participant T"
+  image={brideWestImg}
+  imageAlt="Illustration of a bride with white dress"
+/>
+
+### Personas
+
+We developed three personas representing distinct user needs discovered in our research.
+
+<div class="grid md:grid-cols-3 gap-4 my-8">
+  <figure class="m-0">
+    <Image src={personaMagganImg} alt="Persona: Maggan - organized, cares about guest experience" class="rounded-lg" />
+  </figure>
+  <figure class="m-0">
+    <Image src={personaJanImg} alt="Persona: Jan - active, wants to be present" class="rounded-lg" />
+  </figure>
+  <figure class="m-0">
+    <Image src={personaViviImg} alt="Persona: Vivi - balances family and personal needs" class="rounded-lg" />
+  </figure>
+</div>
+
+Despite different personalities, all personas shared a core need:
+
+<div class="my-8 p-6 bg-gray-50 dark:bg-gray-800/50 rounded-xl border-l-4 border-rose-400">
+  <p class="font-medium text-gray-800 dark:text-gray-200 m-0">
+    <span class="text-rose-500 font-bold">POV:</span> Couples getting married need help capturing their wedding moments in <span class="underline decoration-rose-300">spontaneous</span>, <span class="underline decoration-rose-300">participatory</span> forms, because an alternative method may help retain the <span class="underline decoration-rose-300">emotional nuances</span> and atmosphere.
+  </p>
+</div>
+
+<figure className="my-8 flex flex-col items-center">
+  <Image
+    src={problemImg}
+    alt="Problem illustration showing tension between presence and memory"
+    class="rounded-lg items-center"
+    width="400"
+
+  />
+
+  <figcaption className="mt-3 text-sm text-gray-500 text-center">
+    The core tension: Staying present vs. capturing memories
+  </figcaption>
+</figure>
+
+> How might we capture the small, loving, and messy moments between people, while keeping the disruption to a minimum?
+
+
+## Ideation
+
+### Worst Possible Ideas
+
+We started ideation with the "Worst Possible Ideas" method to identify what we must absolutely avoid. What are the common negative attributes of bad ideas?
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-8">
+  <div class="p-4 text-center">
+    <i class="fa-solid fa-user-shield text-2xl mb-2"></i>
+    <span class="block text-large">Privacy concerns</span>
+  </div>
+  <div class="p-4 text-center">
+    <i class="fa-solid fa-clock text-2xl mb-2"></i>
+    <span class="block text-large">Lot of extra effort</span>
+  </div>
+  <div class="p-4 text-center">
+    <i class="fa-solid fa-bell text-2xl mb-2"></i>
+    <span class="block text-large">Distraction</span>
+  </div>
+  <div class="p-4 text-center">
+    <i class="fa-solid fa-hand text-2xl mb-2"></i>
+    <span class="block text-large">Loss of autonomy</span>
+  </div>
+</div>
+
+<figure className="my-8">
+  <Image
+    src={worstIdeasImg}
+    alt="Worst possible ideas workshop showing bad ideas and their attributes"
+    class="rounded-lg"
+  />
+  <figcaption className="mt-3 text-sm text-gray-500 text-center">
+    Analyzing worst ideas revealed key attributes to avoid
+  </figcaption>
+</figure>
+
+
+## Concept Exploration
+
+Through individual brainstorming and group synthesis, we generated 40+ ideas and narrowed down to 4 promising concepts.
+
+
+<div class="flex flex-col md:flex-row gap-8 my-10 items-center">
+  
+  <figure class="md:w-1/2 m-0">
+    <Image
+      src={ideationOverviewImg}
+      alt="Ideation board showing all generated concepts"
+      class="rounded-lg w-full"
+    />
+  </figure>
+  
+  
+  <div class="md:w-1/2 grid grid-cols-1 gap-4">
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 class="font-semibold mt-0 mb-2">☎️ Telephone Booth</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Private space for guests to leave voice messages, delivered after the wedding.</p>
+      <p class="text-xs text-amber-600 dark:text-amber-400 m-0">⚠️ Requires guests to step away from the event</p>
+    </div>
+    
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 class="font-semibold mt-0 mb-2">🎯 Moment Bingo</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Gamified prompts for capturing specific moments with small rewards.</p>
+      <p class="text-xs text-amber-600 dark:text-amber-400 m-0">⚠️ Risks feeling competitive and forced</p>
+    </div>
+    
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 class="font-semibold mt-0 mb-2">📽️ Polaroid Projector</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Real-time photo stream projected at the venue.</p>
+      <p class="text-xs text-amber-600 dark:text-amber-400 m-0">⚠️ Privacy concerns with immediate display</p>
+    </div>
+    
+    <div class="p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 border-l-4 border-l-emerald-500">
+      <span class="absolute -top-2 -right-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 text-xs px-2 py-1 rounded-full font-medium">Selected</span>
+      <h4 class="font-semibold mt-0 mb-2">⌛️ Collaborative Timeline</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Multi-perspective timeline co-created by guests after the wedding.</p>
+      <p class="text-xs text-emerald-600 dark:text-emerald-400 m-0">✓ Non-intrusive, autonomous, focuses on co-creation</p>
+    </div>
+  </div>
+</div>
+
+
+## Why Timeline?
+
+Minimizing disruption during moment capture requires more automation, but this creates overwhelming content that obscures what truly matters. Any additional device inevitably intrudes on the experience.
+
+<div class="max-w-3xl mx-auto bg-gradient-to-br from-rose-50 to-amber-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-10 border border-rose-100 dark:border-gray-700">
+Yet the most genuine, moving moments are often already captured in guests' phones; they're just never collected and brought together.
+</div>
+
+We selected the **collaborative timeline** because it uniquely resolves the core tension:
+
+<div class="my-8 space-y-6">
+  <div class="flex gap-6 items-center">
+    <i class="fa-solid fa-clock text-3xl w-10 text-center"></i>
+    <div>
+      <p class="font-medium m-0 leading-tight">No disruption during the wedding</p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0 mt-1">Content is uploaded afterward, at guests' convenience</p>
+    </div>
+  </div>
+  <div class="flex gap-6 items-center">
+    <i class="fa-solid fa-users text-3xl w-10 text-center"></i>
+    <div>
+      <p class="font-medium m-0 leading-tight">Co-creation adds depth</p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0 mt-1">Multiple perspectives transform isolated moments into rich narratives</p>
+    </div>
+  </div>
+  <div class="flex gap-6 items-center">
+    <i class="fa-solid fa-camera text-3xl w-10 text-center"></i>
+    <div>
+      <p class="font-medium m-0 leading-tight">Encourages intentional capturing</p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0 mt-1">Knowing there's a place to share motivates mindful photography</p>
+    </div>
+  </div>
+</div>
+
+## Design Process
+
+### Early Sketches
+
+We explored diverse visual approaches for representing the timeline, from abstract to literal.
+
+<div class="grid md:grid-cols-3 gap-4 my-8">
+  <figure class="m-0">
+    <Image src={sketchHeartsImg} alt="Timeline sketch using heart motifs" class="rounded-lg" />
+    <figcaption class="text-xs text-gray-500 mt-2 text-center">Heart-based timeline</figcaption>
+  </figure>
+  <figure class="m-0">
+    <Image src={sketchCirclesImg} alt="Timeline sketch with circular clusters" class="rounded-lg" />
+    <figcaption class="text-xs text-gray-500 mt-2 text-center">Circular moment clusters</figcaption>
+  </figure>
+  <figure class="m-0">
+    <Image src={sketchEventsImg} alt="Timeline with event markers" class="rounded-lg" />
+    <figcaption class="text-xs text-gray-500 mt-2 text-center">Event-based timeline</figcaption>
+  </figure>
+</div>
+
+### Parallel Design
+
+We adopted a parallel design approach, with team members independently creating wireframes for key screens before converging on solutions.
+
+<FourImageGrid 
+  images={[
+    { src: teamSketchingImg, alt: "Team sketching together", caption: "Parallel sketching session" },
+    { src: wireframeDigitalImg, alt: "Digital wireframes on iPad", caption: "Digital wireframe exploration" },
+    { src: appFlowImg, alt: "App flow on whiteboard", caption: "Information architecture" },
+    { src: wireframeDiscussionImg, alt: "Team discussing wireframes", caption: "Design critique" }
+  ]}
+/>
+
+### Lofi Prototypes
+
+<figure className="my-10">
+  <Image
+    src={lofiPrototypeImg}
+    alt="Low-fidelity prototype usign paper"
+    class="rounded-xl"
+  />
+  <figcaption className="mt-4 text-sm text-gray-500 text-center">
+    Low-fidelity prototype used for usability testing
+  </figcaption>
+</figure>
+
+
+{/* <div class="space-y-8 my-10">
+  <div class="border-l-4 border-rose-400 pl-6">
+    <h4 class="font-semibold mt-0 mb-2">Timeline Visualization</h4>
+    <p class="text-gray-600 dark:text-gray-400 m-0">We chose a <strong>vertical curved timeline with rotating photo slideshows</strong> for each moment. This provides an intuitive overview while making individual moments visually distinct.</p>
+  </div>
+  <div class="border-l-4 border-rose-400 pl-6">
+    <h4 class="font-semibold mt-0 mb-2">Timestamp-Based Organization</h4>
+    <p class="text-gray-600 dark:text-gray-400 m-0">Photos are automatically grouped by timestamp to minimize ambiguity and reduce the effort required from users.</p>
+  </div>
+  <div class="border-l-4 border-rose-400 pl-6">
+    <h4 class="font-semibold mt-0 mb-2">No Comments, Just Saves</h4>
+    <p class="text-gray-600 dark:text-gray-400 m-0">We deliberately excluded commenting to differentiate from social media. Instead, users can privately "save" meaningful photos for later reflection.</p>
+  </div>
+  <div class="border-l-4 border-rose-400 pl-6">
+    <h4 class="font-semibold mt-0 mb-2">Floating Add Button</h4>
+    <p class="text-gray-600 dark:text-gray-400 m-0">A single, prominent "+" button encourages sharing while keeping the interface focused and simple.</p>
+  </div>
+</div> */}
+
+## Usability Testing
+
+We conducted formative evaluation with **4 participants** using paper prototypes cut into mobile screen shapes.
+
+<div class="grid md:grid-cols-2 gap-4 my-8">
+  <figure class="m-0">
+    <Image src={userTestingImg} alt="User testing session" class="rounded-lg" />
+  </figure>
+  <figure class="m-0">
+    <Image src={paperPrototypeImg} alt="Paper prototype testing" class="rounded-lg" />
+  </figure>
+</div>
+
+We used **Cognitive Walkthrough + Think Aloud** with role-playing scenarios:
+
+<div class="grid md:grid-cols-2 gap-4 my-8">
+  <div class="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+    <p class="font-medium text-blue-800 dark:text-blue-200 m-0 mb-2">👤 Guest Scenario</p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 m-0">"You were a guest at a wedding yesterday. Now you're joining in to share your own content."</p>
+  </div>
+  <div class="p-4 bg-pink-50 dark:bg-pink-950/30 rounded-lg">
+    <p class="font-medium text-pink-800 dark:text-pink-200 m-0 mb-2">💑 Couple Scenario</p>
+    <p class="text-sm text-gray-600 dark:text-gray-400 m-0">"You got married yesterday. You're logging in to see what everyone has shared."</p>
+  </div>
+</div>
+
+## Key Findings & Iterations
+
+<div class="space-y-4 my-8">
+  <details class="group bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <summary class="p-4 cursor-pointer font-medium flex justify-between items-center">
+      <span>1. Confusing dual "Add" buttons</span>
+      <span class="text-rose-500 group-open:-rotate-90 transition-transform">◀</span>
+    </summary>
+    <div class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-400">
+      <p><strong>Finding:</strong> Users couldn't distinguish between the Add button on Timeline vs. Moment View.</p>
+      <p class="m-0"><strong>Solution:</strong> Redesigned to show two clear options: "Add Media" (to existing moment) or "Add Moment" (create new).</p>
+    </div>
+  </details>
+  <details class="group bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <summary class="p-4 cursor-pointer font-medium flex justify-between items-center">
+      <span>2. Desire to see contributor identity</span>
+      <span class="text-rose-500 group-open:-rotate-90 transition-transform">◀</span>
+    </summary>
+    <div class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-400">
+      <p><strong>Finding:</strong> Couples wanted to know "What did Mom/friends capture?"</p>
+      <p class="m-0"><strong>Solution:</strong> Added contributor identity display on moments and individual media.</p>
+    </div>
+  </details>
+  <details class="group bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <summary class="p-4 cursor-pointer font-medium flex justify-between items-center">
+      <span>3. Need for flexible input methods</span>
+      <span class="text-rose-500 group-open:-rotate-90 transition-transform">◀</span>
+    </summary>
+    <div class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-400">
+      <p><strong>Finding:</strong> Users wanted text descriptions in addition to voice memos.</p>
+      <p class="m-0"><strong>Solution:</strong> Added parallel options: Photo, Video, and Voice Memo.</p>
+    </div>
+  </details>
+  <details class="group bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <summary class="p-4 cursor-pointer font-medium flex justify-between items-center">
+      <span>4. Couple's view should feel special</span>
+      <span class="text-rose-500 group-open:-rotate-90 transition-transform">◀</span>
+    </summary>
+    <div class="px-4 pb-4 text-sm text-gray-600 dark:text-gray-400">
+      <p><strong>Finding:</strong> Couples wanted their wedding page to feel distinct from weddings they attended as guests.</p>
+      <p class="m-0"><strong>Solution:</strong> Created visual differentiation with welcome message and prominent hero image for the couple's own wedding.</p>
+    </div>
+  </details>
+</div>
+
+## Final Design
+
+### Key feature 1: Time line view
+
+<figure className="my-10">
+  <Image
+    src={timelinePhoneGif}
+    alt="Moments app - Timeline view and navigation"
+    class="h-96 w-auto mx-auto"
+  />
+  <figcaption className="mt-4 text-sm text-gray-500 text-center">
+    Organize media as time line
+  </figcaption>
+</figure>
+
+### Key Feature 2. Support Multiple Media 
+
+<figure className="my-10">
+  <Image
+    src={addPhoneGif}
+    alt="Moments app - add media to a momonent"
+    class="h-96 w-auto mx-auto"
+  />
+  <figcaption className="mt-4 text-sm text-gray-500 text-center">
+    Support audio, video and image
+  </figcaption>
+</figure>
+
+<figure className="my-10">
+  <Image
+    src={hifiTimelineImg}
+    alt="Moments app - Adding media flow"
+  />
+  <figcaption className="mt-4 text-sm text-gray-500 text-center">
+    Adding media: users choose an existing moment or create a new one
+  </figcaption>
+</figure>
+
+### Key Feature 3. No comment, like, just save what you want to keep
+
+<figure className="my-10">
+  <Image
+    src={savePhoneGif}
+    alt="Moments app - Timeline view and navigation"
+    class="h-96 w-auto mx-auto"
+  />
+  <figcaption className="mt-4 text-sm text-gray-500 text-center">
+    Save image functionality
+  </figcaption>
+</figure>
+
+<figure className="my-10">
+  <Image
+    src={hifiMomentImg}
+    alt="Moments app - Moment view with multimodal content"
+  />
+  <figcaption className="mt-4 text-sm text-gray-500 text-center">
+    Moment View: photos, videos, and voice memos sorted by the number of people saved
+  </figcaption>
+</figure>
+
+### Core Feature
+
+<div class="grid md:grid-cols-2 gap-6 my-10">
+  <div class="flex gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl">
+    <div class="text-3xl">🎯</div>
+    <div>
+      <h4 class="font-semibold mt-0 mb-1">Moment Timeline</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Scrollable vertical timeline with rotating photo previews for each moment</p>
+    </div>
+  </div>
+  <div class="flex gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl">
+    <div class="text-3xl">🎙️</div>
+    <div>
+      <h4 class="font-semibold mt-0 mb-1">Multimodal Content</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Support for photos, videos, and voice memos to capture different facets of memory</p>
+    </div>
+  </div>
+  <div class="flex gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl">
+    <div class="text-3xl">👥</div>
+    <div>
+      <h4 class="font-semibold mt-0 mb-1">Contributor Identity</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0">See who captured each piece of content, enabling couples to appreciate each guest's perspective</p>
+    </div>
+  </div>
+  <div class="flex gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl">
+    <div class="text-3xl">💾</div>
+    <div>
+      <h4 class="font-semibold mt-0 mb-1">Private Saves</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Bookmark meaningful content without public likes or comments</p>
+    </div>
+  </div>
+</div>
+
+
+<Reflect>
+  
+  As a developer, I often dive straight into implementation, trying to make an application as "complete" as possible. This project taught me that not all features are necessary.
+
+For example, likes and comments seem essential for any photo-sharing app. But our research revealed that users preferred private interactions. They prefer saving photos for themselves rather than seeking social validation. They wanted to preserve memories, not compare engagement metrics.
+  
+</Reflect>
+
+

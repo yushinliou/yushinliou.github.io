@@ -4,7 +4,7 @@ coverImage:
   alt: "Pixel human stand on world map: Visualization comparing LLM-generated social networks with real-world networks across different countries"
 title: "Can AI Simulate Human Social Networks? Testing LLM Agents Across Countries"
 description: "An investigation into whether Large Language Models can reliably simulate human social behavior, revealing how language and cultural context impact AI-generated social networks."
-tags: ["machine learning", "LLM agents", "data analysis", "academic research"]
+tags: ["academic research", "machine learning", "LLM agents", "data analysis"]
 tabs: ["home", "research"]
 category: "AI Research"
 lang: "en"
@@ -17,10 +17,9 @@ role: "ML Researcher"
 
 
 import SideNote from '../../components/SideNote.astro';
-
+import Reflect from '../../components/Reflect.astro';
 import ProjectMeta from '../../components/ProjectMeta.astro';
 import Quote from '../../components/Quote.astro';
-import FourImageGrid from '../../components/FourImageGrid.astro';
 import Callout from '../../components/CallOut.astro';
 
 import { Image } from 'astro:assets';
@@ -705,23 +704,13 @@ When we look further into the correlations, a surprising pattern emerges: GDP an
 
 </div>
 
-<div className="my-16 not-prose">
-  <div className="max-w-3xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-2xl p-12 border border-gray-200 dark:border-gray-700">
-    <div className="flex items-center gap-3 mb-6">
-      <span className="text-3xl">💭</span>
-      <h2 className="text-2xl font-mono text-gray-700 dark:text-gray-300">
-        Reflection
-      </h2>
-    </div>
-    
-    <p className="text-lg font-mono text-gray-600 dark:text-gray-300 leading-relaxed">
-      Through this project, I realized again that there's no such thing as "terrible data" that's impossible to extract insights from—only the challenge of figuring out how to visualize it, find patterns, and come up with statistical tests suitable for what you have.
-    </p>
-    <p className="text-lg font-mono text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
-      The results also taught me that <strong>hoping LLMs can magically produce behavior that accurately captures human behavior is unrealistic</strong>. LLMs are technical products, and the outcomes of LLM-based simulations are largely shaped by how you design prompts, post-process responses, and visualize the results. There's no magic here, only design choices and their consequences.
-    </p>
-  </div>
-</div>
+
+<Reflect>
+
+  Through this project, I realized again that there's no such thing as "terrible data" that's impossible to extract insights from—only the challenge of figuring out how to visualize it, find patterns, and come up with statistical tests suitable for what you have.
+  The results also taught me that <strong>hoping LLMs can magically produce behavior that accurately captures human behavior is unrealistic</strong>. LLMs are technical products, and the outcomes of LLM-based simulations are largely shaped by how you design prompts, post-process responses, and visualize the results. There's no magic here, only design choices and their consequences.
+
+</Reflect>
 
 
 # References
